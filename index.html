@@ -9,6 +9,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@1,700&display=swap"
         rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
         *,
         *::before,
@@ -1433,6 +1434,162 @@
                 grid-column: span 12;
             }
         }
+
+        /* 3D INTERACTIVE ELEMENTS */
+        .three-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        #about,
+        #stats {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-tag,
+        .hero-h1,
+        .hero-h1-italic,
+        .hero-sub,
+        .hero-actions {
+            position: relative;
+            z-index: 5;
+        }
+
+        .hero-badge {
+            z-index: 5;
+        }
+
+        .hero-grid,
+        .hero-glow,
+        .hero-blob {
+            z-index: 0;
+        }
+
+        #about > .reveal {
+            position: relative;
+            z-index: 5;
+        }
+
+        .stats-inner {
+            position: relative;
+            z-index: 5;
+        }
+
+        .cta-glow {
+            z-index: 2;
+        }
+
+        .cta-eyebrow,
+        .cta-h2,
+        .cta-sub,
+        #cta > .btn-primary,
+        .cta-badges {
+            position: relative;
+            z-index: 5;
+        }
+
+        #global-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @media (max-width: 900px) {
+            .three-canvas {
+                opacity: 0.4;
+            }
+        }
+
+        /* SCROLL CRYSTAL GUIDE */
+        #scroll-crystal {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 130px;
+            height: 180px;
+            z-index: 90;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            transform: translate(0px, 0px);
+        }
+
+        #scroll-crystal-canvas {
+            width: 130px;
+            height: 130px;
+            position: relative;
+        }
+
+        #scroll-crystal-ring {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 130px;
+            height: 130px;
+            pointer-events: none;
+        }
+
+        #scroll-crystal-ring circle {
+            transition: stroke-dashoffset 0.15s ease-out;
+        }
+
+        #scroll-crystal-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 9px;
+            font-weight: 400;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: rgba(242, 240, 235, 0.35);
+            text-align: center;
+            transition: color 0.4s ease, opacity 0.4s ease;
+            white-space: nowrap;
+            opacity: 0;
+            animation: fadeUp 0.8s 1.2s ease both;
+        }
+
+        #scroll-crystal-pct {
+            font-family: 'Inter', sans-serif;
+            font-size: 10px;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            color: rgba(242, 240, 235, 0.2);
+            text-align: center;
+            transition: color 0.3s;
+        }
+
+        @media (max-width: 1100px) {
+            #scroll-crystal {
+                right: 16px;
+                width: 100px;
+                height: 150px;
+            }
+            #scroll-crystal-canvas {
+                width: 100px;
+                height: 100px;
+            }
+            #scroll-crystal-ring {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            #scroll-crystal {
+                display: none;
+            }
+        }
     </style>
 </head>
 
@@ -1460,6 +1617,7 @@
     <section id="hero">
         <div class="hero-grid"></div>
         <div class="hero-glow"></div>
+        <div id="hero-3d" class="three-canvas"></div>
         <svg class="hero-blob" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
             <path fill="#f2f0eb"
                 d="M47,-62C59.1,-52.1,66.1,-36.9,69.3,-21.1C72.5,-5.4,71.9,10.9,65.3,24.4C58.7,37.9,46.1,48.5,32.2,56.3C18.3,64.1,3.1,69,-12.5,67.6C-28.1,66.2,-44.2,58.5,-55.1,46.5C-66,34.5,-71.7,18.2,-70.8,2.4C-69.9,-13.4,-62.3,-28.7,-51.2,-39.1C-40.1,-49.5,-25.4,-55,-9.9,-58.9C5.6,-62.8,34.9,-71.9,47,-62Z"
@@ -1513,6 +1671,7 @@
 
     <!-- ABOUT -->
     <section id="about">
+        <div id="about-3d" class="three-canvas"></div>
         <div class="reveal">
             <p class="about-eyebrow">[ Quem somos ]</p>
             <h2 class="about-h2">Somos um estúdio<br>
@@ -1608,6 +1767,7 @@
 
     <!-- STATS -->
     <section id="stats">
+        <div id="stats-3d" class="three-canvas"></div>
         <div class="stats-inner">
             <div class="stat-item reveal">
                 <span class="stat-num" data-target="80">0</span>
@@ -1791,6 +1951,7 @@
 
     <!-- CTA -->
     <section id="cta">
+        <div id="cta-3d" class="three-canvas"></div>
         <div class="cta-glow"></div>
         <p class="cta-eyebrow reveal">[ Vamos trabalhar juntos ]</p>
         <h2 class="cta-h2 reveal">
@@ -1985,6 +2146,559 @@
             <div class="bancada-lightbox-caption" id="lightboxCaption"></div>
         </div>
     </div>
+    <canvas id="global-particles"></canvas>
+
+    <!-- SCROLL CRYSTAL GUIDE -->
+    <div id="scroll-crystal">
+        <div id="scroll-crystal-canvas">
+            <svg id="scroll-crystal-ring" viewBox="0 0 130 130">
+                <circle cx="65" cy="65" r="62" fill="none" stroke="rgba(242,240,235,0.06)" stroke-width="0.5"/>
+                <circle id="crystal-progress-ring" cx="65" cy="65" r="62" fill="none" stroke="rgba(242,240,235,0.2)" stroke-width="0.8" stroke-dasharray="389.56" stroke-dashoffset="389.56" stroke-linecap="round" transform="rotate(-90 65 65)"/>
+            </svg>
+        </div>
+        <div id="scroll-crystal-label">Ideia</div>
+    </div>
+
+    <script>
+    // ============ THREE.JS 3D INTERACTIVE ELEMENTS ============
+    (function() {
+        'use strict';
+        if (typeof THREE === 'undefined') return;
+
+        // Shared state
+        let mouseX = 0, mouseY = 0;
+        let mouseNX = 0, mouseNY = 0;
+        const prefersRM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const isMobile = window.innerWidth < 900;
+
+        document.addEventListener('mousemove', function(e) {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            mouseNX = (e.clientX / window.innerWidth) * 2 - 1;
+            mouseNY = -(e.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        // Visibility-based rendering for performance
+        var vis = {};
+        function trackVis(id) {
+            vis[id] = false;
+            var el = document.getElementById(id);
+            if (!el) return;
+            new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) { vis[id] = e.isIntersecting; });
+            }, { threshold: 0.05 }).observe(el);
+        }
+
+        // Helper: create WebGL renderer
+        function makeRenderer(container) {
+            var r = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            r.setSize(container.clientWidth, container.clientHeight);
+            r.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            r.setClearColor(0x000000, 0);
+            container.appendChild(r.domElement);
+            return r;
+        }
+
+        // ========== 1. HERO — Torus Knot Wireframe ==========
+        function initHero3D() {
+            var c = document.getElementById('hero-3d');
+            if (!c) return;
+            var scene = new THREE.Scene();
+            var cam = new THREE.PerspectiveCamera(60, c.clientWidth / c.clientHeight, 0.1, 100);
+            cam.position.z = 5;
+            var renderer = makeRenderer(c);
+
+            // Main torus knot - large, slow rotation
+            var tk = new THREE.Mesh(
+                new THREE.TorusKnotGeometry(1.8, 0.5, 128, 32),
+                new THREE.MeshBasicMaterial({ color: 0xf2f0eb, wireframe: true, transparent: true, opacity: 0.07 })
+            );
+            tk.position.set(2, 0, 0);
+            scene.add(tk);
+
+            // Secondary knot - smaller, different topology
+            var tk2 = new THREE.Mesh(
+                new THREE.TorusKnotGeometry(0.8, 0.25, 64, 16, 3, 5),
+                new THREE.MeshBasicMaterial({ color: 0xf2f0eb, wireframe: true, transparent: true, opacity: 0.04 })
+            );
+            tk2.position.set(2.5, -0.5, 0);
+            scene.add(tk2);
+
+            // Outer ring decoration
+            var ring = new THREE.Mesh(
+                new THREE.TorusGeometry(2.8, 0.02, 16, 100),
+                new THREE.MeshBasicMaterial({ color: 0xf2f0eb, transparent: true, opacity: 0.06 })
+            );
+            ring.position.set(2, 0, -1);
+            scene.add(ring);
+
+            trackVis('hero');
+
+            (function anim() {
+                requestAnimationFrame(anim);
+                if (!vis['hero'] || prefersRM) return;
+                tk.rotation.x += 0.003;
+                tk.rotation.y += 0.005;
+                tk.position.x = 2 + mouseNX * 0.3;
+                tk.position.y = mouseNY * 0.3;
+                tk2.rotation.x -= 0.004;
+                tk2.rotation.z += 0.006;
+                tk2.position.x = 2.5 + mouseNX * 0.5;
+                tk2.position.y = -0.5 + mouseNY * 0.5;
+                ring.rotation.x = mouseNY * 0.3 + 1.2;
+                ring.rotation.y += 0.002;
+                renderer.render(scene, cam);
+            })();
+
+            window.addEventListener('resize', function() {
+                cam.aspect = c.clientWidth / c.clientHeight;
+                cam.updateProjectionMatrix();
+                renderer.setSize(c.clientWidth, c.clientHeight);
+            });
+        }
+
+        // ========== 2. ABOUT — Particle Sphere ==========
+        function initAbout3D() {
+            var c = document.getElementById('about-3d');
+            if (!c) return;
+            var scene = new THREE.Scene();
+            var cam = new THREE.PerspectiveCamera(60, c.clientWidth / c.clientHeight, 0.1, 100);
+            cam.position.z = 5;
+            var renderer = makeRenderer(c);
+
+            // Fibonacci sphere particle distribution
+            var count = isMobile ? 400 : 800;
+            var positions = new Float32Array(count * 3);
+            for (var i = 0; i < count; i++) {
+                var phi = Math.acos(-1 + (2 * i) / count);
+                var theta = Math.sqrt(count * Math.PI) * phi;
+                var r = 1.8 + (Math.random() - 0.5) * 0.3;
+                positions[i * 3] = r * Math.cos(theta) * Math.sin(phi);
+                positions[i * 3 + 1] = r * Math.sin(theta) * Math.sin(phi);
+                positions[i * 3 + 2] = r * Math.cos(phi);
+            }
+            var geo = new THREE.BufferGeometry();
+            geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            var pts = new THREE.Points(geo, new THREE.PointsMaterial({
+                color: 0xf2f0eb, size: 0.025, transparent: true, opacity: 0.5, sizeAttenuation: true
+            }));
+            scene.add(pts);
+
+            // Wireframe icosahedron shell
+            var shell = new THREE.Mesh(
+                new THREE.IcosahedronGeometry(1.8, 2),
+                new THREE.MeshBasicMaterial({ color: 0xf2f0eb, wireframe: true, transparent: true, opacity: 0.03 })
+            );
+            scene.add(shell);
+
+            // Inner core
+            var core = new THREE.Mesh(
+                new THREE.OctahedronGeometry(0.5, 0),
+                new THREE.MeshBasicMaterial({ color: 0xf2f0eb, wireframe: true, transparent: true, opacity: 0.08 })
+            );
+            scene.add(core);
+
+            trackVis('about');
+
+            (function anim() {
+                requestAnimationFrame(anim);
+                if (!vis['about'] || prefersRM) return;
+                pts.rotation.y += 0.002;
+                pts.rotation.x += 0.001;
+                shell.rotation.y -= 0.003;
+                shell.rotation.x -= 0.001;
+                core.rotation.y += 0.008;
+                core.rotation.x += 0.005;
+                // Mouse influence
+                pts.rotation.y += mouseNX * 0.001;
+                pts.rotation.x += mouseNY * 0.001;
+                renderer.render(scene, cam);
+            })();
+
+            window.addEventListener('resize', function() {
+                cam.aspect = c.clientWidth / c.clientHeight;
+                cam.updateProjectionMatrix();
+                renderer.setSize(c.clientWidth, c.clientHeight);
+            });
+        }
+
+        // ========== 3. STATS — Nested Icosahedrons ==========
+        function initStats3D() {
+            var c = document.getElementById('stats-3d');
+            if (!c) return;
+            var scene = new THREE.Scene();
+            var cam = new THREE.PerspectiveCamera(50, c.clientWidth / c.clientHeight, 0.1, 100);
+            cam.position.z = 6;
+            var renderer = makeRenderer(c);
+
+            // Outer icosahedron
+            var ico = new THREE.Mesh(
+                new THREE.IcosahedronGeometry(2.5, 1),
+                new THREE.MeshBasicMaterial({ color: 0xf2f0eb, wireframe: true, transparent: true, opacity: 0.06 })
+            );
+            scene.add(ico);
+
+            // Inner icosahedron
+            var ico2 = new THREE.Mesh(
+                new THREE.IcosahedronGeometry(1.5, 0),
+                new THREE.MeshBasicMaterial({ color: 0xf2f0eb, wireframe: true, transparent: true, opacity: 0.04 })
+            );
+            scene.add(ico2);
+
+            // Tiny dodecahedron core
+            var dodec = new THREE.Mesh(
+                new THREE.DodecahedronGeometry(0.6, 0),
+                new THREE.MeshBasicMaterial({ color: 0xf2f0eb, wireframe: true, transparent: true, opacity: 0.08 })
+            );
+            scene.add(dodec);
+
+            trackVis('stats');
+            var hov = false;
+            var el = document.getElementById('stats');
+            if (el) {
+                el.addEventListener('mouseenter', function() { hov = true; });
+                el.addEventListener('mouseleave', function() { hov = false; });
+            }
+
+            (function anim() {
+                requestAnimationFrame(anim);
+                if (!vis['stats'] || prefersRM) return;
+                var s = hov ? 0.012 : 0.004;
+                ico.rotation.x += s;
+                ico.rotation.y += s * 0.7;
+                ico2.rotation.x -= s * 1.2;
+                ico2.rotation.z += s * 0.5;
+                dodec.rotation.y += s * 2;
+                dodec.rotation.x += s * 1.5;
+                renderer.render(scene, cam);
+            })();
+
+            window.addEventListener('resize', function() {
+                cam.aspect = c.clientWidth / c.clientHeight;
+                cam.updateProjectionMatrix();
+                renderer.setSize(c.clientWidth, c.clientHeight);
+            });
+        }
+
+        // ========== 4. CTA — Distorted Torus ==========
+        function initCTA3D() {
+            var c = document.getElementById('cta-3d');
+            if (!c) return;
+            var scene = new THREE.Scene();
+            var cam = new THREE.PerspectiveCamera(50, c.clientWidth / c.clientHeight, 0.1, 100);
+            cam.position.z = 6;
+            var renderer = makeRenderer(c);
+
+            // Torus with vertex displacement
+            var geo = new THREE.TorusGeometry(2, 0.6, 32, 64);
+            var torus = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({
+                color: 0xf2f0eb, wireframe: true, transparent: true, opacity: 0.07
+            }));
+            scene.add(torus);
+
+            // Second ring
+            var geo2 = new THREE.TorusGeometry(2.8, 0.03, 16, 80);
+            var ring2 = new THREE.Mesh(geo2, new THREE.MeshBasicMaterial({
+                color: 0xf2f0eb, transparent: true, opacity: 0.05
+            }));
+            ring2.rotation.x = Math.PI * 0.3;
+            scene.add(ring2);
+
+            // Store original positions for noise displacement
+            var origPos = new Float32Array(geo.attributes.position.array);
+
+            trackVis('cta');
+            var t = 0;
+
+            (function anim() {
+                requestAnimationFrame(anim);
+                if (!vis['cta'] || prefersRM) return;
+                t += 0.015;
+                // Vertex displacement with organic noise
+                var p = geo.attributes.position;
+                for (var i = 0; i < p.count; i++) {
+                    var ox = origPos[i * 3], oy = origPos[i * 3 + 1], oz = origPos[i * 3 + 2];
+                    var n = Math.sin(ox * 2 + t) * Math.cos(oy * 2 + t * 0.7) * Math.sin(oz * 2 + t * 0.5);
+                    var d = n * 0.15 * (1 + mouseNX * 0.5);
+                    p.setXYZ(i, ox + ox * d, oy + oy * d, oz + oz * d);
+                }
+                p.needsUpdate = true;
+                torus.rotation.x += 0.003;
+                torus.rotation.y += 0.005;
+                torus.rotation.z += 0.002;
+                ring2.rotation.z -= 0.003;
+                ring2.rotation.y += 0.002;
+                renderer.render(scene, cam);
+            })();
+
+            window.addEventListener('resize', function() {
+                cam.aspect = c.clientWidth / c.clientHeight;
+                cam.updateProjectionMatrix();
+                renderer.setSize(c.clientWidth, c.clientHeight);
+            });
+        }
+
+        // ========== 5. Global Floating Particles (Canvas 2D) ==========
+        function initParticles() {
+            var cvs = document.getElementById('global-particles');
+            if (!cvs) return;
+            var ctx = cvs.getContext('2d');
+            var w, h;
+            var parts = [];
+            var N = isMobile ? 25 : 55;
+            var CONN = 120;
+
+            function resize() {
+                w = cvs.width = window.innerWidth;
+                h = cvs.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            for (var i = 0; i < N; i++) {
+                parts.push({
+                    x: Math.random() * (w || window.innerWidth),
+                    y: Math.random() * (h || window.innerHeight),
+                    vx: (Math.random() - 0.5) * 0.3,
+                    vy: (Math.random() - 0.5) * 0.3,
+                    r: Math.random() * 1.5 + 0.5,
+                    o: Math.random() * 0.12 + 0.03
+                });
+            }
+
+            (function anim() {
+                requestAnimationFrame(anim);
+                if (prefersRM) return;
+                ctx.clearRect(0, 0, w, h);
+
+                // Update and draw particles
+                for (var i = 0; i < parts.length; i++) {
+                    var p = parts[i];
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    // Wrap around edges
+                    if (p.x < 0) p.x = w;
+                    if (p.x > w) p.x = 0;
+                    if (p.y < 0) p.y = h;
+                    if (p.y > h) p.y = 0;
+                    // Mouse repulsion
+                    var dx = p.x - mouseX, dy = p.y - mouseY;
+                    var dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 150 && dist > 0) {
+                        var force = (150 - dist) / 150;
+                        p.x += (dx / dist) * force * 2;
+                        p.y += (dy / dist) * force * 2;
+                    }
+                    // Draw
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(242, 240, 235, ' + p.o + ')';
+                    ctx.fill();
+                }
+
+                // Draw connections between nearby particles
+                for (var i = 0; i < parts.length; i++) {
+                    for (var j = i + 1; j < parts.length; j++) {
+                        var dx = parts[i].x - parts[j].x;
+                        var dy = parts[i].y - parts[j].y;
+                        var d = Math.sqrt(dx * dx + dy * dy);
+                        if (d < CONN) {
+                            var opacity = (1 - d / CONN) * 0.06;
+                            ctx.beginPath();
+                            ctx.moveTo(parts[i].x, parts[i].y);
+                            ctx.lineTo(parts[j].x, parts[j].y);
+                            ctx.strokeStyle = 'rgba(242, 240, 235, ' + opacity + ')';
+                            ctx.lineWidth = 0.5;
+                            ctx.stroke();
+                        }
+                    }
+                }
+            })();
+        }
+
+        // ========== 6. SCROLL CRYSTAL GUIDE ==========
+        function initScrollCrystal() {
+            var container = document.getElementById('scroll-crystal-canvas');
+            if (!container || isMobile) return;
+
+            var scene = new THREE.Scene();
+            var cam = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
+            cam.position.z = 4;
+
+            var renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            var size = container.clientWidth || 130;
+            renderer.setSize(size, size);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.setClearColor(0x000000, 0);
+            container.insertBefore(renderer.domElement, container.firstChild);
+
+            // 5 geometries: simple to complex
+            var shapes = [
+                { geo: new THREE.TetrahedronGeometry(1.2, 0), label: 'Ideia' },
+                { geo: new THREE.TetrahedronGeometry(1.2, 1), label: 'Estrutura' },
+                { geo: new THREE.OctahedronGeometry(1.2, 0), label: 'Conceito' },
+                { geo: new THREE.DodecahedronGeometry(1.0, 0), label: 'Projeto' },
+                { geo: new THREE.IcosahedronGeometry(1.1, 0), label: 'Resultado' }
+            ];
+
+            // Create meshes
+            var meshes = shapes.map(function(s) {
+                var mesh = new THREE.Mesh(s.geo, new THREE.MeshBasicMaterial({
+                    color: 0xf2f0eb, wireframe: true, transparent: true, opacity: 0
+                }));
+                scene.add(mesh);
+                return mesh;
+            });
+
+            // Start with first shape visible
+            meshes[0].material.opacity = 0.18;
+
+            // Edges for more defined wireframe look
+            var edgeMeshes = shapes.map(function(s, idx) {
+                var edgeGeo = new THREE.EdgesGeometry(s.geo);
+                var line = new THREE.LineSegments(edgeGeo, new THREE.LineBasicMaterial({
+                    color: 0xf2f0eb, transparent: true, opacity: 0
+                }));
+                scene.add(line);
+                return line;
+            });
+            edgeMeshes[0].material.opacity = 0.3;
+
+            // Progress elements
+            var progressRing = document.getElementById('crystal-progress-ring');
+            var labelEl = document.getElementById('scroll-crystal-label');
+            var circumference = 2 * Math.PI * 62; // 389.56
+
+            // Waypoints: X and Y positions based on screen dimensions
+            function getWaypoints() {
+                var w = window.innerWidth;
+                var h = window.innerHeight;
+                return [
+                    { x: w - 166, y: h / 2 - 90 }, // Stage 0 (Ideia): Right Center
+                    { x: 48,      y: h * 0.35 - 90 }, // Stage 1 (Estrutura): Left Middle-Top
+                    { x: w - 166, y: h * 0.65 - 90 }, // Stage 2 (Conceito): Right Middle-Bottom
+                    { x: 48,      y: h * 0.45 - 90 }, // Stage 3 (Projeto): Left Center
+                    { x: w - 166, y: h / 2 - 90 }  // Stage 4 (Resultado): Right Center
+                ];
+            }
+
+            var currentX = window.innerWidth - 166;
+            var currentY = window.innerHeight / 2 - 90;
+            var scrollProg = 0;
+            var currentLabel = 'Ideia';
+
+            window.addEventListener('scroll', function() {
+                scrollProg = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+            });
+
+            // Hover interactivity
+            var crystalRoot = document.getElementById('scroll-crystal');
+            var hovering = false;
+            if (crystalRoot) {
+                crystalRoot.style.pointerEvents = 'auto';
+                crystalRoot.addEventListener('mouseenter', function() { hovering = true; });
+                crystalRoot.addEventListener('mouseleave', function() { hovering = false; });
+            }
+
+            (function anim() {
+                requestAnimationFrame(anim);
+                if (prefersRM) return;
+
+                var total = meshes.length;
+                var raw = Math.min(scrollProg, 0.999) * (total - 1);
+                var idx = Math.floor(raw);
+                var nextIdx = Math.min(idx + 1, total - 1);
+                var t = raw - idx;
+
+                // Smooth easing for transition
+                var tEased = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+
+                // Calculate target position based on waypoints
+                var pts = getWaypoints();
+                var rawPt = Math.min(scrollProg, 0.999) * (pts.length - 1);
+                var ptIdx = Math.floor(rawPt);
+                var nextPtIdx = Math.min(ptIdx + 1, pts.length - 1);
+                var ptT = rawPt - ptIdx;
+                var posT = ptT < 0.5 ? 2 * ptT * ptT : 1 - Math.pow(-2 * ptT + 2, 2) / 2;
+
+                var targetX = pts[ptIdx].x + (pts[nextPtIdx].x - pts[ptIdx].x) * posT;
+                var targetY = pts[ptIdx].y + (pts[nextPtIdx].y - pts[ptIdx].y) * posT;
+
+                // Physics-like float interpolation (lerp)
+                currentX += (targetX - currentX) * 0.07;
+                currentY += (targetY - currentY) * 0.07;
+
+                if (crystalRoot) {
+                    crystalRoot.style.transform = 'translate(' + currentX + 'px, ' + currentY + 'px)';
+                }
+
+                // Update shape visibility
+                for (var i = 0; i < total; i++) {
+                    var targetOp = 0;
+                    var targetEdgeOp = 0;
+                    var targetScale = 0.6;
+
+                    if (i === idx) {
+                        targetOp = 0.18 * (1 - tEased);
+                        targetEdgeOp = 0.3 * (1 - tEased);
+                        targetScale = 1.0 + tEased * 0.15;
+                    } else if (i === nextIdx && nextIdx !== idx) {
+                        targetOp = 0.18 * tEased;
+                        targetEdgeOp = 0.3 * tEased;
+                        targetScale = 0.7 + tEased * 0.3;
+                    }
+
+                    meshes[i].material.opacity += (targetOp - meshes[i].material.opacity) * 0.1;
+                    edgeMeshes[i].material.opacity += (targetEdgeOp - edgeMeshes[i].material.opacity) * 0.1;
+                    var cs = meshes[i].scale.x;
+                    var ns = cs + (targetScale - cs) * 0.08;
+                    meshes[i].scale.setScalar(ns);
+                    edgeMeshes[i].scale.setScalar(ns);
+
+                    // Rotation
+                    var rotSpeed = hovering ? 0.025 : 0.008;
+                    meshes[i].rotation.x += rotSpeed;
+                    meshes[i].rotation.y += rotSpeed * 1.3;
+                    edgeMeshes[i].rotation.copy(meshes[i].rotation);
+                }
+
+                // Update progress ring
+                if (progressRing) {
+                    var offset = circumference * (1 - scrollProg);
+                    progressRing.setAttribute('stroke-dashoffset', offset);
+                }
+
+                // Update label
+                var activeIdx = tEased > 0.5 ? nextIdx : idx;
+                var newLabel = shapes[activeIdx].label;
+                if (newLabel !== currentLabel && labelEl) {
+                    currentLabel = newLabel;
+                    labelEl.style.opacity = '0';
+                    setTimeout(function() {
+                        labelEl.textContent = currentLabel;
+                        labelEl.style.opacity = '1';
+                    }, 200);
+                }
+
+                renderer.render(scene, cam);
+            })();
+
+            window.addEventListener('resize', function() {
+                var s = container.clientWidth || 130;
+                renderer.setSize(s, s);
+            });
+        }
+
+        // Initialize all 3D elements
+        initHero3D();
+        initAbout3D();
+        initStats3D();
+        initCTA3D();
+        initParticles();
+        initScrollCrystal();
+    })();
+    </script>
+
 </body>
 
 </html>
