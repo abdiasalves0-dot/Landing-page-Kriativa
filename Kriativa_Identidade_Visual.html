@@ -1,0 +1,1726 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kriativa — Manual de Identidade Visual</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        @page {
+            size: A4 portrait;
+            margin: 0;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --black-deep: #0a0a0a;
+            --black: #111111;
+            --graphite-dark: #1a1a1a;
+            --graphite: #2a2a2a;
+            --graphite-mid: #3a3a3a;
+            --graphite-light: #4a4a4a;
+            --silver-dark: #666666;
+            --silver: #888888;
+            --silver-light: #aaaaaa;
+            --white: #f2f0eb;
+            --white-dim: rgba(242, 240, 235, 0.6);
+            --white-muted: rgba(242, 240, 235, 0.35);
+            --white-subtle: rgba(242, 240, 235, 0.08);
+            --white-border: rgba(242, 240, 235, 0.12);
+            --accent-gradient: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 50%, #0a0a0a 100%);
+            --shine-gradient: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 50%, rgba(255,255,255,0.03) 100%);
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            background: var(--black-deep);
+            color: var(--white);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ===== PAGE STRUCTURE ===== */
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+            page-break-after: always;
+            background: var(--black);
+        }
+
+        .page-inner {
+            padding: 48px 56px;
+            min-height: 297mm;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ===== SUBTLE NOISE TEXTURE ===== */
+        .page::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        .section-label {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--silver-dark);
+            margin-bottom: 8px;
+        }
+
+        .section-number {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--graphite-mid);
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--white-border);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 14px;
+            font-weight: 300;
+            color: var(--white-dim);
+            line-height: 1.7;
+            max-width: 480px;
+        }
+
+        .body-text {
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--white-dim);
+            line-height: 1.8;
+        }
+
+        .caption {
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--silver-dark);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .small-text {
+            font-size: 11px;
+            color: var(--white-muted);
+            line-height: 1.6;
+        }
+
+        /* ===== DECORATIVE ELEMENTS ===== */
+        .line-accent {
+            width: 48px;
+            height: 1px;
+            background: linear-gradient(90deg, var(--graphite-mid), transparent);
+            margin-bottom: 24px;
+        }
+
+        .line-accent-long {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, var(--white-border), transparent);
+            margin: 32px 0;
+        }
+
+        .dot-accent {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--graphite-mid);
+            display: inline-block;
+            margin-right: 12px;
+        }
+
+        /* ===== FOOTER BAR ===== */
+        .page-footer {
+            margin-top: auto;
+            padding-top: 24px;
+            border-top: 1px solid var(--white-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-footer .footer-brand {
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--graphite-mid);
+        }
+
+        .page-footer .footer-page {
+            font-size: 9px;
+            font-weight: 500;
+            color: var(--graphite-mid);
+        }
+
+        /* ===== COVER PAGE ===== */
+        .cover {
+            background: linear-gradient(180deg, #0a0a0a 0%, #111111 40%, #1a1a1a 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .cover::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(to top, rgba(26,26,26,0.3), transparent);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .cover .cover-content {
+            position: relative;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            padding: 80px 56px;
+        }
+
+        .cover-logo {
+            width: 320px;
+            height: auto;
+            margin-bottom: 48px;
+            opacity: 0.95;
+        }
+
+        .cover-logo svg {
+            width: 100%;
+            height: auto;
+        }
+
+        .cover-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .cover-divider {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--graphite-mid), transparent);
+            margin: 24px 0;
+        }
+
+        .cover-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            font-style: italic;
+            color: var(--white-dim);
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .cover-desc {
+            font-size: 11px;
+            font-weight: 300;
+            color: var(--white-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .cover-bottom {
+            position: absolute;
+            bottom: 40px;
+            left: 56px;
+            right: 56px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            z-index: 3;
+        }
+
+        .cover-bottom-text {
+            font-size: 9px;
+            font-weight: 500;
+            color: var(--graphite-mid);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Geometric accents on cover */
+        .cover-geo-tl {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            width: 40px;
+            height: 40px;
+            border-top: 1px solid var(--white-border);
+            border-left: 1px solid var(--white-border);
+            z-index: 3;
+        }
+
+        .cover-geo-br {
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+            width: 40px;
+            height: 40px;
+            border-bottom: 1px solid var(--white-border);
+            border-right: 1px solid var(--white-border);
+            z-index: 3;
+        }
+
+        /* ===== GRID LAYOUTS ===== */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        .grid-3col {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 24px;
+        }
+
+        .grid-4col {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* ===== COLOR SWATCH ===== */
+        .swatch-card {
+            border: 1px solid var(--white-border);
+            border-radius: 8px;
+            overflow: hidden;
+            background: var(--graphite-dark);
+        }
+
+        .swatch-preview {
+            height: 80px;
+            width: 100%;
+        }
+
+        .swatch-info {
+            padding: 12px 14px;
+        }
+
+        .swatch-name {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+
+        .swatch-hex {
+            font-size: 10px;
+            font-weight: 400;
+            color: var(--silver);
+            font-family: 'Inter', monospace;
+            letter-spacing: 1px;
+        }
+
+        .swatch-rgb {
+            font-size: 9px;
+            font-weight: 400;
+            color: var(--silver-dark);
+            margin-top: 2px;
+        }
+
+        /* ===== LOGO DISPLAY BOX ===== */
+        .logo-display {
+            border: 1px solid var(--white-border);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            position: relative;
+        }
+
+        .logo-display svg {
+            max-width: 200px;
+            max-height: 120px;
+        }
+
+        .logo-display-dark {
+            background: var(--black-deep);
+        }
+
+        .logo-display-graphite {
+            background: var(--graphite);
+        }
+
+        .logo-display-light {
+            background: var(--white);
+        }
+
+        .logo-display-light svg .cls-1,
+        .logo-display-light svg path,
+        .logo-display-light svg rect,
+        .logo-display-light svg circle {
+            fill: var(--black) !important;
+        }
+
+        .logo-display-label {
+            position: absolute;
+            bottom: 8px;
+            left: 14px;
+            font-size: 9px;
+            font-weight: 500;
+            color: var(--silver-dark);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* ===== TYPOGRAPHY SPECIMEN ===== */
+        .type-specimen {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--white-border);
+        }
+
+        .type-specimen:last-child {
+            border-bottom: none;
+        }
+
+        .type-weight-label {
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--silver-dark);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .type-sample {
+            font-family: 'Inter', sans-serif;
+            color: var(--white);
+            line-height: 1.3;
+        }
+
+        .type-sample-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .type-alphabet {
+            font-size: 13px;
+            color: var(--white-dim);
+            margin-top: 6px;
+            letter-spacing: 2px;
+        }
+
+        /* ===== SPACING / CLEAR SPACE ===== */
+        .clearspace-container {
+            position: relative;
+            border: 1px dashed var(--graphite-mid);
+            border-radius: 8px;
+            padding: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--black-deep);
+        }
+
+        .clearspace-label {
+            position: absolute;
+            font-size: 9px;
+            font-weight: 500;
+            color: var(--silver-dark);
+            letter-spacing: 1px;
+        }
+
+        .clearspace-top {
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .clearspace-bottom {
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .clearspace-left {
+            left: 8px;
+            top: 50%;
+            transform: translateY(-50%) rotate(-90deg);
+        }
+
+        .clearspace-right {
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%) rotate(90deg);
+        }
+
+        /* ===== MISUSE EXAMPLES ===== */
+        .misuse-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+        }
+
+        .misuse-card {
+            border: 1px solid rgba(220, 50, 50, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            background: rgba(220, 50, 50, 0.03);
+        }
+
+        .misuse-preview {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--black-deep);
+            position: relative;
+        }
+
+        .misuse-preview svg {
+            max-width: 80px;
+            max-height: 50px;
+        }
+
+        .misuse-x {
+            position: absolute;
+            top: 6px;
+            right: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #dc3232;
+        }
+
+        .misuse-text {
+            padding: 8px 10px;
+            font-size: 9px;
+            font-weight: 500;
+            color: var(--silver);
+            text-align: center;
+        }
+
+        /* ===== SERVICE CARD ===== */
+        .service-card {
+            border: 1px solid var(--white-border);
+            border-radius: 10px;
+            padding: 24px;
+            background: linear-gradient(145deg, var(--graphite-dark), var(--black));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--graphite-mid), transparent);
+        }
+
+        .service-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: var(--graphite);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+
+        .service-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 6px;
+        }
+
+        .service-desc {
+            font-size: 10px;
+            font-weight: 400;
+            color: var(--white-muted);
+            line-height: 1.6;
+        }
+
+        /* ===== PROJECT CARD ===== */
+        .project-card {
+            border: 1px solid var(--white-border);
+            border-radius: 12px;
+            padding: 32px;
+            background: linear-gradient(160deg, var(--graphite-dark) 0%, var(--black) 100%);
+            position: relative;
+        }
+
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            border-radius: 12px 12px 0 0;
+            background: linear-gradient(90deg, var(--graphite-mid), var(--graphite-light), var(--graphite-mid));
+        }
+
+        .project-badge {
+            display: inline-block;
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--silver);
+            background: var(--graphite);
+            padding: 4px 12px;
+            border-radius: 4px;
+            margin-bottom: 16px;
+        }
+
+        .project-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .project-desc {
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--white-dim);
+            line-height: 1.8;
+        }
+
+        /* ===== BRAND VALUES ===== */
+        .value-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--white-border);
+        }
+
+        .value-item:last-child {
+            border-bottom: none;
+        }
+
+        .value-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--graphite-mid);
+            min-width: 36px;
+        }
+
+        .value-content h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+
+        .value-content p {
+            font-size: 11px;
+            color: var(--white-muted);
+            line-height: 1.6;
+        }
+
+        /* ===== APPLICATION MOCKUPS ===== */
+        .app-mockup {
+            border: 1px solid var(--white-border);
+            border-radius: 10px;
+            overflow: hidden;
+            background: var(--graphite-dark);
+        }
+
+        .app-mockup-header {
+            height: 28px;
+            background: var(--graphite);
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+            gap: 6px;
+        }
+
+        .app-mockup-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--graphite-light);
+        }
+
+        .app-mockup-body {
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
+        }
+
+        /* ===== DO / DON'T ===== */
+        .do-dont-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .do-card, .dont-card {
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid;
+        }
+
+        .do-card {
+            border-color: rgba(80, 200, 120, 0.2);
+            background: rgba(80, 200, 120, 0.03);
+        }
+
+        .dont-card {
+            border-color: rgba(220, 50, 50, 0.2);
+            background: rgba(220, 50, 50, 0.03);
+        }
+
+        .do-label, .dont-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .do-label {
+            color: #50c878;
+        }
+
+        .dont-label {
+            color: #dc3232;
+        }
+
+        .do-card .body-text, .dont-card .body-text {
+            font-size: 11px;
+        }
+
+        /* ===== TABLE INDEX ===== */
+        .index-list {
+            list-style: none;
+        }
+
+        .index-item {
+            display: flex;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--white-border);
+        }
+
+        .index-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--graphite-mid);
+            min-width: 48px;
+        }
+
+        .index-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--white);
+            flex: 1;
+        }
+
+        .index-page {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--silver-dark);
+        }
+
+        .index-dots {
+            flex: 1;
+            border-bottom: 1px dotted var(--white-border);
+            margin: 0 16px;
+            height: 1px;
+        }
+
+        /* ===== GRID PATTERN BG ===== */
+        .grid-bg {
+            background-image: 
+                linear-gradient(var(--white-subtle) 1px, transparent 1px),
+                linear-gradient(90deg, var(--white-subtle) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* ===== PRINT STYLES ===== */
+        @media print {
+            body {
+                background: #0a0a0a;
+            }
+            .page {
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        /* ===== SCREEN STYLES ===== */
+        @media screen {
+            body {
+                padding: 32px 0;
+            }
+            .page {
+                margin: 0 auto 48px;
+                box-shadow: 
+                    0 0 0 1px var(--white-border),
+                    0 32px 80px -16px rgba(0,0,0,0.8);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== PAGE 1: COVER ===== -->
+    <div class="page cover">
+        <div class="cover-geo-tl"></div>
+        <div class="cover-geo-br"></div>
+        
+        <div class="cover-content">
+            <div class="cover-logo">
+                <svg viewBox="75 340 610 130" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="#f2f0eb" d="M299.35,392.22l33.52,46.58c-5.69.92-10.42.84-16.32.62l-28.55-40.7c-1.1-1.57-5.83-1.42-7.83-.64l-.19,41.45-13.44-.18.11-88.38,13.52-.04-.09,38.28c.74,1.38,4.93,1.36,5.86.21l31.08-38.61,16.58.27-34.26,41.14Z"/>
+                    <path fill="#f2f0eb" d="M635.07,440.62c-9.88-1.6-16.13-8.4-16.75-17.14-1.53-21.69,24.9-22.9,42.22-22.36,1.38-4.57.38-10.98-3.84-14.49-3.18-2.64-8.47-3.17-12.54-2.7-6.48.74-10.55,5.06-11.6,11.91l-11.98-1.5c.02-8.64,5.71-15.73,13.99-18.75,7.67-2.8,16.2-2.92,24.07-.52,8.89,2.72,14.96,10.48,15.06,19.89l.27,25.12c.07,6.69.58,12.63,1.41,19.29l-11.96.31-1.91-10.28c-5.54,9.31-15.66,12.98-26.43,11.23ZM641.26,430.74c5.86.51,11.71-1.37,15.17-4.97,3.89-4.04,5.35-9.38,4.43-15.63-9,.06-30.59-.91-29.54,12.08.39,4.86,4.12,8.02,9.93,8.52Z"/>
+                    <path fill="#f2f0eb" d="M428.94,440.5c-10.25-1.86-16.49-9.46-16.17-19.49.64-19.87,26.88-20.28,42.44-19.83,1.1-4.61.13-11.04-4.02-14.39-4.83-3.91-12.24-3.89-17.76-1.28-4.06,1.93-5.51,6.06-6.74,10.38l-11.67-1.49c-.08-7.77,4.43-14.44,11.73-17.84,8.07-3.76,17.24-4.01,25.9-1.63,9.14,2.51,15.5,10.33,15.61,20.2l.35,31.49c.05,4.39.66,7.93,1.37,12.87h-12.19s-1.63-10.16-1.63-10.16c-5.82,9.49-16.1,13.2-27.23,11.18ZM435.9,430.84c6.02.38,11.62-1.5,15.14-5.11,3.86-3.97,5.27-9.24,4.49-15.56-8.69-.09-31.14-.73-29.76,12.15.51,4.78,4.29,8.15,10.14,8.52Z"/>
+                    <path fill="#f2f0eb" d="M601.08,375.12c4.93-.34,8.82-.28,13.96.17l-24.18,63.9-14.12.28-24.27-64.43,14.09-.09,17.47,51.92,17.04-51.74Z"/>
+                    <path fill="#f2f0eb" d="M518.55,428.6l.73,10.59c-6.54,1.22-12.54,1.76-18.84.45-7.43-1.54-12.72-8.23-12.76-15.94l-.24-38.18-11.03.06.07-10.64,10.95-.15,2.87-16.64h10.2s.14,16.74.14,16.74l18.4.11-.03,10.56h-18.44s0,35.51,0,35.51c0,4.27,2.84,8,7.32,8.43,3.12.3,5.6-.18,10.65-.88Z"/>
+                    <path fill="#f2f0eb" d="M354.66,439.42l-13.31-.17.03-64.08,11.62-.25,1.39,11.3c4.39-9.2,12.66-14.07,23.06-11.99l-.38,12.07c-5.92-.49-11.45-.2-15.78,3.32-2.89,2.35-6.24,7.82-6.29,12.68l-.33,37.11Z"/>
+                    <rect fill="#f2f0eb" x="387.32" y="374.88" width="13.15" height="64.66"/>
+                    <rect fill="#f2f0eb" x="530.78" y="374.9" width="13.19" height="64.69"/>
+                    <circle fill="#f2f0eb" cx="393.81" cy="356.84" r="8.41"/>
+                    <circle fill="#f2f0eb" cx="537.25" cy="356.87" r="8.37"/>
+                    <path fill="#f2f0eb" d="M174.22,439l17.17,26.42-47.12.32-15.26-16.81-.07,16.66-40.96-.09-.08-40.23c11.05-.14,21.68,3.57,29.49,11.39l11.39,11.39.04-54.08c0-9.48,9.06-12.97,5.54-27.04l-5.53,4.77-.19-29.25-39.66,40.24c14.39-.63,26.88-4.79,40-10.84l-40.98,46.68-.17-96.28,40.93.02.12,19.54c5.12,5.01,7.64,10.24,9.46,18.17l31.25-37.8,58.13.2-76.68,76.93c11.02,10.94,26.66,11.17,38.06,1.37l13.4,27.59c4.32-2.83,7.83-5.96,10.78-9.73l-26.93-49.8,41.58-.02c2.66,18.49-2.38,36.52-14.2,50.01l25.26,46.34-18.51.47-17.9-36.72c-8.42,5.32-16.7,8.57-28.35,10.17ZM173.22,438.33l-24.34-36.81-19.39,19.48c11.67,11.78,26.84,18.23,43.73,17.33Z"/>
+                </svg>
+            </div>
+            
+            <div class="cover-title">KRIATIVA</div>
+            <div class="cover-divider"></div>
+            <div class="cover-subtitle">Identidade Visual</div>
+            <div style="height: 24px;"></div>
+            <div class="cover-desc">Manual de Marca &amp; Diretrizes Visuais</div>
+        </div>
+
+        <div class="cover-bottom">
+            <div class="cover-bottom-text">Documento Confidencial</div>
+            <div class="cover-bottom-text">2026 — V1.0</div>
+        </div>
+    </div>
+
+    <!-- ===== PAGE 2: SUMÁRIO ===== -->
+    <div class="page">
+        <div class="page-inner">
+            <div class="section-number">00 — SUMÁRIO</div>
+            <div class="section-title">Índice</div>
+            <div class="section-subtitle" style="margin-bottom: 48px;">
+                Guia completo de diretrizes visuais e aplicações da marca Kriativa.
+            </div>
+
+            <ul class="index-list">
+                <li class="index-item">
+                    <span class="index-num">01</span>
+                    <span class="index-title">Sobre a Marca</span>
+                    <span class="index-dots"></span>
+                    <span class="index-page">03</span>
+                </li>
+                <li class="index-item">
+                    <span class="index-num">02</span>
+                    <span class="index-title">Logotipo</span>
+                    <span class="index-dots"></span>
+                    <span class="index-page">04</span>
+                </li>
+                <li class="index-item">
+                    <span class="index-num">03</span>
+                    <span class="index-title">Área de Proteção &amp; Uso Incorreto</span>
+                    <span class="index-dots"></span>
+                    <span class="index-page">05</span>
+                </li>
+                <li class="index-item">
+                    <span class="index-num">04</span>
+                    <span class="index-title">Paleta de Cores</span>
+                    <span class="index-dots"></span>
+                    <span class="index-page">06</span>
+                </li>
+                <li class="index-item">
+                    <span class="index-num">05</span>
+                    <span class="index-title">Tipografia</span>
+                    <span class="index-dots"></span>
+                    <span class="index-page">07</span>
+                </li>
+                <li class="index-item">
+                    <span class="index-num">06</span>
+                    <span class="index-title">Serviços &amp; Ecossistema</span>
+                    <span class="index-dots"></span>
+                    <span class="index-page">08</span>
+                </li>
+                <li class="index-item">
+                    <span class="index-num">07</span>
+                    <span class="index-title">Projetos — Bancada &amp; Fornada</span>
+                    <span class="index-dots"></span>
+                    <span class="index-page">09</span>
+                </li>
+                <li class="index-item">
+                    <span class="index-num">08</span>
+                    <span class="index-title">Valores &amp; Tom de Voz</span>
+                    <span class="index-dots"></span>
+                    <span class="index-page">10</span>
+                </li>
+                <li class="index-item">
+                    <span class="index-num">09</span>
+                    <span class="index-title">Aplicações da Marca</span>
+                    <span class="index-dots"></span>
+                    <span class="index-page">11</span>
+                </li>
+            </ul>
+
+            <div class="page-footer">
+                <span class="footer-brand">Kriativa — Identidade Visual</span>
+                <span class="footer-page">02</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PAGE 3: SOBRE A MARCA ===== -->
+    <div class="page">
+        <div class="page-inner">
+            <div class="section-number">01 — SOBRE A MARCA</div>
+            
+            <div class="section-title">A Kriativa é um<br>hub criativo &amp; digital.</div>
+            
+            <div class="line-accent"></div>
+            
+            <div class="section-subtitle" style="margin-bottom: 40px;">
+                Mais do que uma agência, somos o ecossistema completo. Do conceito visual 
+                ao sistema sob medida com inteligência artificial.
+            </div>
+
+            <div class="grid-2col" style="margin-bottom: 40px;">
+                <div>
+                    <div class="caption" style="margin-bottom: 12px;">Design Hub</div>
+                    <p class="body-text">
+                        Criamos identidades visuais que marcam. Desde o manual de marca completo 
+                        até a produção contínua de conteúdo para mídias sociais — posts estáticos, 
+                        carrosséis e toda a comunicação visual que uma marca precisa para se destacar.
+                    </p>
+                </div>
+                <div>
+                    <div class="caption" style="margin-bottom: 12px;">Software House</div>
+                    <p class="body-text">
+                        Desenvolvemos sistemas do zero, cada um com assistente de I.A. específico 
+                        para o nicho do cliente. Dominamos todo o circuito: da concepção do sistema 
+                        à sua divulgação — tecnologia e marketing integrados de ponta a ponta.
+                    </p>
+                </div>
+            </div>
+
+            <div class="line-accent-long"></div>
+
+            <div class="grid-3col">
+                <div style="text-align: center;">
+                    <div style="font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: var(--white); margin-bottom: 4px;">2</div>
+                    <div class="caption">Projetos Principais</div>
+                    <div class="small-text" style="margin-top: 4px;">Bancada &amp; Fornada</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: var(--white); margin-bottom: 4px;">360°</div>
+                    <div class="caption">Abordagem</div>
+                    <div class="small-text" style="margin-top: 4px;">Design + Tech + Marketing</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: var(--white); margin-bottom: 4px;">I.A.</div>
+                    <div class="caption">Integração</div>
+                    <div class="small-text" style="margin-top: 4px;">Assistentes por nicho</div>
+                </div>
+            </div>
+
+            <div class="page-footer">
+                <span class="footer-brand">Kriativa — Identidade Visual</span>
+                <span class="footer-page">03</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PAGE 4: LOGOTIPO ===== -->
+    <div class="page">
+        <div class="page-inner">
+            <div class="section-number">02 — LOGOTIPO</div>
+            
+            <div class="section-title">Logotipo Principal</div>
+            <div class="section-subtitle" style="margin-bottom: 32px;">
+                O logotipo da Kriativa é composto pelo ícone "K" estilizado e a palavra "kriativa" 
+                em tipografia customizada. Ambos podem ser usados juntos ou separadamente.
+            </div>
+
+            <!-- Símbolo isolado -->
+            <div class="caption" style="margin-bottom: 12px;">Símbolo — Versão Ícone</div>
+            <div class="grid-3col" style="margin-bottom: 32px;">
+                <div class="logo-display logo-display-dark" style="height: 140px;">
+                    <svg viewBox="75 325 220 150" xmlns="http://www.w3.org/2000/svg" style="max-width: 120px;">
+                        <path fill="#f2f0eb" d="M174.22,439l17.17,26.42-47.12.32-15.26-16.81-.07,16.66-40.96-.09-.08-40.23c11.05-.14,21.68,3.57,29.49,11.39l11.39,11.39.04-54.08c0-9.48,9.06-12.97,5.54-27.04l-5.53,4.77-.19-29.25-39.66,40.24c14.39-.63,26.88-4.79,40-10.84l-40.98,46.68-.17-96.28,40.93.02.12,19.54c5.12,5.01,7.64,10.24,9.46,18.17l31.25-37.8,58.13.2-76.68,76.93c11.02,10.94,26.66,11.17,38.06,1.37l13.4,27.59c4.32-2.83,7.83-5.96,10.78-9.73l-26.93-49.8,41.58-.02c2.66,18.49-2.38,36.52-14.2,50.01l25.26,46.34-18.51.47-17.9-36.72c-8.42,5.32-16.7,8.57-28.35,10.17ZM173.22,438.33l-24.34-36.81-19.39,19.48c11.67,11.78,26.84,18.23,43.73,17.33Z"/>
+                    </svg>
+                    <span class="logo-display-label">Sobre fundo escuro</span>
+                </div>
+                <div class="logo-display logo-display-graphite" style="height: 140px;">
+                    <svg viewBox="75 325 220 150" xmlns="http://www.w3.org/2000/svg" style="max-width: 120px;">
+                        <path fill="#f2f0eb" d="M174.22,439l17.17,26.42-47.12.32-15.26-16.81-.07,16.66-40.96-.09-.08-40.23c11.05-.14,21.68,3.57,29.49,11.39l11.39,11.39.04-54.08c0-9.48,9.06-12.97,5.54-27.04l-5.53,4.77-.19-29.25-39.66,40.24c14.39-.63,26.88-4.79,40-10.84l-40.98,46.68-.17-96.28,40.93.02.12,19.54c5.12,5.01,7.64,10.24,9.46,18.17l31.25-37.8,58.13.2-76.68,76.93c11.02,10.94,26.66,11.17,38.06,1.37l13.4,27.59c4.32-2.83,7.83-5.96,10.78-9.73l-26.93-49.8,41.58-.02c2.66,18.49-2.38,36.52-14.2,50.01l25.26,46.34-18.51.47-17.9-36.72c-8.42,5.32-16.7,8.57-28.35,10.17ZM173.22,438.33l-24.34-36.81-19.39,19.48c11.67,11.78,26.84,18.23,43.73,17.33Z"/>
+                    </svg>
+                    <span class="logo-display-label">Sobre grafite</span>
+                </div>
+                <div class="logo-display logo-display-light" style="height: 140px;">
+                    <svg viewBox="75 325 220 150" xmlns="http://www.w3.org/2000/svg" style="max-width: 120px;">
+                        <path fill="#111111" d="M174.22,439l17.17,26.42-47.12.32-15.26-16.81-.07,16.66-40.96-.09-.08-40.23c11.05-.14,21.68,3.57,29.49,11.39l11.39,11.39.04-54.08c0-9.48,9.06-12.97,5.54-27.04l-5.53,4.77-.19-29.25-39.66,40.24c14.39-.63,26.88-4.79,40-10.84l-40.98,46.68-.17-96.28,40.93.02.12,19.54c5.12,5.01,7.64,10.24,9.46,18.17l31.25-37.8,58.13.2-76.68,76.93c11.02,10.94,26.66,11.17,38.06,1.37l13.4,27.59c4.32-2.83,7.83-5.96,10.78-9.73l-26.93-49.8,41.58-.02c2.66,18.49-2.38,36.52-14.2,50.01l25.26,46.34-18.51.47-17.9-36.72c-8.42,5.32-16.7,8.57-28.35,10.17ZM173.22,438.33l-24.34-36.81-19.39,19.48c11.67,11.78,26.84,18.23,43.73,17.33Z"/>
+                    </svg>
+                    <span class="logo-display-label" style="color: var(--graphite-light);">Sobre fundo claro</span>
+                </div>
+            </div>
+
+            <!-- Logo Completo -->
+            <div class="caption" style="margin-bottom: 12px;">Logotipo Completo — Wordmark</div>
+            <div class="logo-display logo-display-dark" style="height: 120px; margin-bottom: 24px;">
+                <svg viewBox="75 340 610 130" xmlns="http://www.w3.org/2000/svg" style="max-width: 420px;">
+                    <path fill="#f2f0eb" d="M299.35,392.22l33.52,46.58c-5.69.92-10.42.84-16.32.62l-28.55-40.7c-1.1-1.57-5.83-1.42-7.83-.64l-.19,41.45-13.44-.18.11-88.38,13.52-.04-.09,38.28c.74,1.38,4.93,1.36,5.86.21l31.08-38.61,16.58.27-34.26,41.14Z"/>
+                    <path fill="#f2f0eb" d="M635.07,440.62c-9.88-1.6-16.13-8.4-16.75-17.14-1.53-21.69,24.9-22.9,42.22-22.36,1.38-4.57.38-10.98-3.84-14.49-3.18-2.64-8.47-3.17-12.54-2.7-6.48.74-10.55,5.06-11.6,11.91l-11.98-1.5c.02-8.64,5.71-15.73,13.99-18.75,7.67-2.8,16.2-2.92,24.07-.52,8.89,2.72,14.96,10.48,15.06,19.89l.27,25.12c.07,6.69.58,12.63,1.41,19.29l-11.96.31-1.91-10.28c-5.54,9.31-15.66,12.98-26.43,11.23ZM641.26,430.74c5.86.51,11.71-1.37,15.17-4.97,3.89-4.04,5.35-9.38,4.43-15.63-9,.06-30.59-.91-29.54,12.08.39,4.86,4.12,8.02,9.93,8.52Z"/>
+                    <path fill="#f2f0eb" d="M428.94,440.5c-10.25-1.86-16.49-9.46-16.17-19.49.64-19.87,26.88-20.28,42.44-19.83,1.1-4.61.13-11.04-4.02-14.39-4.83-3.91-12.24-3.89-17.76-1.28-4.06,1.93-5.51,6.06-6.74,10.38l-11.67-1.49c-.08-7.77,4.43-14.44,11.73-17.84,8.07-3.76,17.24-4.01,25.9-1.63,9.14,2.51,15.5,10.33,15.61,20.2l.35,31.49c.05,4.39.66,7.93,1.37,12.87h-12.19s-1.63-10.16-1.63-10.16c-5.82,9.49-16.1,13.2-27.23,11.18ZM435.9,430.84c6.02.38,11.62-1.5,15.14-5.11,3.86-3.97,5.27-9.24,4.49-15.56-8.69-.09-31.14-.73-29.76,12.15.51,4.78,4.29,8.15,10.14,8.52Z"/>
+                    <path fill="#f2f0eb" d="M601.08,375.12c4.93-.34,8.82-.28,13.96.17l-24.18,63.9-14.12.28-24.27-64.43,14.09-.09,17.47,51.92,17.04-51.74Z"/>
+                    <path fill="#f2f0eb" d="M518.55,428.6l.73,10.59c-6.54,1.22-12.54,1.76-18.84.45-7.43-1.54-12.72-8.23-12.76-15.94l-.24-38.18-11.03.06.07-10.64,10.95-.15,2.87-16.64h10.2s.14,16.74.14,16.74l18.4.11-.03,10.56h-18.44s0,35.51,0,35.51c0,4.27,2.84,8,7.32,8.43,3.12.3,5.6-.18,10.65-.88Z"/>
+                    <path fill="#f2f0eb" d="M354.66,439.42l-13.31-.17.03-64.08,11.62-.25,1.39,11.3c4.39-9.2,12.66-14.07,23.06-11.99l-.38,12.07c-5.92-.49-11.45-.2-15.78,3.32-2.89,2.35-6.24,7.82-6.29,12.68l-.33,37.11Z"/>
+                    <rect fill="#f2f0eb" x="387.32" y="374.88" width="13.15" height="64.66"/>
+                    <rect fill="#f2f0eb" x="530.78" y="374.9" width="13.19" height="64.69"/>
+                    <circle fill="#f2f0eb" cx="393.81" cy="356.84" r="8.41"/>
+                    <circle fill="#f2f0eb" cx="537.25" cy="356.87" r="8.37"/>
+                    <path fill="#f2f0eb" d="M174.22,439l17.17,26.42-47.12.32-15.26-16.81-.07,16.66-40.96-.09-.08-40.23c11.05-.14,21.68,3.57,29.49,11.39l11.39,11.39.04-54.08c0-9.48,9.06-12.97,5.54-27.04l-5.53,4.77-.19-29.25-39.66,40.24c14.39-.63,26.88-4.79,40-10.84l-40.98,46.68-.17-96.28,40.93.02.12,19.54c5.12,5.01,7.64,10.24,9.46,18.17l31.25-37.8,58.13.2-76.68,76.93c11.02,10.94,26.66,11.17,38.06,1.37l13.4,27.59c4.32-2.83,7.83-5.96,10.78-9.73l-26.93-49.8,41.58-.02c2.66,18.49-2.38,36.52-14.2,50.01l25.26,46.34-18.51.47-17.9-36.72c-8.42,5.32-16.7,8.57-28.35,10.17ZM173.22,438.33l-24.34-36.81-19.39,19.48c11.67,11.78,26.84,18.23,43.73,17.33Z"/>
+                </svg>
+            </div>
+
+            <div class="grid-2col">
+                <div>
+                    <div class="caption" style="margin-bottom: 8px;">Construção</div>
+                    <p class="small-text">
+                        O símbolo "K" foi construído com linhas geométricas que remetem à precisão 
+                        criativa. A tipografia do wordmark mantém pesos e espaçamentos pensados para 
+                        máxima legibilidade.
+                    </p>
+                </div>
+                <div>
+                    <div class="caption" style="margin-bottom: 8px;">Versões Permitidas</div>
+                    <p class="small-text">
+                        • Branco sobre fundo escuro (preferencial)<br>
+                        • Preto sobre fundo claro<br>
+                        • Símbolo isolado para formatos reduzidos<br>
+                        • Wordmark completo para aplicações horizontais
+                    </p>
+                </div>
+            </div>
+
+            <div class="page-footer">
+                <span class="footer-brand">Kriativa — Identidade Visual</span>
+                <span class="footer-page">04</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PAGE 5: ÁREA DE PROTEÇÃO & USO INCORRETO ===== -->
+    <div class="page">
+        <div class="page-inner">
+            <div class="section-number">03 — ÁREA DE PROTEÇÃO &amp; USO INCORRETO</div>
+            
+            <div class="section-title">Zona de Segurança</div>
+            <div class="section-subtitle" style="margin-bottom: 32px;">
+                A área de proteção garante a integridade visual do logotipo. 
+                Nenhum elemento gráfico ou texto deve invadir este espaço.
+            </div>
+
+            <div class="clearspace-container" style="margin-bottom: 40px; height: 180px;">
+                <span class="clearspace-label clearspace-top">1x</span>
+                <span class="clearspace-label clearspace-bottom">1x</span>
+                <span class="clearspace-label clearspace-left">1x</span>
+                <span class="clearspace-label clearspace-right">1x</span>
+                <svg viewBox="75 325 220 150" xmlns="http://www.w3.org/2000/svg" style="max-width: 120px;">
+                    <path fill="#f2f0eb" d="M174.22,439l17.17,26.42-47.12.32-15.26-16.81-.07,16.66-40.96-.09-.08-40.23c11.05-.14,21.68,3.57,29.49,11.39l11.39,11.39.04-54.08c0-9.48,9.06-12.97,5.54-27.04l-5.53,4.77-.19-29.25-39.66,40.24c14.39-.63,26.88-4.79,40-10.84l-40.98,46.68-.17-96.28,40.93.02.12,19.54c5.12,5.01,7.64,10.24,9.46,18.17l31.25-37.8,58.13.2-76.68,76.93c11.02,10.94,26.66,11.17,38.06,1.37l13.4,27.59c4.32-2.83,7.83-5.96,10.78-9.73l-26.93-49.8,41.58-.02c2.66,18.49-2.38,36.52-14.2,50.01l25.26,46.34-18.51.47-17.9-36.72c-8.42,5.32-16.7,8.57-28.35,10.17ZM173.22,438.33l-24.34-36.81-19.39,19.48c11.67,11.78,26.84,18.23,43.73,17.33Z"/>
+                </svg>
+            </div>
+
+            <div class="body-text" style="margin-bottom: 32px;">
+                A unidade "1x" corresponde à metade da altura do símbolo "K". 
+                Esta margem mínima deve ser respeitada em todas as aplicações.
+            </div>
+
+            <div class="line-accent-long"></div>
+
+            <div class="caption" style="margin-bottom: 16px;">Usos Incorretos — Nunca Faça</div>
+            
+            <div class="misuse-grid">
+                <div class="misuse-card">
+                    <div class="misuse-preview">
+                        <svg viewBox="75 325 220 150" xmlns="http://www.w3.org/2000/svg" style="max-width: 80px; transform: scaleX(1.5);">
+                            <path fill="#f2f0eb" d="M174.22,439l17.17,26.42-47.12.32-15.26-16.81-.07,16.66-40.96-.09-.08-40.23c11.05-.14,21.68,3.57,29.49,11.39l11.39,11.39.04-54.08c0-9.48,9.06-12.97,5.54-27.04l-5.53,4.77-.19-29.25-39.66,40.24c14.39-.63,26.88-4.79,40-10.84l-40.98,46.68-.17-96.28,40.93.02.12,19.54c5.12,5.01,7.64,10.24,9.46,18.17l31.25-37.8,58.13.2-76.68,76.93c11.02,10.94,26.66,11.17,38.06,1.37l13.4,27.59c4.32-2.83,7.83-5.96,10.78-9.73l-26.93-49.8,41.58-.02c2.66,18.49-2.38,36.52-14.2,50.01l25.26,46.34-18.51.47-17.9-36.72c-8.42,5.32-16.7,8.57-28.35,10.17ZM173.22,438.33l-24.34-36.81-19.39,19.48c11.67,11.78,26.84,18.23,43.73,17.33Z"/>
+                        </svg>
+                        <span class="misuse-x">✕</span>
+                    </div>
+                    <div class="misuse-text">Não distorcer proporções</div>
+                </div>
+                <div class="misuse-card">
+                    <div class="misuse-preview">
+                        <svg viewBox="75 325 220 150" xmlns="http://www.w3.org/2000/svg" style="max-width: 80px; transform: rotate(15deg);">
+                            <path fill="#f2f0eb" d="M174.22,439l17.17,26.42-47.12.32-15.26-16.81-.07,16.66-40.96-.09-.08-40.23c11.05-.14,21.68,3.57,29.49,11.39l11.39,11.39.04-54.08c0-9.48,9.06-12.97,5.54-27.04l-5.53,4.77-.19-29.25-39.66,40.24c14.39-.63,26.88-4.79,40-10.84l-40.98,46.68-.17-96.28,40.93.02.12,19.54c5.12,5.01,7.64,10.24,9.46,18.17l31.25-37.8,58.13.2-76.68,76.93c11.02,10.94,26.66,11.17,38.06,1.37l13.4,27.59c4.32-2.83,7.83-5.96,10.78-9.73l-26.93-49.8,41.58-.02c2.66,18.49-2.38,36.52-14.2,50.01l25.26,46.34-18.51.47-17.9-36.72c-8.42,5.32-16.7,8.57-28.35,10.17ZM173.22,438.33l-24.34-36.81-19.39,19.48c11.67,11.78,26.84,18.23,43.73,17.33Z"/>
+                        </svg>
+                        <span class="misuse-x">✕</span>
+                    </div>
+                    <div class="misuse-text">Não rotacionar o logotipo</div>
+                </div>
+                <div class="misuse-card">
+                    <div class="misuse-preview">
+                        <svg viewBox="75 325 220 150" xmlns="http://www.w3.org/2000/svg" style="max-width: 80px; opacity: 0.25;">
+                            <path fill="#f2f0eb" d="M174.22,439l17.17,26.42-47.12.32-15.26-16.81-.07,16.66-40.96-.09-.08-40.23c11.05-.14,21.68,3.57,29.49,11.39l11.39,11.39.04-54.08c0-9.48,9.06-12.97,5.54-27.04l-5.53,4.77-.19-29.25-39.66,40.24c14.39-.63,26.88-4.79,40-10.84l-40.98,46.68-.17-96.28,40.93.02.12,19.54c5.12,5.01,7.64,10.24,9.46,18.17l31.25-37.8,58.13.2-76.68,76.93c11.02,10.94,26.66,11.17,38.06,1.37l13.4,27.59c4.32-2.83,7.83-5.96,10.78-9.73l-26.93-49.8,41.58-.02c2.66,18.49-2.38,36.52-14.2,50.01l25.26,46.34-18.51.47-17.9-36.72c-8.42,5.32-16.7,8.57-28.35,10.17ZM173.22,438.33l-24.34-36.81-19.39,19.48c11.67,11.78,26.84,18.23,43.73,17.33Z"/>
+                        </svg>
+                        <span class="misuse-x">✕</span>
+                    </div>
+                    <div class="misuse-text">Não reduzir opacidade</div>
+                </div>
+                <div class="misuse-card">
+                    <div class="misuse-preview" style="background: linear-gradient(135deg, #ff6b6b, #ffa500);">
+                        <svg viewBox="75 325 220 150" xmlns="http://www.w3.org/2000/svg" style="max-width: 80px;">
+                            <path fill="#f2f0eb" d="M174.22,439l17.17,26.42-47.12.32-15.26-16.81-.07,16.66-40.96-.09-.08-40.23c11.05-.14,21.68,3.57,29.49,11.39l11.39,11.39.04-54.08c0-9.48,9.06-12.97,5.54-27.04l-5.53,4.77-.19-29.25-39.66,40.24c14.39-.63,26.88-4.79,40-10.84l-40.98,46.68-.17-96.28,40.93.02.12,19.54c5.12,5.01,7.64,10.24,9.46,18.17l31.25-37.8,58.13.2-76.68,76.93c11.02,10.94,26.66,11.17,38.06,1.37l13.4,27.59c4.32-2.83,7.83-5.96,10.78-9.73l-26.93-49.8,41.58-.02c2.66,18.49-2.38,36.52-14.2,50.01l25.26,46.34-18.51.47-17.9-36.72c-8.42,5.32-16.7,8.57-28.35,10.17ZM173.22,438.33l-24.34-36.81-19.39,19.48c11.67,11.78,26.84,18.23,43.73,17.33Z"/>
+                        </svg>
+                        <span class="misuse-x">✕</span>
+                    </div>
+                    <div class="misuse-text">Não usar fundos coloridos</div>
+                </div>
+                <div class="misuse-card">
+                    <div class="misuse-preview">
+                        <svg viewBox="75 325 220 150" xmlns="http://www.w3.org/2000/svg" style="max-width: 80px; filter: drop-shadow(0 0 12px rgba(255,255,255,0.7));">
+                            <path fill="#f2f0eb" d="M174.22,439l17.17,26.42-47.12.32-15.26-16.81-.07,16.66-40.96-.09-.08-40.23c11.05-.14,21.68,3.57,29.49,11.39l11.39,11.39.04-54.08c0-9.48,9.06-12.97,5.54-27.04l-5.53,4.77-.19-29.25-39.66,40.24c14.39-.63,26.88-4.79,40-10.84l-40.98,46.68-.17-96.28,40.93.02.12,19.54c5.12,5.01,7.64,10.24,9.46,18.17l31.25-37.8,58.13.2-76.68,76.93c11.02,10.94,26.66,11.17,38.06,1.37l13.4,27.59c4.32-2.83,7.83-5.96,10.78-9.73l-26.93-49.8,41.58-.02c2.66,18.49-2.38,36.52-14.2,50.01l25.26,46.34-18.51.47-17.9-36.72c-8.42,5.32-16.7,8.57-28.35,10.17ZM173.22,438.33l-24.34-36.81-19.39,19.48c11.67,11.78,26.84,18.23,43.73,17.33Z"/>
+                        </svg>
+                        <span class="misuse-x">✕</span>
+                    </div>
+                    <div class="misuse-text">Não adicionar efeitos</div>
+                </div>
+                <div class="misuse-card">
+                    <div class="misuse-preview">
+                        <svg viewBox="75 325 220 150" xmlns="http://www.w3.org/2000/svg" style="max-width: 80px;">
+                            <path fill="#ff6b6b" d="M174.22,439l17.17,26.42-47.12.32-15.26-16.81-.07,16.66-40.96-.09-.08-40.23c11.05-.14,21.68,3.57,29.49,11.39l11.39,11.39.04-54.08c0-9.48,9.06-12.97,5.54-27.04l-5.53,4.77-.19-29.25-39.66,40.24c14.39-.63,26.88-4.79,40-10.84l-40.98,46.68-.17-96.28,40.93.02.12,19.54c5.12,5.01,7.64,10.24,9.46,18.17l31.25-37.8,58.13.2-76.68,76.93c11.02,10.94,26.66,11.17,38.06,1.37l13.4,27.59c4.32-2.83,7.83-5.96,10.78-9.73l-26.93-49.8,41.58-.02c2.66,18.49-2.38,36.52-14.2,50.01l25.26,46.34-18.51.47-17.9-36.72c-8.42,5.32-16.7,8.57-28.35,10.17ZM173.22,438.33l-24.34-36.81-19.39,19.48c11.67,11.78,26.84,18.23,43.73,17.33Z"/>
+                        </svg>
+                        <span class="misuse-x">✕</span>
+                    </div>
+                    <div class="misuse-text">Não alterar as cores</div>
+                </div>
+            </div>
+
+            <div class="page-footer">
+                <span class="footer-brand">Kriativa — Identidade Visual</span>
+                <span class="footer-page">05</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PAGE 6: PALETA DE CORES ===== -->
+    <div class="page">
+        <div class="page-inner">
+            <div class="section-number">04 — PALETA DE CORES</div>
+            
+            <div class="section-title">Cores da Marca</div>
+            <div class="section-subtitle" style="margin-bottom: 32px;">
+                A paleta da Kriativa é monocromática e premium, transitando entre o preto profundo 
+                e tons de grafite. A ausência de cores vibrantes reforça a sofisticação e a seriedade 
+                da marca.
+            </div>
+
+            <div class="caption" style="margin-bottom: 16px;">Cores Primárias</div>
+            <div class="grid-3col" style="margin-bottom: 32px;">
+                <div class="swatch-card">
+                    <div class="swatch-preview" style="background: #0a0a0a;"></div>
+                    <div class="swatch-info">
+                        <div class="swatch-name">Preto Profundo</div>
+                        <div class="swatch-hex">#0A0A0A</div>
+                        <div class="swatch-rgb">RGB 10, 10, 10</div>
+                    </div>
+                </div>
+                <div class="swatch-card">
+                    <div class="swatch-preview" style="background: #111111;"></div>
+                    <div class="swatch-info">
+                        <div class="swatch-name">Preto Base</div>
+                        <div class="swatch-hex">#111111</div>
+                        <div class="swatch-rgb">RGB 17, 17, 17</div>
+                    </div>
+                </div>
+                <div class="swatch-card">
+                    <div class="swatch-preview" style="background: #f2f0eb;"></div>
+                    <div class="swatch-info">
+                        <div class="swatch-name">Branco Creme</div>
+                        <div class="swatch-hex">#F2F0EB</div>
+                        <div class="swatch-rgb">RGB 242, 240, 235</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="caption" style="margin-bottom: 16px;">Tons de Grafite — Degradê</div>
+            <div class="grid-4col" style="margin-bottom: 32px;">
+                <div class="swatch-card">
+                    <div class="swatch-preview" style="background: #1a1a1a;"></div>
+                    <div class="swatch-info">
+                        <div class="swatch-name">Grafite Escuro</div>
+                        <div class="swatch-hex">#1A1A1A</div>
+                        <div class="swatch-rgb">RGB 26, 26, 26</div>
+                    </div>
+                </div>
+                <div class="swatch-card">
+                    <div class="swatch-preview" style="background: #2a2a2a;"></div>
+                    <div class="swatch-info">
+                        <div class="swatch-name">Grafite</div>
+                        <div class="swatch-hex">#2A2A2A</div>
+                        <div class="swatch-rgb">RGB 42, 42, 42</div>
+                    </div>
+                </div>
+                <div class="swatch-card">
+                    <div class="swatch-preview" style="background: #3a3a3a;"></div>
+                    <div class="swatch-info">
+                        <div class="swatch-name">Grafite Médio</div>
+                        <div class="swatch-hex">#3A3A3A</div>
+                        <div class="swatch-rgb">RGB 58, 58, 58</div>
+                    </div>
+                </div>
+                <div class="swatch-card">
+                    <div class="swatch-preview" style="background: #4a4a4a;"></div>
+                    <div class="swatch-info">
+                        <div class="swatch-name">Grafite Claro</div>
+                        <div class="swatch-hex">#4A4A4A</div>
+                        <div class="swatch-rgb">RGB 74, 74, 74</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="caption" style="margin-bottom: 16px;">Gradiente Institucional</div>
+            <div style="height: 60px; border-radius: 8px; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 25%, #2a2a2a 50%, #3a3a3a 75%, #4a4a4a 100%); border: 1px solid var(--white-border); margin-bottom: 12px;"></div>
+            <div class="small-text" style="margin-bottom: 24px;">
+                Degradê principal: #0A0A0A → #1A1A1A → #2A2A2A → #3A3A3A → #4A4A4A · Ângulo: 135°
+            </div>
+
+            <div class="caption" style="margin-bottom: 16px;">Tons Auxiliares de Texto</div>
+            <div class="grid-3col">
+                <div class="swatch-card">
+                    <div class="swatch-preview" style="background: #666666; height: 50px;"></div>
+                    <div class="swatch-info">
+                        <div class="swatch-name">Prata Escuro</div>
+                        <div class="swatch-hex">#666666</div>
+                    </div>
+                </div>
+                <div class="swatch-card">
+                    <div class="swatch-preview" style="background: #888888; height: 50px;"></div>
+                    <div class="swatch-info">
+                        <div class="swatch-name">Prata</div>
+                        <div class="swatch-hex">#888888</div>
+                    </div>
+                </div>
+                <div class="swatch-card">
+                    <div class="swatch-preview" style="background: #aaaaaa; height: 50px;"></div>
+                    <div class="swatch-info">
+                        <div class="swatch-name">Prata Claro</div>
+                        <div class="swatch-hex">#AAAAAA</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-footer">
+                <span class="footer-brand">Kriativa — Identidade Visual</span>
+                <span class="footer-page">06</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PAGE 7: TIPOGRAFIA ===== -->
+    <div class="page">
+        <div class="page-inner">
+            <div class="section-number">05 — TIPOGRAFIA</div>
+            
+            <div class="section-title">Fontes Institucionais</div>
+            <div class="section-subtitle" style="margin-bottom: 40px;">
+                A combinação entre Inter e Playfair Display cria um contraste visual 
+                entre modernidade e elegância, equilibrando a comunicação da marca.
+            </div>
+
+            <!-- Inter -->
+            <div class="caption" style="margin-bottom: 8px;">Tipografia Principal</div>
+            <div style="font-family: 'Inter', sans-serif; font-size: 42px; font-weight: 700; color: var(--white); margin-bottom: 4px;">Inter</div>
+            <div class="small-text" style="margin-bottom: 24px;">Google Fonts · Sans-serif · Pesos: 300, 400, 500, 600, 700, 800, 900</div>
+
+            <div class="type-specimen">
+                <div class="type-weight-label">Light — 300</div>
+                <div class="type-sample" style="font-size: 24px; font-weight: 300;">A criatividade começa aqui</div>
+                <div class="type-alphabet" style="font-weight: 300;">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789</div>
+            </div>
+            <div class="type-specimen">
+                <div class="type-weight-label">Regular — 400</div>
+                <div class="type-sample" style="font-size: 24px; font-weight: 400;">A criatividade começa aqui</div>
+            </div>
+            <div class="type-specimen">
+                <div class="type-weight-label">Medium — 500</div>
+                <div class="type-sample" style="font-size: 24px; font-weight: 500;">A criatividade começa aqui</div>
+            </div>
+            <div class="type-specimen">
+                <div class="type-weight-label">Semibold — 600</div>
+                <div class="type-sample" style="font-size: 24px; font-weight: 600;">A criatividade começa aqui</div>
+            </div>
+            <div class="type-specimen">
+                <div class="type-weight-label">Bold — 700</div>
+                <div class="type-sample" style="font-size: 24px; font-weight: 700;">A criatividade começa aqui</div>
+            </div>
+            <div class="type-specimen">
+                <div class="type-weight-label">Black — 900</div>
+                <div class="type-sample" style="font-size: 24px; font-weight: 900;">A criatividade começa aqui</div>
+            </div>
+
+            <div class="line-accent-long"></div>
+
+            <!-- Playfair Display -->
+            <div class="caption" style="margin-bottom: 8px;">Tipografia Secundária — Display</div>
+            <div style="font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 700; font-style: italic; color: var(--white); margin-bottom: 4px;">Playfair Display</div>
+            <div class="small-text">Google Fonts · Serif · Uso: títulos, destaques, citações</div>
+
+            <div class="page-footer">
+                <span class="footer-brand">Kriativa — Identidade Visual</span>
+                <span class="footer-page">07</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PAGE 8: SERVIÇOS & ECOSSISTEMA ===== -->
+    <div class="page">
+        <div class="page-inner">
+            <div class="section-number">06 — SERVIÇOS &amp; ECOSSISTEMA</div>
+            
+            <div class="section-title">O que a Kriativa faz</div>
+            <div class="section-subtitle" style="margin-bottom: 32px;">
+                Um ecossistema completo que une design, tecnologia e inteligência artificial 
+                para entregar soluções de ponta a ponta.
+            </div>
+
+            <div class="grid-2col" style="margin-bottom: 24px;">
+                <div class="service-card">
+                    <div class="service-icon">◆</div>
+                    <div class="service-name">Manual de Marca</div>
+                    <div class="service-desc">
+                        Construção completa de identidade visual — do conceito à documentação 
+                        detalhada, garantindo consistência em todas as aplicações.
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✦</div>
+                    <div class="service-name">Identidade Visual</div>
+                    <div class="service-desc">
+                        Design de logotipos, sistemas visuais e diretrizes de marca 
+                        que comunicam a essência de cada negócio.
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-2col" style="margin-bottom: 24px;">
+                <div class="service-card">
+                    <div class="service-icon">▲</div>
+                    <div class="service-name">Confecção de Logos</div>
+                    <div class="service-desc">
+                        Criação de logotipos únicos e memoráveis, com construção 
+                        geométrica e grid modular para máxima versatilidade.
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">◎</div>
+                    <div class="service-name">Posts &amp; Carrosséis</div>
+                    <div class="service-desc">
+                        Produção de conteúdo visual para mídias sociais — posts estáticos 
+                        e carrosséis com design alinhado à identidade da marca.
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-2col">
+                <div class="service-card">
+                    <div class="service-icon">⟐</div>
+                    <div class="service-name">Software House</div>
+                    <div class="service-desc">
+                        Desenvolvimento de sistemas do zero, com arquitetura personalizada 
+                        e assistentes de I.A. específicos para cada nicho de mercado.
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⬡</div>
+                    <div class="service-name">Marketing &amp; Divulgação</div>
+                    <div class="service-desc">
+                        Estratégia e execução completa de marketing digital. 
+                        Da criação ao lançamento — domínio total do circuito.
+                    </div>
+                </div>
+            </div>
+
+            <div class="line-accent-long"></div>
+
+            <div class="do-dont-grid">
+                <div class="do-card">
+                    <div class="do-label">✓ Circuito Completo</div>
+                    <div class="body-text">
+                        A Kriativa domina todo o ciclo: concepção → design → desenvolvimento → 
+                        integração de I.A. → marketing → divulgação.
+                    </div>
+                </div>
+                <div class="dont-card">
+                    <div class="dont-label">✕ Fragmentação</div>
+                    <div class="body-text">
+                        Evitamos a abordagem fragmentada. Não entregamos partes — 
+                        entregamos soluções completas e integradas.
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-footer">
+                <span class="footer-brand">Kriativa — Identidade Visual</span>
+                <span class="footer-page">08</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PAGE 9: PROJETOS ===== -->
+    <div class="page">
+        <div class="page-inner">
+            <div class="section-number">07 — PROJETOS PRINCIPAIS</div>
+            
+            <div class="section-title">Bancada &amp; Fornada</div>
+            <div class="section-subtitle" style="margin-bottom: 40px;">
+                Os dois grandes projetos que nascem da Kriativa, demonstrando a capacidade 
+                de executar desde a criação do sistema até a sua divulgação no mercado.
+            </div>
+
+            <div class="project-card" style="margin-bottom: 24px;">
+                <div class="project-badge">Projeto 01</div>
+                <div class="project-name">Bancada</div>
+                <div class="project-desc">
+                    Sistema completo desenvolvido do zero pela Kriativa, com assistente de I.A. 
+                    específico integrado. Da arquitetura técnica ao posicionamento de mercado 
+                    — cada detalhe pensado para o nicho em que atua. A Kriativa cuida do design, 
+                    do desenvolvimento e de toda a estratégia de divulgação.
+                </div>
+                <div class="line-accent-long"></div>
+                <div class="grid-3col">
+                    <div>
+                        <div class="caption" style="margin-bottom: 6px;">Escopo</div>
+                        <div class="small-text">Sistema + I.A. + Marketing</div>
+                    </div>
+                    <div>
+                        <div class="caption" style="margin-bottom: 6px;">Abordagem</div>
+                        <div class="small-text">Full-cycle development</div>
+                    </div>
+                    <div>
+                        <div class="caption" style="margin-bottom: 6px;">Status</div>
+                        <div class="small-text">Em produção</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-badge">Projeto 02</div>
+                <div class="project-name">Fornada</div>
+                <div class="project-desc">
+                    Mais um sistema construído de ponta a ponta pela Kriativa. Com assistente 
+                    de inteligência artificial dedicado ao nicho, o Fornada exemplifica o poder 
+                    de integrar tecnologia, design e divulgação sob um mesmo teto. Da primeira 
+                    linha de código ao primeiro cliente.
+                </div>
+                <div class="line-accent-long"></div>
+                <div class="grid-3col">
+                    <div>
+                        <div class="caption" style="margin-bottom: 6px;">Escopo</div>
+                        <div class="small-text">Sistema + I.A. + Marketing</div>
+                    </div>
+                    <div>
+                        <div class="caption" style="margin-bottom: 6px;">Abordagem</div>
+                        <div class="small-text">Full-cycle development</div>
+                    </div>
+                    <div>
+                        <div class="caption" style="margin-bottom: 6px;">Status</div>
+                        <div class="small-text">Em produção</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-footer">
+                <span class="footer-brand">Kriativa — Identidade Visual</span>
+                <span class="footer-page">09</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PAGE 10: VALORES & TOM DE VOZ ===== -->
+    <div class="page">
+        <div class="page-inner">
+            <div class="section-number">08 — VALORES &amp; TOM DE VOZ</div>
+            
+            <div class="section-title">Pilares da Marca</div>
+            <div class="section-subtitle" style="margin-bottom: 32px;">
+                Os valores fundamentais que guiam todas as decisões criativas, 
+                técnicas e estratégicas da Kriativa.
+            </div>
+
+            <div class="value-item">
+                <div class="value-number">01</div>
+                <div class="value-content">
+                    <h4>Excelência Visual</h4>
+                    <p>Cada pixel importa. Cada detalhe é intencional. O padrão de qualidade visual 
+                    da Kriativa é inegociável — entregamos apenas o que nos orgulha.</p>
+                </div>
+            </div>
+            <div class="value-item">
+                <div class="value-number">02</div>
+                <div class="value-content">
+                    <h4>Integração Total</h4>
+                    <p>Design, tecnologia e marketing não são departamentos separados — são um único 
+                    fluxo criativo. Dominamos todo o circuito porque acreditamos na coerência.</p>
+                </div>
+            </div>
+            <div class="value-item">
+                <div class="value-number">03</div>
+                <div class="value-content">
+                    <h4>Inovação com Propósito</h4>
+                    <p>Inteligência artificial não é buzzword — é ferramenta real de diferenciação. 
+                    Cada assistente de I.A. é criado para resolver problemas reais de cada nicho.</p>
+                </div>
+            </div>
+            <div class="value-item">
+                <div class="value-number">04</div>
+                <div class="value-content">
+                    <h4>Sofisticação Premium</h4>
+                    <p>A estética dark e minimalista reflete nosso posicionamento: somos discretos 
+                    no ruído, mas impossíveis de ignorar na qualidade.</p>
+                </div>
+            </div>
+
+            <div class="line-accent-long"></div>
+
+            <div class="caption" style="margin-bottom: 16px;">Tom de Voz</div>
+            <div class="grid-2col">
+                <div>
+                    <div class="do-card">
+                        <div class="do-label">✓ Somos</div>
+                        <div class="body-text">
+                            • Diretos e confiantes<br>
+                            • Técnicos quando necessário<br>
+                            • Elegantes na comunicação<br>
+                            • Visionários com pés no chão
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="dont-card">
+                        <div class="dont-label">✕ Não Somos</div>
+                        <div class="body-text">
+                            • Genéricos ou apelativos<br>
+                            • Informais demais<br>
+                            • Exagerados em promessas<br>
+                            • Distantes ou frios
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-footer">
+                <span class="footer-brand">Kriativa — Identidade Visual</span>
+                <span class="footer-page">10</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PAGE 11: APLICAÇÕES ===== -->
+    <div class="page">
+        <div class="page-inner">
+            <div class="section-number">09 — APLICAÇÕES DA MARCA</div>
+            
+            <div class="section-title">Aplicações</div>
+            <div class="section-subtitle" style="margin-bottom: 32px;">
+                Exemplos de como a identidade visual se manifesta em diferentes 
+                pontos de contato da marca.
+            </div>
+
+            <!-- Business Card Mockup -->
+            <div class="caption" style="margin-bottom: 12px;">Cartão de Visita</div>
+            <div class="grid-2col" style="margin-bottom: 32px;">
+                <div style="background: linear-gradient(135deg, #111111, #1a1a1a); border: 1px solid var(--white-border); border-radius: 10px; padding: 32px; display: flex; flex-direction: column; justify-content: space-between; min-height: 140px;">
+                    <svg viewBox="75 325 220 150" xmlns="http://www.w3.org/2000/svg" style="max-width: 56px;">
+                        <path fill="#f2f0eb" d="M174.22,439l17.17,26.42-47.12.32-15.26-16.81-.07,16.66-40.96-.09-.08-40.23c11.05-.14,21.68,3.57,29.49,11.39l11.39,11.39.04-54.08c0-9.48,9.06-12.97,5.54-27.04l-5.53,4.77-.19-29.25-39.66,40.24c14.39-.63,26.88-4.79,40-10.84l-40.98,46.68-.17-96.28,40.93.02.12,19.54c5.12,5.01,7.64,10.24,9.46,18.17l31.25-37.8,58.13.2-76.68,76.93c11.02,10.94,26.66,11.17,38.06,1.37l13.4,27.59c4.32-2.83,7.83-5.96,10.78-9.73l-26.93-49.8,41.58-.02c2.66,18.49-2.38,36.52-14.2,50.01l25.26,46.34-18.51.47-17.9-36.72c-8.42,5.32-16.7,8.57-28.35,10.17ZM173.22,438.33l-24.34-36.81-19.39,19.48c11.67,11.78,26.84,18.23,43.73,17.33Z"/>
+                    </svg>
+                    <div>
+                        <div style="font-size: 11px; font-weight: 600; color: var(--white); letter-spacing: 3px; text-transform: uppercase;">KRIATIVA</div>
+                        <div style="font-size: 9px; color: var(--silver-dark); margin-top: 2px;">Design Hub & Software House</div>
+                    </div>
+                </div>
+                <div style="background: linear-gradient(135deg, #1a1a1a, #2a2a2a); border: 1px solid var(--white-border); border-radius: 10px; padding: 32px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 140px;">
+                    <div style="font-size: 12px; font-weight: 500; color: var(--white); margin-bottom: 8px;">Nome Sobrenome</div>
+                    <div style="font-size: 9px; color: var(--silver); margin-bottom: 12px;">Diretor Criativo</div>
+                    <div style="font-size: 9px; color: var(--silver-dark); line-height: 1.8;">
+                        contato@kriativa.com.br<br>
+                        kriativa.com.br<br>
+                        @kriativa
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media -->
+            <div class="caption" style="margin-bottom: 12px;">Mídias Sociais — Avatar &amp; Post</div>
+            <div class="grid-3col" style="margin-bottom: 32px;">
+                <!-- Avatar -->
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #111111, #2a2a2a); border: 2px solid var(--white-border); display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
+                        <svg viewBox="75 325 220 150" xmlns="http://www.w3.org/2000/svg" style="max-width: 60px;">
+                            <path fill="#f2f0eb" d="M174.22,439l17.17,26.42-47.12.32-15.26-16.81-.07,16.66-40.96-.09-.08-40.23c11.05-.14,21.68,3.57,29.49,11.39l11.39,11.39.04-54.08c0-9.48,9.06-12.97,5.54-27.04l-5.53,4.77-.19-29.25-39.66,40.24c14.39-.63,26.88-4.79,40-10.84l-40.98,46.68-.17-96.28,40.93.02.12,19.54c5.12,5.01,7.64,10.24,9.46,18.17l31.25-37.8,58.13.2-76.68,76.93c11.02,10.94,26.66,11.17,38.06,1.37l13.4,27.59c4.32-2.83,7.83-5.96,10.78-9.73l-26.93-49.8,41.58-.02c2.66,18.49-2.38,36.52-14.2,50.01l25.26,46.34-18.51.47-17.9-36.72c-8.42,5.32-16.7,8.57-28.35,10.17ZM173.22,438.33l-24.34-36.81-19.39,19.48c11.67,11.78,26.84,18.23,43.73,17.33Z"/>
+                        </svg>
+                    </div>
+                    <div class="small-text">Avatar / Perfil</div>
+                </div>
+                <!-- Post Feed -->
+                <div style="border: 1px solid var(--white-border); border-radius: 10px; overflow: hidden; background: linear-gradient(180deg, #0a0a0a, #1a1a1a);">
+                    <div style="padding: 24px; text-align: center; min-height: 120px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                        <div style="font-family: 'Playfair Display', serif; font-size: 16px; font-style: italic; color: var(--white); margin-bottom: 8px;">Design que</div>
+                        <div style="font-size: 22px; font-weight: 900; color: var(--white); letter-spacing: 2px;">MARCA</div>
+                    </div>
+                    <div style="padding: 8px 12px; border-top: 1px solid var(--white-border); display: flex; align-items: center; gap: 6px;">
+                        <div style="width: 16px; height: 16px; border-radius: 50%; background: var(--graphite);"></div>
+                        <span style="font-size: 8px; color: var(--silver-dark);">@kriativa</span>
+                    </div>
+                </div>
+                <!-- Story -->
+                <div style="border: 1px solid var(--white-border); border-radius: 10px; overflow: hidden; background: linear-gradient(180deg, #1a1a1a, #0a0a0a); min-height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 16px;">
+                    <svg viewBox="75 325 220 150" xmlns="http://www.w3.org/2000/svg" style="max-width: 44px; margin-bottom: 12px;">
+                        <path fill="#f2f0eb" d="M174.22,439l17.17,26.42-47.12.32-15.26-16.81-.07,16.66-40.96-.09-.08-40.23c11.05-.14,21.68,3.57,29.49,11.39l11.39,11.39.04-54.08c0-9.48,9.06-12.97,5.54-27.04l-5.53,4.77-.19-29.25-39.66,40.24c14.39-.63,26.88-4.79,40-10.84l-40.98,46.68-.17-96.28,40.93.02.12,19.54c5.12,5.01,7.64,10.24,9.46,18.17l31.25-37.8,58.13.2-76.68,76.93c11.02,10.94,26.66,11.17,38.06,1.37l13.4,27.59c4.32-2.83,7.83-5.96,10.78-9.73l-26.93-49.8,41.58-.02c2.66,18.49-2.38,36.52-14.2,50.01l25.26,46.34-18.51.47-17.9-36.72c-8.42,5.32-16.7,8.57-28.35,10.17ZM173.22,438.33l-24.34-36.81-19.39,19.48c11.67,11.78,26.84,18.23,43.73,17.33Z"/>
+                    </svg>
+                    <div style="font-size: 10px; font-weight: 600; color: var(--white); letter-spacing: 2px;">KRIATIVA</div>
+                    <div style="font-size: 8px; color: var(--silver-dark); margin-top: 4px;">Story Template</div>
+                </div>
+            </div>
+
+            <!-- Website / App -->
+            <div class="caption" style="margin-bottom: 12px;">Interface Digital</div>
+            <div class="app-mockup">
+                <div class="app-mockup-header">
+                    <div class="app-mockup-dot"></div>
+                    <div class="app-mockup-dot"></div>
+                    <div class="app-mockup-dot"></div>
+                    <span style="font-size: 9px; color: var(--silver-dark); margin-left: 8px;">kriativa.com.br</span>
+                </div>
+                <div class="app-mockup-body" style="background: linear-gradient(180deg, #0a0a0a, #111111); flex-direction: column; gap: 8px;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <svg viewBox="75 325 220 150" xmlns="http://www.w3.org/2000/svg" style="max-width: 36px;">
+                            <path fill="#f2f0eb" d="M174.22,439l17.17,26.42-47.12.32-15.26-16.81-.07,16.66-40.96-.09-.08-40.23c11.05-.14,21.68,3.57,29.49,11.39l11.39,11.39.04-54.08c0-9.48,9.06-12.97,5.54-27.04l-5.53,4.77-.19-29.25-39.66,40.24c14.39-.63,26.88-4.79,40-10.84l-40.98,46.68-.17-96.28,40.93.02.12,19.54c5.12,5.01,7.64,10.24,9.46,18.17l31.25-37.8,58.13.2-76.68,76.93c11.02,10.94,26.66,11.17,38.06,1.37l13.4,27.59c4.32-2.83,7.83-5.96,10.78-9.73l-26.93-49.8,41.58-.02c2.66,18.49-2.38,36.52-14.2,50.01l25.26,46.34-18.51.47-17.9-36.72c-8.42,5.32-16.7,8.57-28.35,10.17ZM173.22,438.33l-24.34-36.81-19.39,19.48c11.67,11.78,26.84,18.23,43.73,17.33Z"/>
+                        </svg>
+                        <span style="font-size: 10px; font-weight: 600; color: var(--white); letter-spacing: 3px;">KRIATIVA</span>
+                        <div style="flex: 1;"></div>
+                        <span style="font-size: 9px; color: var(--silver-dark);">Serviços</span>
+                        <span style="font-size: 9px; color: var(--silver-dark); margin-left: 16px;">Projetos</span>
+                        <span style="font-size: 9px; color: var(--silver-dark); margin-left: 16px;">Contato</span>
+                    </div>
+                    <div style="text-align: center; padding: 16px 0;">
+                        <div style="font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--white);">Hub Criativo &amp; Digital</div>
+                        <div style="font-size: 9px; color: var(--white-muted); margin-top: 6px;">Do conceito visual ao sistema inteligente</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-footer">
+                <span class="footer-brand">Kriativa — Identidade Visual</span>
+                <span class="footer-page">11</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PAGE 12: ENCERRAMENTO ===== -->
+    <div class="page cover" style="background: linear-gradient(180deg, #1a1a1a 0%, #111111 50%, #0a0a0a 100%);">
+        <div class="cover-geo-tl"></div>
+        <div class="cover-geo-br"></div>
+        
+        <div class="cover-content">
+            <div class="cover-logo" style="width: 180px; height: auto;">
+                <svg viewBox="75 325 220 150" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="#f2f0eb" d="M174.22,439l17.17,26.42-47.12.32-15.26-16.81-.07,16.66-40.96-.09-.08-40.23c11.05-.14,21.68,3.57,29.49,11.39l11.39,11.39.04-54.08c0-9.48,9.06-12.97,5.54-27.04l-5.53,4.77-.19-29.25-39.66,40.24c14.39-.63,26.88-4.79,40-10.84l-40.98,46.68-.17-96.28,40.93.02.12,19.54c5.12,5.01,7.64,10.24,9.46,18.17l31.25-37.8,58.13.2-76.68,76.93c11.02,10.94,26.66,11.17,38.06,1.37l13.4,27.59c4.32-2.83,7.83-5.96,10.78-9.73l-26.93-49.8,41.58-.02c2.66,18.49-2.38,36.52-14.2,50.01l25.26,46.34-18.51.47-17.9-36.72c-8.42,5.32-16.7,8.57-28.35,10.17ZM173.22,438.33l-24.34-36.81-19.39,19.48c11.67,11.78,26.84,18.23,43.73,17.33Z"/>
+                </svg>
+            </div>
+            
+            <div class="cover-divider"></div>
+            
+            <div style="font-size: 11px; font-weight: 600; letter-spacing: 6px; text-transform: uppercase; color: var(--white-dim); margin-bottom: 32px;">
+                KRIATIVA
+            </div>
+
+            <div style="font-family: 'Playfair Display', serif; font-size: 24px; font-style: italic; color: var(--white-muted); margin-bottom: 16px;">
+                "Do conceito visual ao sistema inteligente"
+            </div>
+
+            <div style="font-size: 10px; color: var(--silver-dark); letter-spacing: 2px; text-transform: uppercase;">
+                Design Hub · Software House · I.A.
+            </div>
+
+            <div style="margin-top: 64px;">
+                <div class="cover-divider"></div>
+                <div style="font-size: 9px; color: var(--graphite-mid); letter-spacing: 2px; text-transform: uppercase; margin-top: 16px;">
+                    Este documento é propriedade intelectual da Kriativa.<br>
+                    Reprodução sem autorização é proibida.
+                </div>
+                <div style="font-size: 9px; color: var(--graphite-mid); letter-spacing: 2px; text-transform: uppercase; margin-top: 12px;">
+                    © 2026 Kriativa — Todos os direitos reservados.
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
