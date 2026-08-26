@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://landing-page-kriativa.vercel.app/sitemap.xml

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assinatura de E-mail — Abdias Alves | Kriativa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #0d0d0d;
+            color: #f2f0eb;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 680px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #888888;
+            border: 1px solid #2a2a2a;
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-size: 26px;
+            font-weight: 800;
+            color: #f2f0eb;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+
+        p.subtitle {
+            font-size: 13px;
+            color: #888888;
+            margin-bottom: 28px;
+        }
+
+        /* Card Container */
+        .preview-wrapper {
+            background: #141414;
+            border: 1px solid #262626;
+            border-radius: 16px;
+            padding: 30px 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+        }
+
+        /* The signature box */
+        #signature-box {
+            background: #fcfbfa;
+            border: 1px solid #e0dbd1;
+            border-radius: 12px;
+            padding: 22px 28px;
+            max-width: 580px;
+            width: 100%;
+            text-align: left;
+        }
+
+        /* Actions */
+        .action-grid {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            padding: 12px 22px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #f2f0eb;
+            color: #0a0a0a;
+        }
+
+        .btn-primary:hover {
+            background: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(242, 240, 235, 0.2);
+        }
+
+        .btn-secondary {
+            background: #1a1a1a;
+            color: #f2f0eb;
+            border: 1px solid #333333;
+        }
+
+        .btn-secondary:hover {
+            background: #252525;
+            border-color: #444444;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #27c93f;
+            color: #0a0a0a;
+            font-weight: 700;
+            font-size: 13px;
+            padding: 12px 24px;
+            border-radius: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 100;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .instructions {
+            background: #141414;
+            border: 1px solid #222222;
+            border-radius: 12px;
+            padding: 20px 24px;
+            text-align: left;
+            font-size: 12px;
+            color: #888888;
+            line-height: 1.7;
+        }
+
+        .instructions strong {
+            color: #f2f0eb;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="badge">KRIATIVA • MODELO 04 OFICIAL</div>
+        <h1>Assinatura de E-mail — Abdias Alves</h1>
+        <p class="subtitle">Diretor Criativo & Co-Founder • Universal / Fundo Claro</p>
+
+        <!-- Preview da Assinatura -->
+        <div class="preview-wrapper">
+            <div id="signature-box">
+                <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; width: 100%;">
+                    <tr>
+                        <!-- Coluna Logo -->
+                        <td style="vertical-align: middle; padding-right: 22px; border-right: 1.5px solid #ded9ce; width: 105px; text-align: center;">
+                            <img src="kriativa/k_symbol_black.png" width="48" height="46" style="display: block; margin: 0 auto 6px; border: 0;" alt="Kriativa Logo">
+                            <div style="font-family: 'Inter', sans-serif; font-size: 8.5px; font-weight: 900; letter-spacing: 3px; color: #111111; text-transform: uppercase; line-height: 1; text-align: center;">KRIATIVA</div>
+                            <div style="font-family: 'Inter', sans-serif; font-size: 6.5px; font-weight: 600; color: #777777; letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; line-height: 1; text-align: center;">HUB DIGITAL</div>
+                        </td>
+
+                        <!-- Coluna Dados -->
+                        <td style="vertical-align: middle; padding-left: 22px;">
+                            <div style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 800; color: #111111; letter-spacing: -0.3px; line-height: 1.15;">
+                                Abdias Alves
+                            </div>
+                            <div style="font-family: 'Inter', sans-serif; font-size: 10.5px; font-weight: 500; color: #555555; margin-top: 3px; margin-bottom: 9px;">
+                                Diretor Criativo &amp; Co-Founder
+                            </div>
+                            
+                            <div style="height: 1px; width: 100%; background: #e2ded5; margin-bottom: 9px;"></div>
+                            
+                            <table cellpadding="0" cellspacing="0" border="0" style="font-family: 'Inter', sans-serif; font-size: 9.5px; line-height: 1.6;">
+                                <tr>
+                                    <td style="color: #888888; font-weight: 500; padding-right: 8px;">E-mail:</td>
+                                    <td>
+                                        <a href="mailto:kriaativadesign@gmail.com" style="color: #111111; font-weight: 700; text-decoration: none;">kriaativadesign@gmail.com</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #888888; font-weight: 500; padding-right: 8px;">Web:</td>
+                                    <td>
+                                        <a href="https://kriativa.com.br" style="color: #111111; font-weight: 700; text-decoration: none;">kriativa.com.br</a>
+                                        <span style="color: #cccccc; margin: 0 4px; font-weight: 400;">•</span>
+                                        <span style="color: #555555; font-weight: 500;">@kriativahub</span>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <div style="font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-size: 8.5px; color: #777777; margin-top: 7px; line-height: 1.2;">
+                                "Do conceito visual ao sistema inteligente"
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Ações -->
+        <div class="action-grid">
+            <button class="btn btn-primary" onclick="copySignature()">
+                <span>📋</span> Copiar Assinatura (Gmail / Outlook)
+            </button>
+            <a href="Assinatura_Abdias_Alves.pdf" download class="btn btn-secondary">
+                <span>📄</span> Baixar PDF Oficial
+            </a>
+            <a href="Assinatura_Email_Abdias_Alves_Kriativa.pdf" download class="btn btn-secondary">
+                <span>📑</span> Baixar Manual Completo
+            </a>
+        </div>
+
+        <!-- Instruções -->
+        <div class="instructions">
+            <div style="font-weight: 700; color: #f2f0eb; margin-bottom: 8px; font-size: 13px;">Como colar no Gmail:</div>
+            1. Clique no botão acima <strong>"Copiar Assinatura"</strong>.<br>
+            2. No Gmail, vá em <strong>Configurações (ícone de engrenagem) &gt; Ver todas as configurações</strong>.<br>
+            3. Role até <strong>Assinatura</strong>, clique em <strong>+ Criar nova</strong>.<br>
+            4. Pressione <strong>Ctrl + V</strong> (ou Cmd + V no Mac) para colar.<br>
+            5. Role até o final da página e clique em <strong>Salvar alterações</strong>.
+        </div>
+    </div>
+
+    <div id="toast" class="toast">✓ Assinatura copiada com sucesso! Cole no Gmail/Outlook.</div>
+
+    <script>
+        async function copySignature() {
+            const sigElement = document.getElementById('signature-box');
+            
+            try {
+                // Copy as rich HTML
+                const blobHtml = new Blob([sigElement.innerHTML], { type: 'text/html' });
+                const blobText = new Blob([sigElement.innerText], { type: 'text/plain' });
+                const data = [new ClipboardItem({ 'text/html': blobHtml, 'text/plain': blobText })];
+                
+                await navigator.clipboard.write(data);
+                showToast();
+            } catch (err) {
+                // Fallback for older browsers
+                const range = document.createRange();
+                range.selectNode(sigElement);
+                window.getSelection().removeAllRanges();
+                window.getSelection().addRange(range);
+                document.execCommand('copy');
+                window.getSelection().removeAllRanges();
+                showToast();
+            }
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
