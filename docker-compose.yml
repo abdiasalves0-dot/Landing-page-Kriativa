@@ -7,7 +7,7 @@ services:
     container_name: kriativa-landing-page
     restart: unless-stopped
     ports:
-      - "${PORT:-80}:80"
+      - "${PORT:-8080}:80"
     environment:
       - NODE_ENV=production
     labels:
@@ -19,3 +19,4 @@ services:
       timeout: 3s
       retries: 3
       start_period: 5s
+

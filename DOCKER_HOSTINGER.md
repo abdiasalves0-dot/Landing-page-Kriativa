@@ -7,7 +7,7 @@ Este repositório está 100% configurado com suporte a **Docker** e **Docker Com
 ## 📁 Arquivos Docker inclusos:
 - **`Dockerfile`**: Imagem Nginx Alpine com healthcheck e cópia dos assets estáticos.
 - **`nginx.conf`**: Configuração com compressão Gzip, cabeçalhos de segurança (X-Frame-Options, XSS, etc.) e cache para CSS/JS/Imagens/Fontes.
-- **`docker-compose.yml`**: Orquestrador pronto para subir o container na porta 80 (ou porta customizada via variável `$PORT`).
+- **`docker-compose.yml`**: Orquestrador pronto para subir o container mapeado na porta `8080:80` (evitando conflito com o servidor web nativo da Hostinger na porta 80). Pode ser customizado via variável `$PORT`.
 - **`.dockerignore`**: Exclui arquivos desnecessários do build do container, mantendo a imagem enxuta e rápida.
 
 ---
@@ -71,3 +71,4 @@ Sempre que fizer alterações e novos commits no GitHub, para atualizar na Hosti
 
 ## 🔒 Domínio e SSL (HTTPS)
 Se estiver usando um proxy reverso (Nginx Proxy Manager, Traefik ou Cloudflare) na Hostinger, basta apontar seu domínio (ex: `kriativa.com.br`) para a porta `80` do container para ter SSL automático gratuito com Let's Encrypt.
+
