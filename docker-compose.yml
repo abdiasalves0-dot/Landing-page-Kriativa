@@ -3,8 +3,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: kriativa-landing-page:latest
-    container_name: kriativa-landing-page
     restart: unless-stopped
     ports:
       - "${PORT:-8080}:80"
@@ -14,9 +12,8 @@ services:
       - "app=kriativa-landing-page"
       - "maintainer=kriativa"
     healthcheck:
-      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://127.0.0.1:80/"]
+      test: [ "CMD", "wget", "--quiet", "--tries=1", "--spider", "http://127.0.0.1:80/" ]
       interval: 30s
       timeout: 3s
       retries: 3
       start_period: 5s
-
