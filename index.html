@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
@@ -82,6 +83,7 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@1,700&display=swap"
         rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
     <style>
         *,
         *::before,
@@ -108,6 +110,7 @@
         html {
             scroll-behavior: smooth;
             overflow-x: hidden;
+            overflow-x: clip;
             width: 100%;
         }
 
@@ -116,6 +119,8 @@
             color: var(--white);
             font-family: var(--font);
             overflow-x: hidden;
+            /* clip não cria scroll container, então position: sticky dos projetos funciona */
+            overflow-x: clip;
             width: 100%;
             cursor: none;
         }
@@ -695,70 +700,165 @@
             margin: 0 auto;
         }
 
-        .work-grid {
+        .work-intro {
+            max-width: 560px;
+            margin-top: 28px;
+            font-size: 17px;
+            font-weight: 300;
+            line-height: 1.7;
+            color: var(--white-dim);
+        }
+
+        /* PROJETOS EMPILHADOS (sticky) + MOLDURA 3D */
+        .proj-list {
+            margin-top: 70px;
+            display: flex;
+            flex-direction: column;
+            gap: 8vh;
+        }
+
+        .proj {
+            position: sticky;
+            top: calc(11vh + var(--i, 0) * 16px);
+        }
+
+        .proj-card {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2px;
-            background: var(--white-border);
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 56px;
+            align-items: center;
+            min-height: 72vh;
+            padding: 56px;
+            background: linear-gradient(145deg, var(--bg3), var(--bg2) 60%);
             border: 1px solid var(--white-border);
-            margin-top: 60px;
+            border-radius: 24px;
+            box-shadow: 0 -24px 60px rgba(0, 0, 0, 0.45);
+            transform-origin: 50% 0;
+            will-change: transform;
         }
 
-        .work-card {
-            background: var(--bg);
-            aspect-ratio: 4/3;
+        .proj-num {
+            font-size: 12px;
+            letter-spacing: 0.2em;
+            color: var(--muted);
+            margin-bottom: 28px;
+        }
+
+        .proj-name {
+            font-size: clamp(40px, 5.5vw, 76px);
+            font-weight: 300;
+            letter-spacing: -0.045em;
+            line-height: 0.95;
+            margin: 12px 0 22px;
+        }
+
+        .proj-name em {
+            font-family: var(--font-serif);
+            font-size: 0.45em;
+            letter-spacing: 0;
+            color: var(--white-dim);
+            margin-left: 6px;
+        }
+
+        .proj-desc {
+            font-size: 15px;
+            font-weight: 300;
+            line-height: 1.75;
+            color: var(--white-dim);
+            max-width: 430px;
+            margin-bottom: 28px;
+        }
+
+        .proj-tags {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .proj-tags li {
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--white-dim);
+            border: 1px solid var(--white-border);
+            border-radius: 999px;
+            padding: 7px 12px;
+        }
+
+        .proj-link {
+            display: inline-block;
+            margin-top: 32px;
+            font-size: 13px;
+            color: var(--white);
+            text-decoration: none;
+            border-bottom: 1px solid var(--white-border);
+            padding-bottom: 4px;
+            transition: border-color 0.3s;
+        }
+
+        .proj-link:hover {
+            border-color: var(--white);
+        }
+
+        .proj-media {
+            perspective: 1400px;
+        }
+
+        .proj-frame {
             position: relative;
+            border-radius: 14px;
             overflow: hidden;
-            cursor: pointer;
-        }
-
-        .work-card:first-child {
-            grid-column: 1 / -1;
-            aspect-ratio: 16/7;
-        }
-
-        .work-card-bg {
-            position: absolute;
-            inset: 0;
-            background: var(--bg3);
+            border: 1px solid var(--white-border);
+            background: var(--bg);
+            box-shadow: 0 50px 90px -30px rgba(0, 0, 0, 0.75);
+            transform: rotateY(-9deg) rotateX(4deg);
             transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .work-card:hover .work-card-bg {
-            transform: scale(1.04);
+        .proj-bar {
+            display: flex;
+            gap: 6px;
+            padding: 12px 14px;
+            background: var(--white-subtle);
+            border-bottom: 1px solid var(--white-border);
         }
 
-        .work-card-bg img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .proj-bar span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--white-border);
+        }
+
+        .proj-frame img {
             display: block;
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            object-fit: cover;
+            object-position: top;
         }
 
-        .work-card-pattern {
+        .proj-glare {
             position: absolute;
             inset: 0;
-            opacity: 0.12;
+            pointer-events: none;
+            background: radial-gradient(circle at var(--gx, 50%) var(--gy, 0%), rgba(255, 255, 255, 0.14), transparent 55%);
+            opacity: 0;
             transition: opacity 0.4s;
         }
 
-        .work-card:hover .work-card-pattern {
-            opacity: 0.2;
+        .proj-media:hover .proj-glare {
+            opacity: 1;
         }
 
-        .work-card-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 32px;
-            background: linear-gradient(transparent, rgba(17, 17, 16, 0.9));
-            transform: translateY(8px);
-            transition: transform 0.4s ease;
+        /* Lenis (scroll suave) */
+        html.lenis, html.lenis body {
+            height: auto;
         }
 
-        .work-card:hover .work-card-info {
-            transform: translateY(0);
+        .lenis.lenis-smooth {
+            scroll-behavior: auto !important;
         }
 
         .work-tag {
@@ -1547,13 +1647,24 @@
                 padding: 80px 24px;
             }
 
-            .work-grid {
-                grid-template-columns: 1fr;
+            .proj {
+                position: relative;
+                top: auto;
             }
 
-            .work-card:first-child {
-                grid-column: 1;
-                aspect-ratio: 4/3;
+            .proj-card {
+                grid-template-columns: 1fr;
+                gap: 28px;
+                min-height: 0;
+                padding: 24px;
+            }
+
+            .proj-media {
+                order: -1;
+            }
+
+            .proj-frame {
+                transform: none;
             }
 
             #process {
@@ -2089,38 +2200,101 @@
     <section id="work">
         <div class="section-header reveal">
             <h2 class="section-title">Portfólio</h2>
-            <span class="section-count">Trabalhos selecionados</span>
+            <span class="section-count">05 projetos selecionados</span>
         </div>
-        <div class="work-grid reveal">
-            <!-- Featured -->
-            <div class="work-card">
-                <div class="work-card-bg">
-                    <img src="kriativa/canaa.png" alt="Projeto Forte Canaã — Branding Completo" loading="lazy">
+        <p class="work-intro reveal">Produtos digitais, plataformas com IA e marcas que construímos do zero — do conceito ao ar.</p>
+        <div class="proj-list">
+            <article class="proj">
+                <div class="proj-card">
+                    <div class="proj-info">
+                        <p class="proj-num">01 / 05</p>
+                        <p class="work-tag">Produto Digital · IA</p>
+                        <h3 class="proj-name">Facility</h3>
+                        <p class="proj-desc">Plataforma que analisa o currículo contra qualquer vaga: três especialistas dão a nota ATS, mostram o que falta e a assistente Fac prepara a candidatura sem inventar nada.</p>
+                        <ul class="proj-tags"><li>Análise ATS</li><li>Assistente com IA</li><li>Web App</li></ul>
+                    </div>
+                    <div class="proj-media">
+                        <div class="proj-frame">
+                            <div class="proj-bar"><span></span><span></span><span></span></div>
+                            <img src="kriativa/facility.png" alt="Facility — o currículo certo para cada vaga" class="lightbox-trigger" data-caption="Facility — o currículo certo para cada vaga" loading="lazy">
+                            <div class="proj-glare"></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="work-card-info">
-                    <p class="work-tag">Identidade Visual & Web</p>
-                    <p class="work-name">Projeto Forte Canaã — Branding Completo</p>
+            </article>
+            <article class="proj">
+                <div class="proj-card">
+                    <div class="proj-info">
+                        <p class="proj-num">02 / 05</p>
+                        <p class="work-tag">SaaS · Social Media</p>
+                        <h3 class="proj-name">Hype <em>by Kyuube</em></h3>
+                        <p class="proj-desc">Escreve posts no seu tom para X e LinkedIn. Você aprova, ele agenda e publica — sem deixar a sua voz virar “texto de IA”.</p>
+                        <ul class="proj-tags"><li>IA Generativa</li><li>Agendamento</li><li>Integração X & LinkedIn</li></ul>
+                    </div>
+                    <div class="proj-media">
+                        <div class="proj-frame">
+                            <div class="proj-bar"><span></span><span></span><span></span></div>
+                            <img src="kriativa/hype.jpg" alt="Hype — posts no seu tom para X e LinkedIn" class="lightbox-trigger" data-caption="Hype — posts no seu tom para X e LinkedIn" loading="lazy">
+                            <div class="proj-glare"></div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="work-card">
-                <div class="work-card-bg">
-                    <img src="kriativa/app.png" alt="App Dashboard" loading="lazy">
+            </article>
+            <article class="proj">
+                <div class="proj-card">
+                    <div class="proj-info">
+                        <p class="proj-num">03 / 05</p>
+                        <p class="work-tag">Plataforma · Criadores de Conteúdo</p>
+                        <h3 class="proj-name">Kyuube</h3>
+                        <p class="proj-desc">Plataforma para criadores de conteúdo se organizarem, planejarem e descobrirem novas ideias que realmente fazem sentido para o seu canal.</p>
+                        <ul class="proj-tags"><li>Produto Digital</li><li>Identidade & Mascote</li><li>Planejamento de Conteúdo</li></ul>
+                    </div>
+                    <div class="proj-media">
+                        <div class="proj-frame">
+                            <div class="proj-bar"><span></span><span></span><span></span></div>
+                            <img src="kriativa/kyuube.jpg" alt="Kyuube — ideias que combinam com você" class="lightbox-trigger" data-caption="Kyuube — ideias que combinam com você" loading="lazy">
+                            <div class="proj-glare"></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="work-card-info">
-                    <p class="work-tag">UI Design</p>
-                    <p class="work-name">App Dashboard</p>
+            </article>
+            <article class="proj">
+                <div class="proj-card">
+                    <div class="proj-info">
+                        <p class="proj-num">04 / 05</p>
+                        <p class="work-tag">Identidade Visual & Web</p>
+                        <h3 class="proj-name">Forte Canaã</h3>
+                        <p class="proj-desc">Branding completo: identidade visual, sistema de marca e presença web para o Projeto Forte Canaã.</p>
+                        <ul class="proj-tags"><li>Branding</li><li>Identidade Visual</li><li>Web</li></ul>
+                    </div>
+                    <div class="proj-media">
+                        <div class="proj-frame">
+                            <div class="proj-bar"><span></span><span></span><span></span></div>
+                            <img src="kriativa/canaa.png" alt="Projeto Forte Canaã — Branding Completo" class="lightbox-trigger" data-caption="Projeto Forte Canaã — Branding Completo" loading="lazy">
+                            <div class="proj-glare"></div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="work-card">
-                <div class="work-card-bg">
-                    <img src="kriativa/Gravação-de-Tela-2026-06-24-174141.gif" alt="Landing Page Imersiva"
-                        loading="lazy">
+            </article>
+            <article class="proj">
+                <div class="proj-card">
+                    <div class="proj-info">
+                        <p class="proj-num">05 / 05</p>
+                        <p class="work-tag">Software · Marcenaria</p>
+                        <h3 class="proj-name">Bancada</h3>
+                        <p class="proj-desc">Gestão de produção, clientes e orçamentos integrada a um planejador 3D interativo — feito sob medida para o setor de marcenaria.</p>
+                        <ul class="proj-tags"><li>Planejador 3D</li><li>Gestão</li><li>Orçamentos</li></ul>
+                        <a href="#bancada" class="proj-link">Ver case completo ↓</a>
+                    </div>
+                    <div class="proj-media">
+                        <div class="proj-frame">
+                            <div class="proj-bar"><span></span><span></span><span></span></div>
+                            <img src="gifs/Planejador%203d.gif" alt="Bancada — Planejador 3D Interativo" class="lightbox-trigger" data-caption="Bancada — Planejador 3D Interativo" loading="lazy">
+                            <div class="proj-glare"></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="work-card-info">
-                    <p class="work-tag">Motion & Web</p>
-                    <p class="work-name">Landing Page Imersiva</p>
-                </div>
-            </div>
+            </article>
         </div>
     </section>
 
@@ -2434,6 +2608,55 @@
                 closeLightbox();
             }
         });
+
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // SCROLL SUAVE (Lenis) — dispara eventos de scroll nativos, então os listeners existentes continuam valendo
+        if (window.Lenis && !reduceMotion) {
+            const lenis = new Lenis({ lerp: 0.085 });
+            const raf = t => { lenis.raf(t); requestAnimationFrame(raf); };
+            requestAnimationFrame(raf);
+            document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+                const id = a.getAttribute('href');
+                const target = id === '#' ? 0 : document.querySelector(id);
+                if (target === null) return;
+                e.preventDefault();
+                lenis.scrollTo(target);
+            }));
+        }
+
+        // PORTFÓLIO — cards empilhados que encolhem ao serem cobertos
+        const projs = [...document.querySelectorAll('.proj')];
+        projs.forEach((c, i) => c.style.setProperty('--i', i));
+        const stackProjs = () => {
+            const on = window.innerWidth > 900 && !reduceMotion;
+            projs.forEach((c, i) => {
+                const card = c.firstElementChild, next = projs[i + 1];
+                if (!on || !next) { card.style.transform = card.style.filter = ''; return; }
+                const gap = next.getBoundingClientRect().top - c.getBoundingClientRect().top;
+                const p = Math.min(Math.max(1 - gap / c.offsetHeight, 0), 1);
+                card.style.transform = `scale(${1 - p * 0.06})`;
+                card.style.filter = `brightness(${1 - p * 0.5})`;
+            });
+        };
+        window.addEventListener('scroll', stackProjs, { passive: true });
+        window.addEventListener('resize', stackProjs);
+        stackProjs();
+
+        // PORTFÓLIO — tilt 3D da moldura seguindo o mouse
+        if (!reduceMotion && window.matchMedia('(hover: hover)').matches) {
+            document.querySelectorAll('.proj-media').forEach(m => {
+                const f = m.firstElementChild;
+                m.addEventListener('mousemove', e => {
+                    const r = m.getBoundingClientRect();
+                    const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+                    f.style.transform = `rotateY(${(x - 0.5) * 16}deg) rotateX(${(0.5 - y) * 12}deg) scale(1.02)`;
+                    f.style.setProperty('--gx', x * 100 + '%');
+                    f.style.setProperty('--gy', y * 100 + '%');
+                });
+                m.addEventListener('mouseleave', () => { f.style.transform = ''; });
+            });
+        }
     </script>
 
     <!-- LIGHTBOX -->

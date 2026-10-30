@@ -1,0 +1,13 @@
+.git
+.github
+.gitignore
+.dockerignore
+.vscode
+.idea
+*.md
+!README.md
+DOCKER_HOSTINGER.md
+design-system-build/
+entregas/
+briefingrapido.txt
+*.log

@@ -1,0 +1,39 @@
+{
+  "v": 3,
+  "layout": "files",
+  "createdOnFiles": { "v": 1, "at": "2026-10-14T21:50:00Z" },
+  "title": "Kriativa Design System",
+  "namespace": "Kriativa",
+  "libraries": [],
+  "sections": {},
+  "groups": ["Logos", "Icons"],
+  "assetGroups": {
+    "Logos": {
+      "name": "Logos",
+      "tile": "l",
+      "order": ["kriativa-logo.svg", "k-symbol-white.png", "k-symbol-black.png", "kriativa-icon.png"],
+      "files": {
+        "kriativa-logo.svg": { "name": "kriativa-logo.svg", "blob": "3676a690b6f774c331817c2e7dae1f77", "size": 3044, "type": "image/svg+xml" },
+        "k-symbol-white.png": { "name": "k-symbol-white.png", "blob": "5f0a203723804f4b7743b7afc23c16da", "size": 9634, "type": "image/png" },
+        "k-symbol-black.png": { "name": "k-symbol-black.png", "blob": "daa5fd1d8bb08d95248e565141fcae52", "size": 9626, "type": "image/png" },
+        "kriativa-icon.png": { "name": "kriativa-icon.png", "blob": "6b6e03ddf3864313363aa22a12f2351c", "size": 1302189, "type": "image/png" }
+      }
+    },
+    "Icons": {
+      "name": "Icons",
+      "tile": "s",
+      "order": ["identidade-visual.svg", "web-design.svg", "software-and-web.svg", "ui-and-ux-design.svg", "motion-design.svg", "estrategia-de-marca.svg"],
+      "files": {
+        "identidade-visual.svg": { "name": "identidade-visual.svg", "blob": "82f5f34ba21e7ada698e4dac5df84bf1", "size": 556, "type": "image/svg+xml" },
+        "web-design.svg": { "name": "web-design.svg", "blob": "f7baf21de2adca696bfc047a91580c68", "size": 358, "type": "image/svg+xml" },
+        "software-and-web.svg": { "name": "software-and-web.svg", "blob": "ec633e19238b14137c8687368f986fe4", "size": 402, "type": "image/svg+xml" },
+        "ui-and-ux-design.svg": { "name": "ui-and-ux-design.svg", "blob": "ab5985fe12fbc257627f12e32096ae0b", "size": 410, "type": "image/svg+xml" },
+        "motion-design.svg": { "name": "motion-design.svg", "blob": "d87dc70708ad37fe3e437af307766827", "size": 238, "type": "image/svg+xml" },
+        "estrategia-de-marca.svg": { "name": "estrategia-de-marca.svg", "blob": "511aac00474a468fb85c970307397214", "size": 345, "type": "image/svg+xml" }
+      }
+    }
+  },
+  "blobs": {},
+  "docs": { "readme": "project/README.md", "sections": [] },
+  "lastChange": { "by": "Claude", "at": "2026-10-14T21:50:00Z", "via": "Claude Code", "note": "Initial system extracted from the Kriativa landing page (main@8422b59) and brand manual." }
+}
