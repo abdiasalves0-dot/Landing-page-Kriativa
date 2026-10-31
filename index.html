@@ -3240,13 +3240,9 @@
     </script>
 
     <!-- ==========================================================================
-         MODAL POP-UP LIQUID GLASS — CONTATO & NOVO PROJETO (marketing@kriativasoftware.io)
+         MODAL POP-UP NATIVO APPLE HIG + LIQUID GLASS (marketing@kriativasoftware.io)
          ========================================================================== -->
     <style id="project-modal-styles">
-        /* ==========================================================================
-           MODAL / SHEET APPLE LIQUID GLASS (HIG Specifications & Optical Engine)
-           Referência Oficial: Apple Developer — Adopting Liquid Glass & WWDC25
-           ========================================================================== */
         .project-modal-backdrop {
             position: fixed;
             inset: 0;
@@ -3254,90 +3250,51 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 24px;
-            background: radial-gradient(circle at 50% 45%, rgba(40, 45, 60, 0.35) 0%, rgba(8, 8, 12, 0.65) 100%);
-            -webkit-backdrop-filter: blur(32px) saturate(1.8) brightness(0.96);
-            backdrop-filter: blur(32px) saturate(1.8) brightness(0.96);
+            padding: 20px;
             opacity: 0;
+            visibility: hidden;
             pointer-events: none;
-            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
         }
 
         .project-modal-backdrop.is-open {
             opacity: 1;
+            visibility: visible;
             pointer-events: auto;
         }
 
-        /* Halo óptico ambiental (Caustic Back-light): simula iluminação ambiental física através do vidro */
-        .project-modal-backdrop::before {
-            content: '';
+        /* Scrim contextual de escurecimento Apple (sem nested backdrop-filter para preservar refração física do card) */
+        .project-modal-scrim {
             position: absolute;
-            width: 600px;
-            height: 480px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(120, 160, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 40%, transparent 70%);
-            pointer-events: none;
-            filter: blur(40px);
-            opacity: 0;
-            transform: scale(0.8);
-            transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            inset: 0;
+            background: rgba(5, 5, 8, 0.52);
+            transition: opacity 0.35s ease;
         }
 
-        .project-modal-backdrop.is-open::before {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        /* Container do Modal: Lente e Superfície Apple Liquid Glass */
+        /* Superfície Liquid Glass Nativa (Skill Apple Liquid Glass: Menisco Convexo + Refração Real) */
         .project-modal-card {
+            --lg-radius: 28px;
+            --lg-fill: rgba(18, 18, 22, 0.28);
+            --lg-blur: 0.45px;
+            --lg-sat: 1.5;
+            --lg-bright: 1.08;
             position: relative;
+            z-index: 2;
             width: 100%;
-            max-width: 490px;
-            padding: 38px 34px 30px;
-            border-radius: 36px;
-            background: linear-gradient(
-                165deg,
-                rgba(255, 255, 255, 0.14) 0%,
-                rgba(255, 255, 255, 0.05) 35%,
-                rgba(18, 18, 24, 0.45) 100%
-            );
-            -webkit-backdrop-filter: blur(42px) saturate(2.1) brightness(1.12);
-            backdrop-filter: blur(42px) saturate(2.1) brightness(1.12);
-            border: 1px solid rgba(255, 255, 255, 0.22);
+            max-width: 480px;
+            padding: 34px 30px 26px;
+            border-radius: var(--lg-radius);
+            color: #ffffff;
             box-shadow:
-                inset 1.5px 1.5px 3px -0.5px rgba(255, 255, 255, 0.75),
-                inset -1.5px -1.5px 3px -0.5px rgba(255, 255, 255, 0.32),
-                inset 0 0 35px rgba(255, 255, 255, 0.05),
-                0 36px 90px -15px rgba(0, 0, 0, 0.8),
-                0 12px 36px rgba(0, 0, 0, 0.45);
-            transform: scale(0.92) translateY(24px);
+                inset 1.5px 1.5px 2.5px -1px rgba(255, 255, 255, 0.65),
+                inset -1.5px -1.5px 2.5px -1px rgba(255, 255, 255, 0.35),
+                inset 0 0 20px rgba(255, 255, 255, 0.05),
+                0 32px 80px -16px rgba(0, 0, 0, 0.75),
+                0 8px 24px rgba(0, 0, 0, 0.35);
+            transform: scale(0.92) translateY(18px);
             opacity: 0;
-            transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
-            color: #f2f0eb;
-            isolation: isolate;
-        }
-
-        /* Aro especular direcional 140° (Continuous Specular Rim) */
-        .project-modal-card::after {
-            content: '';
-            position: absolute;
-            inset: -1px;
-            z-index: 3;
-            border-radius: 37px;
-            padding: 1.25px;
-            pointer-events: none;
-            background: linear-gradient(
-                140deg,
-                rgba(255, 255, 255, 0.85) 0%,
-                rgba(255, 255, 255, 0.3) 22%,
-                rgba(255, 255, 255, 0.06) 45%,
-                rgba(255, 255, 255, 0.06) 55%,
-                rgba(255, 255, 255, 0.42) 82%,
-                rgba(255, 255, 255, 0.78) 100%
-            );
-            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-            -webkit-mask-composite: xor;
-            mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+            transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+            will-change: transform, opacity;
         }
 
         .project-modal-backdrop.is-open .project-modal-card {
@@ -3345,61 +3302,57 @@
             opacity: 1;
         }
 
-        .project-modal-inner {
-            position: relative;
-            z-index: 4;
-        }
-
-        /* Botão circular de fechar no padrão Apple Glass */
+        /* Botão Fechar Circular Apple HIG */
         .project-modal-close {
             position: absolute;
             top: 20px;
             right: 20px;
-            z-index: 10;
-            width: 34px;
-            height: 34px;
+            z-index: 5;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.24);
-            background: linear-gradient(160deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.05) 100%);
-            -webkit-backdrop-filter: blur(20px);
-            backdrop-filter: blur(20px);
-            box-shadow: inset 1px 1.2px 1.8px rgba(255, 255, 255, 0.5), 0 2px 8px rgba(0, 0, 0, 0.35);
-            color: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            background: rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.75);
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
             outline: none;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: inset 1px 1px 1.5px rgba(255, 255, 255, 0.35);
         }
 
         .project-modal-close:hover {
-            background: linear-gradient(160deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.12) 100%);
-            border-color: rgba(255, 255, 255, 0.45);
+            background: rgba(255, 255, 255, 0.2);
             color: #ffffff;
-            transform: scale(1.06);
-            box-shadow: inset 1px 1.2px 2px rgba(255, 255, 255, 0.65), 0 4px 12px rgba(0, 0, 0, 0.4);
+            transform: scale(1.08);
+            box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.5), 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
-        /* Cápsula de categoria / badge Apple Glass */
-        .project-modal-badge {
+        .project-modal-close:active {
+            transform: scale(0.94);
+        }
+
+        /* Tag de categoria / badge Apple HIG */
+        .project-modal-tag {
             display: inline-flex;
             align-items: center;
-            gap: 7px;
-            padding: 5px 14px;
+            gap: 6px;
+            padding: 4px 12px;
             border-radius: 999px;
-            background: linear-gradient(160deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.04) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.22);
-            box-shadow: inset 1px 1px 1.5px rgba(255, 255, 255, 0.35);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.14);
             font-size: 11px;
             font-weight: 600;
-            letter-spacing: 0.06em;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 14px;
+            color: rgba(255, 255, 255, 0.85);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2);
+            margin-bottom: 12px;
         }
 
-        .project-modal-badge-dot {
+        .project-modal-tag-dot {
             width: 6px;
             height: 6px;
             border-radius: 50%;
@@ -3408,69 +3361,61 @@
         }
 
         .project-modal-title {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 700;
+            letter-spacing: -0.025em;
             color: #ffffff;
-            line-height: 1.15;
-            letter-spacing: -0.03em;
-            margin: 0 0 8px 0;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            margin: 0 0 8px;
+            line-height: 1.2;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.55);
         }
 
         .project-modal-desc {
             font-size: 14px;
-            line-height: 1.55;
-            color: rgba(242, 240, 235, 0.78);
-            margin: 0 0 24px 0;
             font-weight: 400;
+            color: rgba(255, 255, 255, 0.72);
+            line-height: 1.5;
+            margin: 0 0 20px;
         }
 
-        /* Box Inset Apple Liquid Glass (Container interno translúcido) */
+        /* Box Inset do E-mail (Apple HIG Sunken Panel) */
         .project-modal-email-box {
-            background: linear-gradient(160deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.03) 100%);
-            -webkit-backdrop-filter: blur(20px);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            box-shadow:
-                inset 1px 1.2px 2px rgba(255, 255, 255, 0.38),
-                inset -1px -1px 2px rgba(255, 255, 255, 0.08),
-                0 4px 16px rgba(0, 0, 0, 0.25);
-            padding: 14px 18px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 12px;
-            margin-bottom: 20px;
-            transition: all 0.25s ease;
+            padding: 12px 16px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
+            margin-bottom: 18px;
+            transition: border-color 0.2s, background 0.2s;
         }
 
         .project-modal-email-box:hover {
-            background: linear-gradient(160deg, rgba(255, 255, 255, 0.13) 0%, rgba(255, 255, 255, 0.05) 100%);
-            border-color: rgba(255, 255, 255, 0.28);
-            box-shadow:
-                inset 1px 1.2px 2.5px rgba(255, 255, 255, 0.5),
-                0 6px 20px rgba(0, 0, 0, 0.32);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         .project-modal-email-info {
             display: flex;
             flex-direction: column;
-            gap: 3px;
+            gap: 2px;
             overflow: hidden;
         }
 
         .project-modal-email-label {
-            font-size: 10px;
+            font-size: 9.5px;
             font-weight: 600;
             letter-spacing: 0.14em;
-            color: rgba(255, 255, 255, 0.55);
+            color: rgba(255, 255, 255, 0.45);
             text-transform: uppercase;
         }
 
         .project-modal-email-val {
-            font-family: var(--font, system-ui, -apple-system, sans-serif);
-            font-size: 14.5px;
+            font-family: var(--font, system-ui, sans-serif);
+            font-size: 14px;
             font-weight: 600;
             color: #ffffff;
             letter-spacing: -0.01em;
@@ -3479,38 +3424,37 @@
             text-overflow: ellipsis;
         }
 
-        /* Botão Copiar em cápsula Apple Glass */
         .project-modal-copy-btn {
             flex-shrink: 0;
-            background: linear-gradient(160deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.07) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.28);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.18);
             border-radius: 999px;
-            padding: 7px 16px;
+            padding: 6px 14px;
             font-size: 12px;
-            font-weight: 600;
+            font-weight: 500;
             color: #ffffff;
-            box-shadow: inset 1px 1.2px 1.8px rgba(255, 255, 255, 0.5), 0 2px 6px rgba(0, 0, 0, 0.25);
             display: flex;
             align-items: center;
             gap: 6px;
             cursor: pointer;
-            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+            outline: none;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: inset 1px 1px 1.5px rgba(255, 255, 255, 0.3);
         }
 
         .project-modal-copy-btn:hover {
-            background: linear-gradient(160deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.12) 100%);
-            border-color: rgba(255, 255, 255, 0.45);
-            transform: scale(1.04);
-            box-shadow: inset 1px 1.2px 2px rgba(255, 255, 255, 0.65), 0 4px 12px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.22);
+            transform: scale(1.05);
         }
 
         .project-modal-copy-btn.copied {
             background: #34c759 !important;
             border-color: #34c759 !important;
             color: #ffffff !important;
-            box-shadow: 0 0 14px rgba(52, 199, 89, 0.5) !important;
+            box-shadow: 0 0 12px rgba(52, 199, 89, 0.6) !important;
         }
 
+        /* Botões de Ação Apple HIG */
         .project-modal-actions {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -3518,179 +3462,188 @@
             margin-bottom: 8px;
         }
 
-        /* Botões secundários: Cápsulas translúcidas Apple Liquid Glass */
-        .project-modal-provider-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            height: 50px;
-            padding: 0 16px;
-            border-radius: 999px;
-            border: 1px solid rgba(255, 255, 255, 0.22);
-            background: linear-gradient(165deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.04) 100%);
-            -webkit-backdrop-filter: blur(20px);
-            backdrop-filter: blur(20px);
-            box-shadow:
-                inset 1px 1.2px 2px rgba(255, 255, 255, 0.4),
-                inset -1px -1px 2px rgba(255, 255, 255, 0.1),
-                0 4px 14px rgba(0, 0, 0, 0.25);
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 13.5px;
-            font-weight: 600;
-            letter-spacing: -0.01em;
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .project-modal-provider-btn:hover {
-            background: linear-gradient(165deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.08) 100%);
-            border-color: rgba(255, 255, 255, 0.38);
-            transform: translateY(-2px);
-            box-shadow:
-                inset 1px 1.2px 2.5px rgba(255, 255, 255, 0.6),
-                0 8px 22px rgba(0, 0, 0, 0.35);
-        }
-
-        .provider-gmail svg { color: #ea4335; }
-        .provider-outlook svg { color: #0078d4; }
-
-        /* Botão Primário: .buttonStyle(.glassProminent) oficial Apple Liquid Glass */
-        .provider-default {
-            grid-column: span 2;
-            height: 52px;
-            border-radius: 999px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.94) 0%, rgba(242, 240, 235, 0.85) 100%);
-            -webkit-backdrop-filter: blur(24px) saturate(2);
-            backdrop-filter: blur(24px) saturate(2);
-            border: 1px solid rgba(255, 255, 255, 0.95);
-            box-shadow:
-                inset 1.5px 1.5px 2.5px rgba(255, 255, 255, 0.95),
-                inset -1px -1px 2px rgba(0, 0, 0, 0.12),
-                0 8px 24px -4px rgba(255, 255, 255, 0.32),
-                0 4px 14px rgba(0, 0, 0, 0.35);
-            color: #111110;
-            font-weight: 600;
-            font-size: 14.5px;
-            letter-spacing: -0.01em;
-        }
-
-        .provider-default:hover {
-            transform: scale(1.015) translateY(-2px);
-            background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.96) 100%);
-            box-shadow:
-                inset 1.5px 1.5px 3px #ffffff,
-                0 12px 30px rgba(255, 255, 255, 0.45),
-                0 4px 16px rgba(0, 0, 0, 0.4);
-            color: #000000;
-        }
-
-        .project-modal-footer {
+        .project-modal-btn {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.6);
-            margin-top: 22px;
-            padding-top: 18px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-weight: 400;
+            height: 46px;
+            padding: 0 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-size: 13.5px;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Botões Secundários Liquid Glass (.lg.lg-interactive) */
+        .provider-secondary {
+            --lg-radius: 14px;
+            --lg-fill: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            box-shadow: inset 1px 1px 1.5px rgba(255, 255, 255, 0.25);
+        }
+
+        .provider-secondary:hover {
+            --lg-fill: rgba(255, 255, 255, 0.14);
+            border-color: rgba(255, 255, 255, 0.28);
+            transform: translateY(-2px);
+            box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.4), 0 6px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .provider-secondary:active {
+            transform: scale(0.97);
+        }
+
+        /* Botão Primário Prominente Apple HIG (.lg.lg-tint.lg-interactive) */
+        .provider-primary {
+            grid-column: span 2;
+            height: 50px;
+            border-radius: 999px;
+            --lg-radius: 999px;
+            --lg-fill: rgba(242, 240, 235, 0.92);
+            color: #0a0a0c;
+            font-weight: 600;
+            font-size: 14.5px;
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            box-shadow:
+                inset 1.5px 1.5px 2px rgba(255, 255, 255, 0.95),
+                inset -1px -1px 2px rgba(0, 0, 0, 0.1),
+                0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .provider-primary:hover {
+            --lg-fill: #ffffff;
+            transform: translateY(-2px) scale(1.01);
+            box-shadow:
+                inset 1.5px 1.5px 2.5px rgba(255, 255, 255, 1),
+                0 12px 30px rgba(242, 240, 235, 0.35);
+        }
+
+        .provider-primary:active {
+            transform: scale(0.97);
+        }
+
+        /* Rodapé com Indicador de Status */
+        .project-modal-footer {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11.5px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 18px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .project-modal-dot {
-            width: 7px;
-            height: 7px;
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
             background: #34c759;
-            box-shadow: 0 0 10px rgba(52, 199, 89, 0.85);
+            box-shadow: 0 0 8px rgba(52, 199, 89, 0.8);
             animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(0.85); }
         }
 
         @media (max-width: 480px) {
             .project-modal-card {
-                padding: 30px 22px 24px;
-                border-radius: 28px;
+                padding: 28px 20px 22px;
+                border-radius: 24px;
             }
             .project-modal-title {
-                font-size: 24px;
+                font-size: 22px;
             }
             .project-modal-actions {
                 grid-template-columns: 1fr;
             }
-            .provider-default {
+            .provider-primary {
                 grid-column: span 1;
             }
         }
     </style>
 
     <div id="project-modal" class="project-modal-backdrop" aria-hidden="true" role="dialog" aria-labelledby="modal-title" aria-modal="true">
-        <div class="project-modal-card">
-            <button type="button" class="project-modal-close" id="project-modal-close" aria-label="Fechar pop-up">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <path d="M1.5 1.5L10.5 10.5M1.5 10.5L10.5 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <!-- Scrim de escurecimento contextual Apple HIG -->
+        <div class="project-modal-scrim" id="project-modal-scrim"></div>
+
+        <!-- Superfície Liquid Glass Nativa Apple HIG (Menisco Convexo + Refração Real da Skill) -->
+        <div class="project-modal-card lg lg-interactive" data-lg-bezel="28" data-lg-thickness="24" data-lg-zoom="0.06">
+            <!-- Botão Fechar Circular Apple HIG -->
+            <button type="button" class="project-modal-close" id="project-modal-close" aria-label="Fechar janela">
+                <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+                    <path d="M1.5 1.5L12.5 12.5M1.5 12.5L12.5 1.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
                 </svg>
             </button>
 
-            <div class="project-modal-inner">
-                <div class="project-modal-header">
-                    <div class="project-modal-badge">
-                        <span class="project-modal-badge-dot"></span>
-                        <span>Iniciar Projeto</span>
-                    </div>
-                    <h3 id="modal-title" class="project-modal-title">Vamos transformar sua marca?</h3>
-                    <p class="project-modal-desc">
-                        Entre em contato diretamente com a nossa equipe. Escolha como prefere nos enviar uma mensagem:
-                    </p>
+            <!-- Cabeçalho Apple HIG -->
+            <div class="project-modal-header">
+                <div class="project-modal-tag">
+                    <span class="project-modal-tag-dot"></span>
+                    <span>Iniciar Projeto</span>
                 </div>
+                <h3 id="modal-title" class="project-modal-title">Vamos transformar sua marca?</h3>
+                <p class="project-modal-desc">
+                    Entre em contato diretamente com a nossa equipe. Escolha como prefere nos enviar uma mensagem:
+                </p>
+            </div>
 
-                <!-- Box do e-mail com botão copiar -->
-                <div class="project-modal-email-box">
-                    <div class="project-modal-email-info">
-                        <span class="project-modal-email-label">E-mail Oficial</span>
-                        <span class="project-modal-email-val" id="project-modal-email-text">marketing@kriativasoftware.io</span>
-                    </div>
-                    <button type="button" class="project-modal-copy-btn" id="project-modal-copy-btn" title="Copiar e-mail">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                        </svg>
-                        <span id="copy-btn-text">Copiar</span>
-                    </button>
+            <!-- Inset Panel: E-mail Oficial com Ação de Copiar -->
+            <div class="project-modal-email-box">
+                <div class="project-modal-email-info">
+                    <span class="project-modal-email-label">E-mail oficial</span>
+                    <span class="project-modal-email-val" id="project-modal-email-text">marketing@kriativasoftware.io</span>
                 </div>
+                <button type="button" class="project-modal-copy-btn" id="project-modal-copy-btn" title="Copiar e-mail">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <span id="copy-btn-text">Copiar</span>
+                </button>
+            </div>
 
-                <!-- Provedores de e-mail -->
-                <div class="project-modal-actions">
-                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=marketing@kriativasoftware.io&su=Novo%20Projeto%20%E2%80%94%20Kriativa&body=Ol%C3%A1%2C%20equipe%20Kriativa!%0A%0AGostaria%20de%20conversar%20sobre%20um%20novo%20projeto.%0A%0ANome%3A%20%0AEmpresa%3A%20%0AServi%C3%A7o%20desejado%3A%20(Identidade%20Visual%20%2F%20Web%20Design%20%2F%20Software)%0ABreve%20resumo%3A%20"
-                       target="_blank" rel="noopener noreferrer" class="project-modal-provider-btn provider-gmail">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/>
-                        </svg>
-                        <span>Abrir no Gmail</span>
-                    </a>
+            <!-- Ações: Botões Glass Apple HIG (Secundários + Prominente) -->
+            <div class="project-modal-actions">
+                <!-- Secundário 1: Gmail -->
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=marketing@kriativasoftware.io&su=Novo%20Projeto%20%E2%80%94%20Kriativa&body=Ol%C3%A1%2C%20equipe%20Kriativa!%0A%0AGostaria%20de%20conversar%20sobre%20um%20novo%20projeto.%0A%0ANome%3A%20%0AEmpresa%3A%20%0AServi%C3%A7o%20desejado%3A%20(Identidade%20Visual%20%2F%20Web%20Design%20%2F%20Software)%0ABreve%20resumo%3A%20"
+                   target="_blank" rel="noopener noreferrer" class="project-modal-btn provider-secondary lg lg-interactive" data-lg-bezel="14" data-lg-thickness="12">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z" fill="#EA4335"/>
+                    </svg>
+                    <span>Abrir no Gmail</span>
+                </a>
 
-                    <a href="https://outlook.live.com/mail/0/deeplink/compose?to=marketing@kriativasoftware.io&subject=Novo%20Projeto%20%E2%80%94%20Kriativa"
-                       target="_blank" rel="noopener noreferrer" class="project-modal-provider-btn provider-outlook">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M1 18.5V5.5L14 2v20L1 18.5zm14-15.5l8 2.5v13l-8 2.5V3z"/>
-                        </svg>
-                        <span>Abrir no Outlook</span>
-                    </a>
+                <!-- Secundário 2: Outlook -->
+                <a href="https://outlook.live.com/mail/0/deeplink/compose?to=marketing@kriativasoftware.io&subject=Novo%20Projeto%20%E2%80%94%20Kriativa"
+                   target="_blank" rel="noopener noreferrer" class="project-modal-btn provider-secondary lg lg-interactive" data-lg-bezel="14" data-lg-thickness="12">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M1 18.5V5.5L14 2v20L1 18.5zm14-15.5l8 2.5v13l-8 2.5V3z" fill="#0078D4"/>
+                    </svg>
+                    <span>Abrir no Outlook</span>
+                </a>
 
-                    <a href="mailto:marketing@kriativasoftware.io?subject=Novo%20Projeto%20%E2%80%94%20Kriativa"
-                       class="project-modal-provider-btn provider-default">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                        <span>Cliente de E-mail</span>
-                    </a>
-                </div>
+                <!-- Primário: Cliente Nativo de E-mail (Prominent Glass Apple HIG) -->
+                <a href="mailto:marketing@kriativasoftware.io?subject=Novo%20Projeto%20%E2%80%94%20Kriativa"
+                   class="project-modal-btn provider-primary lg lg-tint lg-interactive" data-lg-bezel="20" data-lg-thickness="18">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    <span>Abrir no Cliente de E-mail</span>
+                </a>
+            </div>
 
-                <div class="project-modal-footer">
-                    <span class="project-modal-dot"></span>
-                    <span>Resposta ágil em até 24 horas úteis.</span>
-                </div>
+            <!-- Rodapé Apple HIG com status -->
+            <div class="project-modal-footer">
+                <span class="project-modal-dot"></span>
+                <span>Resposta ágil em até 24 horas úteis.</span>
             </div>
         </div>
     </div>
@@ -3713,10 +3666,13 @@
             modal.classList.add('is-open');
             modal.setAttribute('aria-hidden', 'false');
             document.body.style.overflow = 'hidden';
-            var card = modal.querySelector('.project-modal-card');
-            if (card && window.LiquidGlass && typeof window.LiquidGlass.init === 'function') {
-                window.LiquidGlass.init(modal);
-            }
+
+            // Garante que o motor Apple Liquid Glass inicialize a refração óptica no card e botões
+            requestAnimationFrame(function() {
+                if (window.LiquidGlass && typeof window.LiquidGlass.init === 'function') {
+                    window.LiquidGlass.init(modal);
+                }
+            });
         }
 
         function closeModal() {
@@ -3729,7 +3685,7 @@
         if (triggerBtn) {
             triggerBtn.addEventListener('click', function(e) {
                 if (isMobileDevice()) {
-                    // No mobile abre direto o cliente/provedor de e-mail via mailto
+                    // No mobile abre direto o cliente/provedor de e-mail nativo via mailto
                     return;
                 }
                 e.preventDefault();
@@ -3743,7 +3699,7 @@
 
         if (modal) {
             modal.addEventListener('click', function(e) {
-                if (e.target === modal) {
+                if (e.target === modal || e.target.id === 'project-modal-scrim') {
                     closeModal();
                 }
             });

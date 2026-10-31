@@ -332,11 +332,15 @@
             });
         }) : null;
         items.forEach(function (el) {
-            if (el._lgReady) return;
-            el._lgReady = true;
-            if (el.classList.contains('lg-interactive')) makeInteractive(el);
+            if (!el._lgInteractiveDone && el.classList.contains('lg-interactive')) {
+                el._lgInteractiveDone = true;
+                makeInteractive(el);
+            }
             applyRefraction(el);
-            if (ro) ro.observe(el);
+            if (!el._lgObserved && ro) {
+                el._lgObserved = true;
+                ro.observe(el);
+            }
         });
     }
 
@@ -557,5 +561,8 @@
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
     else boot();
 
-    window.LiquidGlass = { init: initGlass };
+    window.LiquidGlass = {
+        init: initGlass,
+        apply: applyRefraction
+    };
 })();
