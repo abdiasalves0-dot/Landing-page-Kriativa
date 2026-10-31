@@ -52,7 +52,7 @@
       "logo": "https://kriativasoftware.io/kriativa/k_symbol_white.png",
       "image": "https://kriativasoftware.io/kriativa/banner.png",
       "description": "Design Studio e Software House especializado em Branding, Identidade Visual, Web Design, UI/UX e Desenvolvimento de Software em Brasília, DF.",
-      "email": "kriaativadesign@gmail.com",
+      "email": "marketing@kriativasoftware.io",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Brasília",
@@ -1999,6 +1999,211 @@
                 display: none;
             }
         }
+
+        /* MODAL / POP-UP APPLE LIQUID GLASS (Contato / Iniciar Projeto) */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(10, 10, 12, 0.65);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
+        }
+
+        .modal-overlay.is-open {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            --lg-radius: 28px;
+            --lg-fill: rgba(18, 18, 22, 0.55);
+            --lg-blur: 0.8px;
+            --lg-sat: 1.5;
+            --lg-bright: 1.08;
+            position: relative;
+            width: 100%;
+            max-width: 480px;
+            padding: 34px 30px;
+            background: var(--lg-fill);
+            border-radius: var(--lg-radius);
+            transform: scale(0.92) translateY(18px);
+            opacity: 0;
+            transition: transform 0.45s var(--lg-spring, cubic-bezier(0.2, 0.9, 0.25, 1.12)), opacity 0.3s ease;
+            box-shadow: 
+                0 32px 80px -16px rgba(0, 0, 0, 0.8),
+                0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-overlay.is-open .modal-card {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            z-index: 4;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            outline: none;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.16);
+            color: #fff;
+            transform: scale(1.06);
+        }
+
+        .modal-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--white);
+            margin-bottom: 14px;
+        }
+
+        .modal-badge-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #34c759;
+            box-shadow: 0 0 8px #34c759;
+        }
+
+        .modal-title {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--white);
+            margin-bottom: 8px;
+            line-height: 1.15;
+        }
+
+        .modal-desc {
+            font-size: 14px;
+            font-weight: 300;
+            color: var(--white-dim);
+            line-height: 1.5;
+            margin-bottom: 22px;
+        }
+
+        .modal-email-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 12px 14px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            margin-bottom: 20px;
+        }
+
+        .modal-email-text {
+            font-family: monospace, var(--font);
+            font-size: 13.5px;
+            color: var(--white);
+            user-select: all;
+            word-break: break-all;
+        }
+
+        .modal-btn-copy {
+            padding: 6px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+            font-size: 11.5px;
+            font-weight: 500;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .modal-btn-copy:hover {
+            background: rgba(255, 255, 255, 0.16);
+        }
+
+        .modal-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .modal-action-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            height: 48px;
+            border-radius: 14px;
+            font-size: 13.5px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+        }
+
+        .modal-action-btn.primary {
+            background: #f2f0eb;
+            color: #111110;
+            box-shadow: 0 4px 16px rgba(242, 240, 235, 0.15);
+        }
+
+        .modal-action-btn.primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 22px rgba(242, 240, 235, 0.25);
+        }
+
+        .modal-action-btn.secondary {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: var(--white);
+        }
+
+        .modal-action-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-1px);
+        }
+
+        .modal-footer-note {
+            margin-top: 18px;
+            text-align: center;
+            font-size: 11px;
+            font-weight: 300;
+            color: var(--muted);
+            letter-spacing: 0.02em;
+        }
     </style>
 </head>
 
@@ -2007,6 +2212,47 @@
     <div id="scroll-bar"></div>
     <div id="cursor-dot"></div>
     <div id="cursor-ring"></div>
+
+    <!-- POP-UP MODAL (Apple Liquid Glass - Contato / Iniciar Projeto) -->
+    <div id="contact-modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-card lg lg-interactive" data-lg-bezel="28" data-lg-thickness="24" data-lg-zoom="0.04">
+            <button type="button" class="modal-close" aria-label="Fechar pop-up" id="modal-close-btn">&times;</button>
+            <div style="position: relative; z-index: 2;">
+                <div class="modal-badge">
+                    <span class="modal-badge-dot"></span>
+                    <span>Disponível para projetos</span>
+                </div>
+                <h3 class="modal-title" id="modal-title">Vamos criar algo único juntos?</h3>
+                <p class="modal-desc">Entre em contato direto com a nossa equipe de design e engenharia para iniciar o seu projeto.</p>
+                
+                <div class="modal-email-box">
+                    <span class="modal-email-text" id="modal-email-val">marketing@kriativasoftware.io</span>
+                    <button type="button" class="modal-btn-copy" id="modal-copy-btn">Copiar</button>
+                </div>
+
+                <div class="modal-actions">
+                    <a href="mailto:marketing@kriativasoftware.io?subject=Novo%20Projeto%20-%20Kriativa&body=Ol%C3%A1%20equipe%20Kriativa%2C%0A%0AGostaria%20de%20conversar%20sobre%20um%20novo%20projeto.%0A%0ANome%3A%20%0AEmpresa%3A%20%0AServi%C3%A7o%20de%20interesse%3A%20%0ADetalhes%3A%20" 
+                       class="modal-action-btn primary" id="modal-default-mail">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                        </svg>
+                        Abrir aplicativo de e-mail
+                    </a>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=marketing@kriativasoftware.io&su=Novo%20Projeto%20-%20Kriativa" 
+                       target="_blank" rel="noopener noreferrer" class="modal-action-btn secondary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/>
+                        </svg>
+                        Enviar pelo Gmail no Navegador
+                    </a>
+                </div>
+
+                <div class="modal-footer-note">
+                    Resposta garantida em até 24 horas úteis • Briefing gratuito
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- NAV - DOCK (Liquid Glass: GlassEffectContainer com tab bar + ação separada) -->
     <div class="lg-dock" role="navigation" aria-label="Principal">
@@ -2023,7 +2269,7 @@
                     <li><a href="#process">Processo</a></li>
                 </ul>
             </div>
-            <a href="#cta" class="lg lg-tint lg-interactive lg-cta" data-lg-bezel="20" data-lg-thickness="20">Falar com a gente</a>
+            <a href="mailto:marketing@kriativasoftware.io" class="lg lg-tint lg-interactive lg-cta btn-start-project" data-lg-bezel="20" data-lg-thickness="20">Falar com a gente</a>
         </div>
     </div>
 
@@ -2045,7 +2291,7 @@
             lembradas.</p>
         <div class="hero-actions">
             <a href="#work" class="btn-primary">Ver portfólio</a>
-            <a href="#cta" class="btn-ghost">
+            <a href="mailto:marketing@kriativasoftware.io" class="btn-ghost btn-start-project">
                 Iniciar projeto
                 <span class="btn-ghost-arrow">→</span>
             </a>
@@ -2435,7 +2681,7 @@
             <span class="cta-h2-em">transformar sua marca?</span>
         </h2>
         <p class="cta-sub reveal">Conte seu projeto. A Kriativa está disponível para novos clientes.</p>
-        <a href="mailto:kriaativadesign@gmail.com" class="btn-primary reveal">Iniciar projeto agora</a>
+        <a href="mailto:marketing@kriativasoftware.io" class="btn-primary reveal btn-start-project">Iniciar projeto agora</a>
         <div class="cta-badges reveal">
             <div class="cta-badge-item"><span class="cta-badge-check">✓</span> Briefing gratuito</div>
             <div class="cta-badge-item"><span class="cta-badge-check">✓</span> Resposta em 24h</div>
@@ -2476,7 +2722,7 @@
             <div>
                 <p class="footer-col-title">Contato</p>
                 <ul class="footer-links">
-                    <li><a href="mailto:kriaativadesign@gmail.com">kriaativadesign@gmail.com</a></li>
+                    <li><a href="mailto:marketing@kriativasoftware.io">marketing@kriativasoftware.io</a></li>
                     <li><a href="#">Instagram</a></li>
                     <li><a href="#">LinkedIn</a></li>
                     <li><a href="#">Behance</a></li>
@@ -3228,6 +3474,87 @@
             });
         }
 
+        // Modal / Pop-up de Contato (Apple Liquid Glass)
+        function initContactModal() {
+            var modal = document.getElementById('contact-modal');
+            var closeBtn = document.getElementById('modal-close-btn');
+            var copyBtn = document.getElementById('modal-copy-btn');
+            var emailVal = document.getElementById('modal-email-val');
+            var triggers = document.querySelectorAll('.btn-start-project');
+
+            if (!modal) return;
+
+            function isMobile() {
+                return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent) || window.innerWidth <= 768;
+            }
+
+            function openModal() {
+                modal.classList.add('is-open');
+                modal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+                if (window.lenis) window.lenis.stop();
+                if (window.LiquidGlass && window.LiquidGlass.init) {
+                    window.LiquidGlass.init(modal);
+                }
+            }
+
+            function closeModal() {
+                modal.classList.remove('is-open');
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+                if (window.lenis) window.lenis.start();
+            }
+
+            triggers.forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    // No mobile: deixa seguir direto para o mailto nativo (Gmail, Apple Mail, etc.)
+                    if (isMobile()) {
+                        return; // Deixa o evento nativo do <a href="mailto:..."> disparar
+                    }
+                    // No desktop: abre o pop-up com efeito Liquid Glass
+                    e.preventDefault();
+                    openModal();
+                });
+            });
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeModal);
+            }
+
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            window.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+                    closeModal();
+                }
+            });
+
+            if (copyBtn && emailVal) {
+                copyBtn.addEventListener('click', function() {
+                    var email = emailVal.textContent.trim();
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(email).then(function() {
+                            copyBtn.textContent = 'Copiado!';
+                            setTimeout(function() { copyBtn.textContent = 'Copiar'; }, 2000);
+                        });
+                    } else {
+                        var temp = document.createElement('input');
+                        temp.value = email;
+                        document.body.appendChild(temp);
+                        temp.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(temp);
+                        copyBtn.textContent = 'Copiado!';
+                        setTimeout(function() { copyBtn.textContent = 'Copiar'; }, 2000);
+                    }
+                });
+            }
+        }
+
         // Initialize all 3D & Glass elements
         initAppleLiquidGlass();
         initHero3D();
@@ -3236,6 +3563,7 @@
         initCTA3D();
         initParticles();
         initScrollCrystal();
+        initContactModal();
     })();
     </script>
 
