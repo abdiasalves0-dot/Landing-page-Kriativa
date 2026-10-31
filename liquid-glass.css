@@ -15,7 +15,7 @@
    tabBarMinimizeBehavior(.onScrollDown)  -> .lg-dock.is-min
 
    Camadas de um elemento .lg (de baixo para cima):
-   ::before  backdrop (blur + saturação + refração do bisel via SVG) + preenchimento
+   ::before  backdrop (refração óptica unificada via SVG feDisplacementMap + difusão)
    .lg-glow  reação ao ponteiro (hover/toque) — "reacts to touch and pointer"
    conteúdo
    ::after   aro especular direcional
@@ -31,22 +31,22 @@
 
 .lg {
     --lg-radius: 999px;
-    --lg-fill: rgba(20, 20, 22, 0.2);
-    --lg-blur: 0.5px;
-    --lg-sat: 1.7;
-    --lg-bright: 1.1;
+    --lg-fill: rgba(18, 18, 20, 0.18);
+    --lg-blur: 0.45px;
+    --lg-sat: 1.45;
+    --lg-bright: 1.06;
     --mx: 50%;
     --my: 50%;
     position: relative;
     isolation: isolate;
     border-radius: var(--lg-radius);
     box-shadow:
-        0 14px 34px -8px rgba(0, 0, 0, 0.5),
-        0 2px 8px rgba(0, 0, 0, 0.28);
+        0 14px 34px -8px rgba(0, 0, 0, 0.48),
+        0 2px 8px rgba(0, 0, 0, 0.26);
     -webkit-tap-highlight-color: transparent;
 }
 
-/* Camada de material: desfoca o conteúdo atrás e reflete suas cores */
+/* Camada óptica de material: aplica o campo refrativo SVG sobre o conteúdo real da página */
 .lg::before {
     content: '';
     position: absolute;
@@ -54,32 +54,31 @@
     z-index: -2;
     border-radius: inherit;
     background: var(--lg-fill);
-    -webkit-backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-sat)) brightness(var(--lg-bright));
+    -webkit-backdrop-filter: var(--lg-bf, blur(var(--lg-blur)) saturate(var(--lg-sat)) brightness(var(--lg-bright)));
     backdrop-filter: var(--lg-bf, blur(var(--lg-blur)) saturate(var(--lg-sat)) brightness(var(--lg-bright)));
-    /* luz de borda interna: mais forte no canto superior-esquerdo e inferior-direito */
     box-shadow:
-        inset 1.5px 1.5px 2px -1px rgba(255, 255, 255, 0.6),
-        inset -1.5px -1.5px 2px -1px rgba(255, 255, 255, 0.38),
-        inset 0 0 16px rgba(255, 255, 255, 0.05);
+        inset 1.5px 1.5px 2.5px -1px rgba(255, 255, 255, 0.62),
+        inset -1.5px -1.5px 2.5px -1px rgba(255, 255, 255, 0.36),
+        inset 0 0 14px rgba(255, 255, 255, 0.04);
 }
 
-/* Aro especular direcional */
+/* Aro especular direcional fino */
 .lg::after {
     content: '';
     position: absolute;
     inset: 0;
     z-index: 1;
     border-radius: inherit;
-    padding: 1.25px;
+    padding: 1.2px;
     pointer-events: none;
     background: linear-gradient(
         140deg,
-        rgba(255, 255, 255, 0.7) 0%,
-        rgba(255, 255, 255, 0.22) 18%,
-        rgba(255, 255, 255, 0.07) 42%,
-        rgba(255, 255, 255, 0.07) 58%,
-        rgba(255, 255, 255, 0.38) 82%,
-        rgba(255, 255, 255, 0.6) 100%
+        rgba(255, 255, 255, 0.72) 0%,
+        rgba(255, 255, 255, 0.22) 20%,
+        rgba(255, 255, 255, 0.06) 44%,
+        rgba(255, 255, 255, 0.06) 58%,
+        rgba(255, 255, 255, 0.36) 82%,
+        rgba(255, 255, 255, 0.62) 100%
     );
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
@@ -95,8 +94,8 @@
     pointer-events: none;
     opacity: var(--lg-hover);
     background:
-        radial-gradient(150px circle at var(--mx) var(--my), rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0) 70%),
-        linear-gradient(rgba(255, 255, 255, calc(var(--lg-press) * 0.16)), rgba(255, 255, 255, calc(var(--lg-press) * 0.16)));
+        radial-gradient(150px circle at var(--mx) var(--my), rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0) 70%),
+        linear-gradient(rgba(255, 255, 255, calc(var(--lg-press) * 0.14)), rgba(255, 255, 255, calc(var(--lg-press) * 0.14)));
 }
 
 .lg-interactive {
@@ -118,7 +117,7 @@
 
 /* .tint(): sugere destaque (equivalente a .glassProminent) */
 .lg-tint {
-    --lg-fill: rgba(242, 240, 235, 0.72);
+    --lg-fill: rgba(242, 240, 235, 0.68);
     --lg-bright: 1.04;
     --lg-sat: 1.3;
     color: #111110;
@@ -140,7 +139,7 @@
 
 /* tabBarMinimizeBehavior(.onScrollDown): recua ao rolar para baixo, expande ao rolar para cima */
 .lg-dock.is-min {
-    transform: translateX(-50%) translateY(-6px) scale(0.9);
+    transform: translateX(-50%) translateY(-6px) scale(0.92);
 }
 
 .lg-group {
@@ -173,6 +172,7 @@
     height: 130px;
     width: auto;
     margin: -4px 0;
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5));
 }
 
 .lg-tabs {
@@ -194,9 +194,10 @@
     height: 44px;
     font: 500 13.5px/1 var(--font, system-ui, sans-serif);
     letter-spacing: 0.01em;
-    color: rgba(255, 255, 255, 0.78);
+    color: rgba(255, 255, 255, 0.84);
     text-decoration: none;
     white-space: nowrap;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.65);
     transition: color 0.25s ease;
 }
 
@@ -209,24 +210,31 @@
     font-weight: 600;
 }
 
-/* Seleção da tab bar: cápsula de vidro que vira lente quando há interação.
-   Posição e escala são conduzidas por mola em JS (matched geometry). */
+/* Cápsula da lente ativa (matched geometry):
+   A refração óptica da lente é composta diretamente no campo refrativo unificado de .lg-bar
+   (evitando o bug de backdrop-filter aninhado do Chromium), enquanto este elemento desenha
+   o bisel especular translúcido e a elevação física da lente. */
 .lg-indicator {
-    --lg-fill: rgba(255, 255, 255, calc(0.1 + 0.06 * var(--lg-lift)));
-    --lg-blur: 0.4px;
-    --lg-sat: 1.15;
-    --lg-bright: 1.18;
     position: absolute;
     top: 0;
     left: 0;
     z-index: 1;
     width: var(--lg-tab-w);
     height: 44px;
+    border-radius: 999px;
     pointer-events: none;
     will-change: transform;
+    background: linear-gradient(
+        165deg,
+        rgba(255, 255, 255, calc(0.11 + 0.05 * var(--lg-lift))) 0%,
+        rgba(255, 255, 255, calc(0.03 + 0.03 * var(--lg-lift))) 55%,
+        rgba(255, 255, 255, calc(0.08 + 0.04 * var(--lg-lift))) 100%
+    );
     box-shadow:
-        0 6px 16px -6px rgba(0, 0, 0, calc(0.25 + 0.2 * var(--lg-lift))),
-        0 1px 3px rgba(0, 0, 0, 0.2);
+        inset 1.2px 1.5px 2px rgba(255, 255, 255, 0.72),
+        inset -1px -1.2px 2px rgba(255, 255, 255, 0.42),
+        0 6px 16px -4px rgba(0, 0, 0, calc(0.28 + 0.18 * var(--lg-lift))),
+        0 1px 3px rgba(0, 0, 0, 0.22);
     transition: opacity 0.3s ease;
 }
 
