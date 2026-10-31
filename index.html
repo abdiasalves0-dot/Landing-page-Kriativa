@@ -181,8 +181,9 @@
         }
 
         /* ==========================================================================
-           AUTHENTIC APPLE LIQUID GLASS DOCK (iOS 26+ Optical Lens Specification)
+           AUTHENTIC APPLE LIQUID GLASS DOCK (iOS 26+ HIG / Liquid Glass Specification)
            Ref: developer.apple.com/documentation/technologyoverviews/liquid-glass
+           Ref: developer.apple.com/documentation/technologyoverviews/adopting-liquid-glass
            ========================================================================== */
         nav.apple-dock {
             position: fixed;
@@ -195,94 +196,35 @@
             justify-content: space-between;
             width: calc(100% - 48px);
             max-width: 980px;
-            padding: 8px 12px 8px 24px;
+            padding: 7px 12px 7px 24px;
             border-radius: 999px;
-            /* 1. Transparência Cristalina Óptica Apple: Conteúdo atrás 100% visível e iluminado */
-            background: linear-gradient(
-                135deg,
-                rgba(255, 255, 255, 0.15) 0%,
-                rgba(255, 255, 255, 0.05) 45%,
-                rgba(255, 255, 255, 0.02) 100%
-            );
-            backdrop-filter: blur(18px) saturate(220%) brightness(120%) contrast(105%);
-            -webkit-backdrop-filter: blur(18px) saturate(220%) brightness(120%) contrast(105%);
-            /* 2. Borda de Menisco Lapidado da Apple (Imagens 2 e 3) */
-            border: 1.5px solid rgba(255, 255, 255, 0.45);
-            /* 3. Relevo Especular Físico e Dispersão Cáustica */
-            box-shadow:
-                inset 0 2px 2.5px 0 #ffffff,
-                inset 0 0 20px 0 rgba(255, 255, 255, 0.16),
-                inset 0 -2px 2px 0 rgba(255, 255, 255, 0.35),
-                inset 2px 0 3px 0 rgba(255, 255, 255, 0.25),
-                inset -2px 0 3px 0 rgba(255, 255, 255, 0.25),
-                0 24px 48px -10px rgba(0, 0, 0, 0.7),
-                0 4px 16px -2px rgba(0, 0, 0, 0.35);
+            /* Apple Liquid Glass Base: Cristal translúcido puro (sem tintas escuras ou plásticas) */
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px) saturate(210%) brightness(118%);
+            -webkit-backdrop-filter: blur(20px) saturate(210%) brightness(118%);
+            /* Borda Hairline de Menisco Lapidado da Lente (Imagens 2 e 3) */
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            /* Sombra física de elevação difusa do sistema iOS */
+            box-shadow: 
+                0 16px 40px -8px rgba(0, 0, 0, 0.65),
+                0 4px 12px -2px rgba(0, 0, 0, 0.3),
+                inset 0 1.5px 2px 0 rgba(255, 255, 255, 0.75),
+                inset 0 -1px 1px 0 rgba(255, 255, 255, 0.15);
             transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-            overflow: hidden;
         }
 
-        /* Arco Especular de Lente Convexa (Glare Crescent) */
-        nav.apple-dock::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 24px;
-            right: 24px;
-            height: 2px;
-            background: linear-gradient(
-                90deg,
-                transparent 0%,
-                rgba(255, 255, 255, 0.4) 12%,
-                #ffffff 50%,
-                rgba(255, 255, 255, 0.4) 88%,
-                transparent 100%
-            );
-            border-radius: 999px;
-            filter: drop-shadow(0 1px 3px rgba(255, 255, 255, 0.95));
-            pointer-events: none;
-            z-index: 5;
-        }
-
-        /* Menisco de Reflexão Inferior */
-        nav.apple-dock::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 44px;
-            right: 44px;
-            height: 1px;
-            background: linear-gradient(
-                90deg,
-                transparent 0%,
-                rgba(255, 255, 255, 0.15) 15%,
-                rgba(255, 255, 255, 0.5) 50%,
-                rgba(255, 255, 255, 0.15) 85%,
-                transparent 100%
-            );
-            border-radius: 999px;
-            pointer-events: none;
-            z-index: 5;
-        }
-
-        /* Estado Scrolled: Reduz top para 14px e mantém a translucidez cristalina */
+        /* Estado Scrolled: Posição compacta mantendo a pureza translúcida */
         nav.apple-dock.scrolled {
             top: 14px;
-            background: linear-gradient(
-                135deg,
-                rgba(255, 255, 255, 0.18) 0%,
-                rgba(255, 255, 255, 0.08) 45%,
-                rgba(255, 255, 255, 0.03) 100%
-            );
-            backdrop-filter: blur(22px) saturate(230%) brightness(125%) contrast(108%);
-            -webkit-backdrop-filter: blur(22px) saturate(230%) brightness(125%) contrast(108%);
-            border-color: rgba(255, 255, 255, 0.55);
+            background: rgba(255, 255, 255, 0.09);
+            backdrop-filter: blur(24px) saturate(220%) brightness(122%);
+            -webkit-backdrop-filter: blur(24px) saturate(220%) brightness(122%);
+            border-color: rgba(255, 255, 255, 0.28);
             box-shadow: 
-                inset 0 2px 2.5px 0 #ffffff,
-                inset 0 0 24px 0 rgba(255, 255, 255, 0.2),
-                inset 0 -2px 2px 0 rgba(255, 255, 255, 0.4),
-                inset 2px 0 3px 0 rgba(255, 255, 255, 0.3),
-                inset -2px 0 3px 0 rgba(255, 255, 255, 0.3),
-                0 28px 60px -12px rgba(0, 0, 0, 0.85);
+                0 20px 48px -10px rgba(0, 0, 0, 0.75),
+                0 6px 16px -2px rgba(0, 0, 0, 0.35),
+                inset 0 1.5px 2px 0 rgba(255, 255, 255, 0.85),
+                inset 0 -1px 1px 0 rgba(255, 255, 255, 0.2);
         }
 
         .nav-logo {
@@ -291,63 +233,77 @@
             gap: 12px;
             text-decoration: none;
             overflow: hidden;
-            height: 44px;
+            height: 42px;
             position: relative;
             z-index: 2;
         }
 
         .nav-logo-img {
-            height: 140px;
+            height: 130px;
             width: auto;
             margin-top: -4px;
             margin-bottom: -4px;
             display: block;
         }
 
-        /* Container dos Itens do Dock (Sub-cápsula com Pílula Deslizante Apple) */
+        /* Container de links: DIRETO NO VIDRO sem caixas escuras aninhadas (Imagem 5 da Apple) */
         .nav-links-dock {
             position: relative;
             display: flex;
             align-items: center;
             gap: 2px;
             list-style: none;
-            background: rgba(255, 255, 255, 0.06);
-            padding: 4px;
-            border-radius: 999px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+            background: transparent;
+            padding: 2px 0;
+            border: none;
+            box-shadow: none;
             z-index: 2;
         }
 
-        /* A PÍLULA DE VIDRO LÍQUIDO DESLIZANTE DA APPLE (Imagem 5 da documentação) */
+        /* A PÍLULA DE VIDRO LÍQUIDO NATIVA DA APPLE (Imagem 5 sobre o item ativo / "Audio") */
         .dock-liquid-bubble {
             position: absolute;
-            top: 4px;
-            bottom: 4px;
+            top: 0;
+            bottom: 0;
             left: 0;
             width: 0;
             border-radius: 999px;
             pointer-events: none;
             z-index: 1;
             opacity: 0;
-            /* Lente Convexa de Cristal Líquido com Brilho Superior */
-            background: linear-gradient(
-                180deg,
-                rgba(255, 255, 255, 0.45) 0%,
-                rgba(255, 255, 255, 0.18) 45%,
-                rgba(255, 255, 255, 0.06) 100%
-            );
-            backdrop-filter: blur(14px) saturate(220%) brightness(130%);
-            -webkit-backdrop-filter: blur(14px) saturate(220%) brightness(130%);
-            border: 1px solid rgba(255, 255, 255, 0.7);
-            /* O Arco Especular Idêntico ao "Audio" da Imagem 5 da Apple */
+            /* Material translúcido da bolha de vidro da Apple */
+            background: rgba(255, 255, 255, 0.14);
+            backdrop-filter: blur(14px) saturate(200%);
+            -webkit-backdrop-filter: blur(14px) saturate(200%);
+            /* Borda do menisco */
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            /* Arco Especular da Lente Superior (Crescent Highlight) + Sombra de Elevação */
             box-shadow: 
-                inset 0 1.5px 2px 0 #ffffff,
-                inset 0 -1px 1px 0 rgba(255, 255, 255, 0.3),
-                0 4px 16px 0 rgba(0, 0, 0, 0.35);
+                inset 0 1.5px 1.5px 0 rgba(255, 255, 255, 0.9),  /* Arco especular de lente superior */
+                inset 0 -1px 1px 0 rgba(0, 0, 0, 0.2),           /* Espessura física inferior */
+                0 4px 14px 0 rgba(0, 0, 0, 0.35);                /* Elevação física do botão */
             transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
                         width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
                         opacity 0.2s ease;
+        }
+
+        /* Brilho lunar em crescente no topo da bolha líquida (Imagens 2 e 5) */
+        .dock-liquid-bubble::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 14px;
+            right: 14px;
+            height: 1.5px;
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.6) 25%,
+                #ffffff 50%,
+                rgba(255, 255, 255, 0.6) 75%,
+                transparent 100%
+            );
+            border-radius: 999px;
         }
 
         .nav-links-dock li {
@@ -356,12 +312,11 @@
         }
 
         .nav-links-dock a {
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 500;
-            color: rgba(255, 255, 255, 0.75);
+            color: rgba(255, 255, 255, 0.72);
             text-decoration: none;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
+            letter-spacing: 0.02em;
             padding: 8px 18px;
             border-radius: 999px;
             display: block;
@@ -372,40 +327,34 @@
         .nav-links-dock a:hover,
         .nav-links-dock a.active {
             color: #ffffff;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
         }
 
-        /* Botão Prominent Glass da Apple com Arco Superior (.buttonStyle(.glassProminent)) */
+        /* Botão Prominent Glass da Apple (.buttonStyle(.glassProminent)) */
         .nav-cta {
             position: relative;
             z-index: 2;
             font-size: 13px;
             font-weight: 600;
             color: #111110;
-            background: linear-gradient(180deg, #ffffff 0%, #ece8e1 100%);
-            padding: 10px 24px;
+            background: #ffffff;
+            padding: 9px 22px;
             border-radius: 999px;
             text-decoration: none;
-            letter-spacing: 0.02em;
+            letter-spacing: -0.01em;
             white-space: nowrap;
-            /* Reflexo especular convexo da Apple */
             box-shadow: 
-                inset 0 1.5px 1.5px 0 #ffffff,
-                inset 0 -1.5px 1.5px 0 rgba(0, 0, 0, 0.15),
-                0 4px 20px rgba(255, 255, 255, 0.35),
-                0 2px 6px 0 rgba(0, 0, 0, 0.3);
-            transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s, opacity 0.2s;
+                0 4px 14px 0 rgba(0, 0, 0, 0.25),
+                inset 0 1px 1px 0 rgba(255, 255, 255, 0.9);
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s, opacity 0.2s;
         }
 
         .nav-cta:hover {
-            transform: scale(1.04);
-            box-shadow: 
-                inset 0 2px 2px 0 #ffffff,
-                0 8px 28px rgba(255, 255, 255, 0.55);
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.35);
         }
 
         .nav-cta:active {
-            transform: scale(0.96) !important;
+            transform: scale(0.97) !important;
         }
 
         /* HERO */
