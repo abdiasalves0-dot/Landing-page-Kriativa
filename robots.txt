@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://landing-page-kriativa.vercel.app/sitemap.xml
+Sitemap: https://kriativasoftware.io/sitemap.xml
