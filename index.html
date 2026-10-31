@@ -336,6 +336,9 @@
             transform: translateY(-50%);
             /* material, aro, sombra e interação vêm de .lg (liquid-glass.css) */
             --lg-radius: 28px;
+            /* legibilidade: o cartao tem texto, entao usa preenchimento escuro e mais blur */
+            --lg-fill: rgba(14, 14, 16, 0.58);
+            --lg-blur: 4px;
             padding: 24px 28px;
             opacity: 0;
             animation: fadeUp 0.8s 1s ease both;
@@ -2008,19 +2011,19 @@
     <!-- NAV - DOCK (Liquid Glass: GlassEffectContainer com tab bar + ação separada) -->
     <div class="lg-dock" role="navigation" aria-label="Principal">
         <div class="lg-group">
-            <div class="lg lg-bar">
+            <div class="lg lg-bar" data-lg-bezel="22" data-lg-thickness="18">
                 <a href="#" class="lg-brand" aria-label="Kriativa - início">
                     <img src="SVG/1Prancheta 1.svg" alt="Kriativa">
                 </a>
                 <ul class="lg-tabs">
-                    <span class="lg lg-indicator" aria-hidden="true" data-lg-bezel="11" data-lg-thickness="9" data-lg-strength="0.7"></span>
+                    <span class="lg lg-indicator" aria-hidden="true" data-lg-bezel="15" data-lg-thickness="15" data-lg-zoom="5" data-lg-strength="1"></span>
                     <li><a href="#about">Sobre</a></li>
                     <li><a href="#services">Serviços</a></li>
                     <li><a href="#work">Portfólio</a></li>
                     <li><a href="#process">Processo</a></li>
                 </ul>
             </div>
-            <a href="#cta" class="lg lg-tint lg-interactive lg-cta">Falar com a gente</a>
+            <a href="#cta" class="lg lg-tint lg-interactive lg-cta" data-lg-bezel="20" data-lg-thickness="18">Falar com a gente</a>
         </div>
     </div>
 
@@ -2048,7 +2051,7 @@
             </a>
         </div>
 
-        <div class="hero-badge lg lg-interactive" data-lg-bezel="22" data-lg-thickness="16">
+        <div class="hero-badge lg lg-interactive" data-lg-bezel="30" data-lg-thickness="24" data-lg-zoom="3">
             <div class="stat-bar" style="width:100%; margin-bottom: 16px;"></div>
             <div class="hero-badge-stat">+80</div>
             <div class="hero-badge-label">Projetos entregues</div>

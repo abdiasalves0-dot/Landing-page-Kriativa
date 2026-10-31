@@ -60,8 +60,12 @@
     function sign(v) { return v < 0 ? -1 : 1; }
 
     /* Mapa de deslocamento: R/G codificam o vetor (128 = neutro).
-       O vetor aponta para dentro do vidro: a borda "puxa" o conteúdo de dentro. */
-    function buildMap(w, h, radius, bezel, thickness) {
+       Dois termos somados, ambos apontando para dentro do vidro:
+       1) dobra da borda (perfil convexo + Snell): forte junto ao contorno curvo;
+       2) ampliacao interna (zoom): a lente amplia o que esta sob ela, como a lupa
+          da referencia. O vetor de zoom satura com tanh para nao explodir em
+          formas largas. */
+    function buildMap(w, h, radius, bezel, thickness, zoom) {
         var canvas = document.createElement('canvas');
         canvas.width = w;
         canvas.height = h;
@@ -73,6 +77,9 @@
         var hw = w / 2;
         var hh = h / 2;
         var r = Math.min(radius, hw, hh);
+        var vx = new Float32Array(w * h);
+        var vy = new Float32Array(w * h);
+        var maxV = 0.0001;
 
         for (var y = 0; y < h; y++) {
             for (var x = 0; x < w; x++) {
@@ -84,11 +91,13 @@
                 var oy = Math.max(qy, 0);
                 var outer = Math.sqrt(ox * ox + oy * oy);
                 var d = -(outer + Math.min(Math.max(qx, qy), 0) - r);
-                var i = (y * w + x) * 4;
-                var R = 128;
-                var G = 128;
-                if (d >= 0 && d < bezel) {
-                    var mag = prof.table[Math.min(steps - 1, Math.floor((d / bezel) * (steps - 1)))] / prof.max;
+                var k = y * w + x;
+                if (d < 0) continue;
+
+                var ux = 0;
+                var uy = 0;
+                if (d < bezel) {
+                    var mag = prof.table[Math.min(steps - 1, Math.floor((d / bezel) * (steps - 1)))];
                     var nx;
                     var ny;
                     if (outer > 0) {
@@ -101,17 +110,29 @@
                         nx = 0;
                         ny = sign(cy);
                     }
-                    R = 128 - 127 * nx * mag;
-                    G = 128 - 127 * ny * mag;
+                    ux = -nx * mag;
+                    uy = -ny * mag;
                 }
-                px[i] = R;
-                px[i + 1] = G;
-                px[i + 2] = 128;
-                px[i + 3] = 255;
+                if (zoom) {
+                    ux += -Math.tanh(cx / hh) * zoom;
+                    uy += -Math.tanh(cy / hh) * zoom;
+                }
+                vx[k] = ux;
+                vy[k] = uy;
+                var m = Math.max(Math.abs(ux), Math.abs(uy));
+                if (m > maxV) maxV = m;
             }
         }
+
+        for (var j = 0; j < w * h; j++) {
+            var o = j * 4;
+            px[o] = 128 + 127 * (vx[j] / maxV);
+            px[o + 1] = 128 + 127 * (vy[j] / maxV);
+            px[o + 2] = 128;
+            px[o + 3] = 255;
+        }
         ctx.putImageData(img, 0, 0);
-        return { url: canvas.toDataURL('image/png'), max: prof.max };
+        return { url: canvas.toDataURL('image/png'), max: maxV };
     }
 
     function applyRefraction(el) {
@@ -125,10 +146,11 @@
 
         var cs = getComputedStyle(el);
         var radius = parseFloat(cs.getPropertyValue('--lg-radius')) || h / 2;
-        var bezel = parseFloat(el.dataset.lgBezel) || Math.min(h * 0.42, 20);
-        var thickness = parseFloat(el.dataset.lgThickness) || bezel * 0.8;
+        var bezel = parseFloat(el.dataset.lgBezel) || Math.min(h * 0.45, 24);
+        var thickness = parseFloat(el.dataset.lgThickness) || bezel * 1.3;
+        var zoom = parseFloat(el.dataset.lgZoom) || 0;
         var strength = parseFloat(el.dataset.lgStrength) || 1;
-        var map = buildMap(w, h, radius, bezel, thickness);
+        var map = buildMap(w, h, radius, bezel, thickness, zoom);
 
         var id = el._lgId || ('lg-f-' + (++uid));
         var filter = document.getElementById(id);
@@ -394,3 +416,4 @@
 
     window.LiquidGlass = { init: initGlass };
 })();
+

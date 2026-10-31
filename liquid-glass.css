@@ -32,7 +32,7 @@
 .lg {
     --lg-radius: 999px;
     --lg-fill: rgba(20, 20, 22, 0.2);
-    --lg-blur: 2.5px;
+    --lg-blur: 0.5px;
     --lg-sat: 1.7;
     --lg-bright: 1.1;
     --mx: 50%;
@@ -74,12 +74,12 @@
     pointer-events: none;
     background: linear-gradient(
         140deg,
-        rgba(255, 255, 255, 0.95) 0%,
-        rgba(255, 255, 255, 0.32) 18%,
+        rgba(255, 255, 255, 0.7) 0%,
+        rgba(255, 255, 255, 0.22) 18%,
         rgba(255, 255, 255, 0.07) 42%,
         rgba(255, 255, 255, 0.07) 58%,
         rgba(255, 255, 255, 0.38) 82%,
-        rgba(255, 255, 255, 0.85) 100%
+        rgba(255, 255, 255, 0.6) 100%
     );
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
@@ -118,7 +118,7 @@
 
 /* .tint(): sugere destaque (equivalente a .glassProminent) */
 .lg-tint {
-    --lg-fill: rgba(242, 240, 235, 0.86);
+    --lg-fill: rgba(242, 240, 235, 0.72);
     --lg-bright: 1.04;
     --lg-sat: 1.3;
     color: #111110;
@@ -213,8 +213,8 @@
    Posição e escala são conduzidas por mola em JS (matched geometry). */
 .lg-indicator {
     --lg-fill: rgba(255, 255, 255, calc(0.1 + 0.06 * var(--lg-lift)));
-    --lg-blur: 1px;
-    --lg-sat: 1.2;
+    --lg-blur: 0.4px;
+    --lg-sat: 1.15;
     --lg-bright: 1.18;
     position: absolute;
     top: 0;
