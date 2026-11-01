@@ -84,8 +84,8 @@
         rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-    <link rel="stylesheet" href="liquid-glass.css?v=20261101_02">
-    <script src="liquid-glass.js?v=20261101_02" defer></script>
+    <link rel="stylesheet" href="liquid-glass.css?v=20261101_05">
+    <script src="liquid-glass.js?v=20261101_05" defer></script>
     <style>
         *,
         *::before,
@@ -2408,6 +2408,142 @@
                     <span class="btn-bancada-more-arrow">↓</span>
                 </button>
             </div>
+        </div>
+    </section>
+
+    <!-- LANDING PAGES -->
+    <style id="landing-pages-styles">
+        #landing-pages {
+            padding: 140px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-top: 1px solid var(--white-border);
+        }
+
+        .lp-list {
+            margin-top: 70px;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .lp-item {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 56px;
+            align-items: center;
+            padding: 36px;
+            background: linear-gradient(145deg, rgba(28, 28, 26, 0.8) 0%, rgba(22, 22, 20, 0.7) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 28px;
+            box-shadow:
+                inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -1px 1px 0 rgba(0, 0, 0, 0.25),
+                0 24px 60px -20px rgba(0, 0, 0, 0.6);
+        }
+
+        .lp-thumb {
+            position: relative;
+            display: block;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--white-border);
+            background: var(--bg);
+            aspect-ratio: 16 / 10;
+            box-shadow: 0 30px 60px -24px rgba(0, 0, 0, 0.7);
+        }
+
+        .lp-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .lp-thumb:hover img {
+            transform: scale(1.04);
+        }
+
+        .lp-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .lp-name {
+            font-size: clamp(34px, 4vw, 56px);
+            font-weight: 300;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            margin: 12px 0 20px;
+            color: var(--white);
+        }
+
+        .lp-desc {
+            font-size: 15px;
+            font-weight: 300;
+            line-height: 1.75;
+            color: var(--white-dim);
+            max-width: 430px;
+            margin-bottom: 24px;
+        }
+
+        .lp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 32px;
+            padding: 14px 32px;
+            border-radius: 999px;
+            border: 1px solid var(--white-border);
+            color: var(--white);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .lp-btn:hover {
+            border-color: rgba(242, 240, 235, 0.6);
+            background: var(--white-subtle);
+            transform: scale(1.02);
+        }
+
+        .lp-btn span {
+            transition: transform 0.3s ease;
+        }
+
+        .lp-btn:hover span {
+            transform: translateX(4px);
+        }
+
+        @media (max-width: 900px) {
+            #landing-pages { padding: 90px 24px; }
+            .lp-item { grid-template-columns: 1fr; gap: 28px; padding: 20px; }
+        }
+    </style>
+    <section id="landing-pages">
+        <div class="section-header reveal">
+            <h2 class="section-title">Landing Pages</h2>
+            <span class="section-count">01 página criada</span>
+        </div>
+        <p class="work-intro reveal">Páginas de alto impacto, desenhadas do zero para apresentar produtos com identidade, ritmo e conversão.</p>
+        <div class="lp-list">
+            <article class="lp-item reveal">
+                <a class="lp-thumb" href="landing-pages/lunetra/" aria-label="Abrir a landing page Lunetra — Wallet Tech">
+                    <img src="kriativa/lp-lunetra.jpg" alt="Landing page Lunetra — Wallet Tech" loading="lazy">
+                </a>
+                <div class="lp-info">
+                    <p class="work-tag">Landing Page · Fintech</p>
+                    <h3 class="lp-name">Lunetra</h3>
+                    <p class="lp-desc">Wallet Tech: landing page de fintech com renders 3D próprios, iluminação azul, painéis em tela cheia e revelação suave durante a rolagem — para uma carteira digital moderna e segura.</p>
+                    <ul class="proj-tags"><li>Fintech</li><li>Renders 3D</li><li>Responsiva</li></ul>
+                    <a class="lp-btn" href="landing-pages/lunetra/">Ver mais <span>→</span></a>
+                </div>
+            </article>
         </div>
     </section>
 
