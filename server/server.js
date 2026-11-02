@@ -7,10 +7,10 @@ dotenv.config();
 
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 if (!stripeSecretKey) {
-  console.error('ERRO: STRIPE_SECRET_KEY nao configurada no .env!');
+  console.warn('Aviso: STRIPE_SECRET_KEY nao configurada no ambiente/env. Configure para processar pagamentos reais.');
 }
 
-const stripe = new Stripe(stripeSecretKey);
+const stripe = new Stripe(stripeSecretKey || 'sk_test_placeholder_kriativa');
 const app = express();
 const port = process.env.PORT || 3000;
 const clientUrl = process.env.CLIENT_URL || 'http://localhost:8080';
