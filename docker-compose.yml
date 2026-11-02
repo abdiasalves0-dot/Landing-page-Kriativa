@@ -18,26 +18,3 @@ services:
       retries: 3
       start_period: 5s
 
-  api:
-    build:
-      context: ./server
-      dockerfile: Dockerfile
-    restart: unless-stopped
-    expose:
-      - "3000"
-    env_file:
-      - path: ./server/.env
-        required: false
-    environment:
-      - PORT=3000
-      - NODE_ENV=production
-      - CLIENT_URL=${CLIENT_URL:-https://kriativasoftware.io}
-    labels:
-      - "app=kriativa-stripe-api"
-      - "maintainer=kriativa"
-    healthcheck:
-      test: [ "CMD", "wget", "--quiet", "--tries=1", "--spider", "http://127.0.0.1:3000/health" ]
-      interval: 30s
-      timeout: 5s
-      retries: 3
-      start_period: 5s

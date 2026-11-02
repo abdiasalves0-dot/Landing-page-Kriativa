@@ -1,0 +1,28 @@
+services:
+  landing-page:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "${PORT:-8080}:80"
+    environment:
+      - NODE_ENV=production
+    labels:
+      - "app=kriativa-landing-page"
+      - "maintainer=kriativa"
+
+  api:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "5050:3000"
+    env_file:
+      - path: ./server/.env
+        required: false
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+      - CLIENT_URL=${CLIENT_URL:-https://kriativasoftware.io}
