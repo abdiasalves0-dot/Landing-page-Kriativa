@@ -964,6 +964,278 @@
             transform: translateY(-50%) translateX(4px);
         }
 
+        /* PRICING & STRIPE */
+        #pricing {
+            padding: 140px 60px;
+            background: var(--bg);
+            position: relative;
+        }
+
+        .pricing-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-filter-dock {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 50px auto 60px auto;
+            background: rgba(242, 240, 235, 0.03);
+            border: 1px solid var(--white-border);
+            padding: 6px;
+            border-radius: 999px;
+            width: fit-content;
+            max-width: 100%;
+        }
+
+        .pricing-tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--muted);
+            padding: 10px 22px;
+            font-family: var(--font);
+            font-size: 13px;
+            font-weight: 500;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-tab-btn.active,
+        .pricing-tab-btn:hover {
+            color: var(--white);
+            background: rgba(242, 240, 235, 0.08);
+        }
+
+        .pricing-tab-btn.active {
+            background: var(--white);
+            color: var(--bg);
+            font-weight: 700;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .pricing-card {
+            background: var(--bg2);
+            border: 1px solid var(--white-border);
+            border-radius: 16px;
+            padding: 36px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(242, 240, 235, 0.25);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .pricing-card.featured {
+            background: linear-gradient(180deg, rgba(242, 240, 235, 0.06) 0%, rgba(22, 22, 20, 1) 100%);
+            border-color: rgba(242, 240, 235, 0.35);
+        }
+
+        .pricing-badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--white-dim);
+            padding: 4px 10px;
+            background: rgba(242, 240, 235, 0.06);
+            border-radius: 999px;
+            margin-bottom: 20px;
+            width: fit-content;
+        }
+
+        .pricing-card.featured .pricing-badge {
+            background: var(--white);
+            color: var(--bg);
+        }
+
+        .pricing-plan-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+        }
+
+        .pricing-plan-desc {
+            font-size: 13px;
+            font-weight: 300;
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 24px;
+            min-height: 42px;
+        }
+
+        .pricing-price-wrap {
+            margin-bottom: 28px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--white-subtle);
+        }
+
+        .pricing-amount {
+            font-size: 34px;
+            font-weight: 900;
+            color: var(--white);
+            letter-spacing: -0.03em;
+        }
+
+        .pricing-period {
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--muted);
+            margin-left: 4px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 32px;
+            flex-grow: 1;
+        }
+
+        .pricing-feature-item {
+            font-size: 13px;
+            color: var(--white-dim);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            line-height: 1.4;
+        }
+
+        .pricing-check {
+            color: var(--white);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .btn-pricing {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 14px 20px;
+            font-family: var(--font);
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            border-radius: 999px;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            border: 1px solid var(--white-border);
+            color: var(--white);
+            background: rgba(242, 240, 235, 0.04);
+            box-sizing: border-box;
+        }
+
+        .btn-pricing:hover {
+            background: var(--white);
+            color: var(--bg);
+            border-color: var(--white);
+        }
+
+        .btn-pricing-featured {
+            background: var(--white);
+            color: var(--bg);
+            border-color: var(--white);
+        }
+
+        .btn-pricing-featured:hover {
+            background: #e2dfd7;
+            transform: scale(1.02);
+        }
+
+        /* Invoicing Banner */
+        .pricing-b2b-box {
+            background: linear-gradient(135deg, rgba(242, 240, 235, 0.04) 0%, rgba(22, 22, 20, 0.8) 100%);
+            border: 1px solid var(--white-border);
+            border-radius: 16px;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .pricing-b2b-text h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .pricing-b2b-text p {
+            font-size: 14px;
+            color: var(--muted);
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .pricing-b2b-actions {
+            display: flex;
+            gap: 14px;
+            flex-shrink: 0;
+            align-items: center;
+        }
+
+        .stripe-powered-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-top: 30px;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .stripe-badge-dot {
+            width: 6px;
+            height: 6px;
+            background: #635bff;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        @media (max-width: 900px) {
+            #pricing {
+                padding: 100px 24px;
+            }
+            .pricing-b2b-box {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 28px;
+            }
+            .pricing-b2b-actions {
+                width: 100%;
+                flex-direction: column;
+            }
+            .pricing-b2b-actions .btn-pricing {
+                width: 100%;
+            }
+        }
+
         /* CTA */
         #cta {
             padding: 160px 60px;
@@ -2047,6 +2319,7 @@
                     <li><a href="#services">Serviços</a></li>
                     <li><a href="#work">Portfólio</a></li>
                     <li><a href="#process">Processo</a></li>
+                    <li><a href="#pricing">Planos</a></li>
                 </ul>
             </div>
             <a href="#cta" class="lg lg-tint lg-interactive lg-cta" data-lg-bezel="20" data-lg-thickness="20">Falar com a gente</a>
@@ -2599,6 +2872,157 @@
             </div>
         </div>
     </section>
+
+    <!-- PRICING & STRIPE -->
+    <section id="pricing">
+        <div class="pricing-inner">
+            <div class="section-header reveal">
+                <h2 class="section-title">Planos & Investimento</h2>
+                <span class="section-count">Stripe Payments & Billing</span>
+            </div>
+
+            <p class="reveal" style="font-size: 15px; font-weight: 300; color: var(--muted); max-width: 680px; margin-top: 14px; line-height: 1.7;">
+                Transparência total. Planos flexíveis de suporte contínuo, horas dedicadas de engenharia e soluções avulsas processadas com segurança de nível bancário pela Stripe.
+            </p>
+
+            <div class="pricing-filter-dock reveal">
+                <button class="pricing-tab-btn active" onclick="filterPricing('all')">Todos os Planos</button>
+                <button class="pricing-tab-btn" onclick="filterPricing('recurring')">Assinaturas & Retainers</button>
+                <button class="pricing-tab-btn" onclick="filterPricing('one_time')">Projetos & Consultoria</button>
+            </div>
+
+            <div class="pricing-grid reveal">
+                <!-- Card 1: Retainer Suporte & Manutenção -->
+                <div class="pricing-card" data-pricing-type="recurring">
+                    <div>
+                        <span class="pricing-badge">Sustentação Web</span>
+                        <h3 class="pricing-plan-name">Kriativa Care</h3>
+                        <p class="pricing-plan-desc">Manutenção técnica contínua, correções de bugs, segurança preventiva e suporte prioritário.</p>
+                        <div class="pricing-price-wrap">
+                            <span class="pricing-amount">R$ 980</span>
+                            <span class="pricing-period">/mês</span>
+                        </div>
+                        <ul class="pricing-features">
+                            <li class="pricing-feature-item"><span class="pricing-check">✓</span> Monitoramento 24/7 e uptime</li>
+                            <li class="pricing-feature-item"><span class="pricing-check">✓</span> Atualizações de segurança e backups</li>
+                            <li class="pricing-feature-item"><span class="pricing-check">✓</span> Suporte técnico direto via WhatsApp/Slack</li>
+                            <li class="pricing-feature-item"><span class="pricing-check">✓</span> Faturamento automático Stripe com nota</li>
+                        </ul>
+                    </div>
+                    <a href="https://buy.stripe.com/test_9B63cwcl23xrfOw12B93y00" target="_blank" rel="noopener noreferrer" class="btn-pricing">
+                        Assinar Plano Care →
+                    </a>
+                </div>
+
+                <!-- Card 2: Retainer Squad Dedicada (Featured) -->
+                <div class="pricing-card featured" data-pricing-type="recurring">
+                    <div>
+                        <span class="pricing-badge">Mais Escolhido • Squad</span>
+                        <h3 class="pricing-plan-name">Kriativa Growth</h3>
+                        <p class="pricing-plan-desc">Horas dedicadas mensais para novas features, evolução contínua de UI/UX e desenvolvimento fullstack.</p>
+                        <div class="pricing-price-wrap">
+                            <span class="pricing-amount">R$ 2.490</span>
+                            <span class="pricing-period">/mês</span>
+                        </div>
+                        <ul class="pricing-features">
+                            <li class="pricing-feature-item"><span class="pricing-check">✓</span> Engenharia e design sob demanda</li>
+                            <li class="pricing-feature-item"><span class="pricing-check">✓</span> Sprints iterativas semanais</li>
+                            <li class="pricing-feature-item"><span class="pricing-check">✓</span> Otimização de conversão e performance</li>
+                            <li class="pricing-feature-item"><span class="pricing-check">✓</span> Acesso ao Portal do Cliente Stripe</li>
+                        </ul>
+                    </div>
+                    <a href="https://buy.stripe.com/test_00w9AU84Mc3Xbyg5iR93y01" target="_blank" rel="noopener noreferrer" class="btn-pricing btn-pricing-featured">
+                        Assinar Plano Growth →
+                    </a>
+                </div>
+
+                <!-- Card 3: Entrada de Projeto / Milestone -->
+                <div class="pricing-card" data-pricing-type="one_time">
+                    <div>
+                        <span class="pricing-badge">Payments • Entrada</span>
+                        <h3 class="pricing-plan-name">Entrada de Projeto</h3>
+                        <p class="pricing-plan-desc">Sinal padrão de 50% ou liquidação de milestone para novos projetos de software ou landing pages.</p>
+                        <div class="pricing-price-wrap">
+                            <span class="pricing-amount">R$ 1.500</span>
+                            <span class="pricing-period">milestone</span>
+                        </div>
+                        <ul class="pricing-features">
+                            <li class="pricing-feature-item"><span class="pricing-check">✓</span> Início imediato do cronograma</li>
+                            <li class="pricing-feature-item"><span class="pricing-check">✓</span> Coleta e validação de CPF ou CNPJ</li>
+                            <li class="pricing-feature-item"><span class="pricing-check">✓</span> Cartão de crédito, Pix e boleto</li>
+                            <li class="pricing-feature-item"><span class="pricing-check">✓</span> Comprovante e recibo automático</li>
+                        </ul>
+                    </div>
+                    <a href="https://buy.stripe.com/test_7sY00kdp6aZT6dWeTr93y02" target="_blank" rel="noopener noreferrer" class="btn-pricing">
+                        Pagar Entrada / Milestone →
+                    </a>
+                </div>
+
+                <!-- Card 4: Consultoria Estratégica -->
+                <div class="pricing-card" data-pricing-type="one_time">
+                    <div>
+                        <span class="pricing-badge">Sessão Estratégica</span>
+                        <h3 class="pricing-plan-name">Consultoria & Diagnóstico</h3>
+                        <p class="pricing-plan-desc">90 minutos de mentoria técnica, diagnóstico de arquitetura, UI/UX audit e direcionamento estratégico.</p>
+                        <div class="pricing-price-wrap">
+                            <span class="pricing-amount">R$ 490</span>
+                            <span class="pricing-period">sessão</span>
+                        </div>
+                        <ul class="pricing-features">
+                            <li class="pricing-feature-item"><span class="pricing-check">✓</span> Sessão técnica 1-on-1 com liderança</li>
+                            <li class="pricing-feature-item"><span class="pricing-check">✓</span> Relatório executivo de oportunidades</li>
+                            <li class="pricing-feature-item"><span class="pricing-check">✓</span> Viabilidade de produto e stack ideal</li>
+                            <li class="pricing-feature-item"><span class="pricing-check">✓</span> 100% abatível se contratar o projeto</li>
+                        </ul>
+                    </div>
+                    <a href="https://buy.stripe.com/test_eVqbJ2dp68RL0TCfXv93y03" target="_blank" rel="noopener noreferrer" class="btn-pricing">
+                        Contratar Consultoria →
+                    </a>
+                </div>
+            </div>
+
+            <!-- Invoicing B2B Banner -->
+            <div class="pricing-b2b-box reveal">
+                <div class="pricing-b2b-text">
+                    <span class="pricing-badge" style="margin-bottom: 10px;">Stripe Invoicing & Tax</span>
+                    <h3>Faturamento Corporativo B2B</h3>
+                    <p>Precisa de fatura personalizada com vencimento a prazo (Net 15 / Net 30), emissão de nota com CNPJ da sua empresa e split de retenções fiscais?</p>
+                </div>
+                <div class="pricing-b2b-actions">
+                    <a href="mailto:financeiro@kriativasoftware.io?subject=Solicita%C3%A7%C3%A3o%20de%20Fatura%20B2B%20-%20Kriativa&body=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20uma%20fatura%20B2B%20para%20o%20seguinte%20escopo%3A%0A%0ARaz%C3%A3o%20Social%3A%0ACNPJ%3A%0AValor%20Estimado%3A%0APrazo%20Desejado%20(ex%3A%2015%20ou%2030%20dias)%3A" class="btn-pricing btn-pricing-featured">
+                        Solicitar Fatura B2B
+                    </a>
+                    <a href="mailto:financeiro@kriativasoftware.io?subject=Acesso%20ao%20Portal%20Stripe%20-%20Kriativa" class="btn-pricing" title="Portal exclusivo para clientes existentes">
+                        Portal do Cliente ↗
+                    </a>
+                </div>
+            </div>
+
+            <div class="stripe-powered-pill reveal">
+                <span class="stripe-badge-dot"></span>
+                Ambiente de Pagamentos Seguro • Powered by Stripe
+            </div>
+        </div>
+    </section>
+
+    <!-- Script de Filtro dos Planos -->
+    <script>
+        function filterPricing(type) {
+            const buttons = document.querySelectorAll('.pricing-tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const cards = document.querySelectorAll('.pricing-card');
+            cards.forEach(card => {
+                const cardType = card.getAttribute('data-pricing-type');
+                if (type === 'all' || cardType === type) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
 
     <!-- CTA -->
     <section id="cta">

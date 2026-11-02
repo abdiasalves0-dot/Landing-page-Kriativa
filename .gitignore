@@ -5,3 +5,8 @@ Thumbs.db
 .idea/
 *.code-workspace
 
+.env
+.env.*
+!.env.example
+node_modules/
+server/node_modules/

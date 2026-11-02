@@ -1,0 +1,38 @@
+﻿[
+    {
+        "Name":  "Kriativa Care: Suporte \u0026 Manutencao",
+        "Type":  "recurring",
+        "Amount":  "980,00",
+        "Currency":  "BRL",
+        "ProductId":  "prod_VYIVc3hpzHM3CX",
+        "PriceId":  "price_1UXBuBLxXk7ck4fmpxUM2U2D",
+        "PaymentLink":  "https://buy.stripe.com/test_9B63cwcl23xrfOw12B93y00"
+    },
+    {
+        "Name":  "Kriativa Growth: Software \u0026 Design Squad",
+        "Type":  "recurring",
+        "Amount":  "2.490,00",
+        "Currency":  "BRL",
+        "ProductId":  "prod_VYIVGXzFPDh6Xh",
+        "PriceId":  "price_1UXBuDLxXk7ck4fmFAok9Rnp",
+        "PaymentLink":  "https://buy.stripe.com/test_00w9AU84Mc3Xbyg5iR93y01"
+    },
+    {
+        "Name":  "Entrada de Projeto / Milestone",
+        "Type":  "one_time",
+        "Amount":  "1.500,00",
+        "Currency":  "BRL",
+        "ProductId":  "prod_VYIVjH8lP1lbyA",
+        "PriceId":  "price_1UXBuELxXk7ck4fmsqhp0vmq",
+        "PaymentLink":  "https://buy.stripe.com/test_7sY00kdp6aZT6dWeTr93y02"
+    },
+    {
+        "Name":  "Consultoria \u0026 Diagnostico Digital",
+        "Type":  "one_time",
+        "Amount":  "490,00",
+        "Currency":  "BRL",
+        "ProductId":  "prod_VYIVMIVvCuLuD3",
+        "PriceId":  "price_1UXBuFLxXk7ck4fmLi2zC9bb",
+        "PaymentLink":  "https://buy.stripe.com/test_eVqbJ2dp68RL0TCfXv93y03"
+    }
+]
